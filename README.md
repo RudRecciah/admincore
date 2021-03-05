@@ -17,6 +17,7 @@ Planned features:
       * Puesdo-Leave Message
       * Hidden From Players & Tablist
    * Web Integration
+
 Planned Versions:
    * 1.17.x
    * 1.16.x
