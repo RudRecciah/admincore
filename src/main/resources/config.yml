@@ -1,0 +1,6 @@
+# +------------------+
+# | AdminCore Config |
+# +------------------+
+
+#Enables/disables auditory notifications to staff members when someone sends a staff chat message but they're not in staff chat
+staffchatpings: false

@@ -1,0 +1,2 @@
+# AdminCoreTest
+Core for administration

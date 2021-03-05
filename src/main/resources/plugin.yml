@@ -1,0 +1,22 @@
+name: Admincore
+version: ${project.version}
+main: dev.rudrecciah.admincore.Main
+api-version: 1.16
+prefix: Admin Core
+authors: [ RudRecciah ]
+description: A core plugin for Spigot and Paper server administration.
+website: https://rudrecciah.dev/core
+commands:
+  staffchat:
+    description: Toggle between global and staff-only chat.
+    permission: admincore.staff
+    usage: /staff [add|remove] [player]
+permissions:
+  admincore.admin:
+    description: Allows a player to use the full functionality of Admin Core
+    default: op
+    children:
+      admincore.staff: true
+  admincore.staff:
+    description: Allows a staff member to use Admin Core without giving the member administrator permissions
+    default: op
