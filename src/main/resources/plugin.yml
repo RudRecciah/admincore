@@ -10,7 +10,12 @@ commands:
   staffchat:
     description: Toggle between global and staff-only chat.
     permission: admincore.staff
-    usage: /staff [add|remove] [player]
+    usage: /staffchat
+  staffnotifications:
+    description: Toggles staff notifications.
+    permission: admincore.staff
+    aliases: staffnotifs
+    usage: /mute
 permissions:
   admincore.admin:
     description: Allows a player to use the full functionality of Admin Core
