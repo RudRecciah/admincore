@@ -8,14 +8,9 @@ description: A core plugin for Spigot and Paper server administration.
 website: https://rudrecciah.dev/core
 commands:
   staffchat:
-    description: Toggle between global and staff-only chat.
+    description: Sends a message in a staff-only chat channel.
     permission: admincore.staff
-    usage: /staffchat
-  staffnotifications:
-    description: Toggles staff notifications.
-    permission: admincore.staff
-    aliases: staffnotifs
-    usage: /mute
+    usage: /staffchat {message}
 permissions:
   admincore.admin:
     description: Allows a player to use the full functionality of Admin Core
