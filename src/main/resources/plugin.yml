@@ -6,11 +6,16 @@ prefix: Admin Core
 authors: [ RudRecciah ]
 description: A core plugin for Spigot and Paper server administration.
 website: https://rudrecciah.dev/core
+softdepend: [PlaceholderAPI]
 commands:
   staffchat:
     description: Sends a message in a staff-only chat channel.
     permission: admincore.staff
     usage: /staffchat {message}
+  status:
+    description: See the status of the server including the server's TPS, your ping, playercount, and more.
+    permission: admincore.staff
+    usage: /status
 permissions:
   admincore.admin:
     description: Allows a player to use the full functionality of Admin Core

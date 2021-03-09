@@ -1,6 +1,40 @@
 # +------------------+
 # | AdminCore Config |
 # +------------------+
-
-#Enables/disables auditory notifications to staff members when someone sends a staff chat message but they're not in staff chat
-staffchatpings: false
+#Stops the server when it starts if the plugin is made for a different version. Can be useful if you forget to update.
+killwhenoutdated: false
+#Settings for /status
+#Log determines whether the corresponding information will be shown to either the player
+#Protect-sensitive will hide the ip and port from anyone without the "admincore.admin" permission
+serverstatus:
+  protect-sensitive: false
+  serverVersion:
+    log: true
+    admin-only: false
+  buildInformation:
+    log: true
+    admin-only: false
+  ip:
+    log: true
+    admin-only: true
+  port:
+    log: true
+    admin-only: true
+  playerCount:
+    log: true
+    admin-only: false
+  tps:
+    log:
+      one-minute: true
+      five-minutes: true
+      fifteen-minutes: true
+    admin-only: false
+  uptime:
+    log: true
+    admin-only: false
+  ram:
+    log: true
+    admin-only: true
+  ping:
+    log: true
+    admin-only: false
