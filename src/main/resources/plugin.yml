@@ -16,6 +16,10 @@ commands:
     description: See the status of the server including the server's TPS, your ping, playercount, and more.
     permission: admincore.staff
     usage: /status
+  announce:
+    description: Send an announcment to all players.
+    permission: admincore.admin
+    usage: /announce {message}
 permissions:
   admincore.admin:
     description: Allows a player to use the full functionality of Admin Core

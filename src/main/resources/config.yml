@@ -3,6 +3,8 @@
 # +------------------+
 #Stops the server when it starts if the plugin is made for a different version. Can be useful if you forget to update.
 killwhenoutdated: false
+#The title of server-wide announcements. The message you announce will be the subtitle.
+announcementtitle: "A Very Cool Announcement"
 #Settings for /status
 #Log determines whether the corresponding information will be shown to either the player
 #Protect-sensitive will hide the ip and port from anyone without the "admincore.admin" permission
