@@ -35,7 +35,7 @@ public class ServerStatus implements CommandExecutor {
             ramFreePlaceholder = PlaceholderAPI.setPlaceholders(p, ramFreePlaceholder);
             ramTotalPlaceholder = PlaceholderAPI.setPlaceholders(p, ramTotalPlaceholder);
             pingPlaceholder = PlaceholderAPI.setPlaceholders(p, pingPlaceholder);
-            p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[SERVER STATISTICS]");
+            p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[SERVER STATUS]");
             if(plugin.getConfig().getBoolean("serverstatus.serverVersion.log")) {
                 p.sendMessage(ChatColor.YELLOW + "Version: " + bukkitVersion);
             }if(plugin.getConfig().getBoolean("serverstatus.buildInformation.log")) {

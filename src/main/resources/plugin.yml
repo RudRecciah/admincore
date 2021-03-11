@@ -20,6 +20,10 @@ commands:
     description: Send an announcment to all players.
     permission: admincore.admin
     usage: /announce {message}
+  staffmode:
+    description: Hides staff from all players who are not staff themselves and allows staff to spectate players.
+    permission: admincore.staff
+    usage: /staffmode
 permissions:
   admincore.admin:
     description: Allows a player to use the full functionality of Admin Core

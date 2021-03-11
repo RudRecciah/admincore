@@ -29,7 +29,7 @@ public class StaffChat implements CommandExecutor {
                     if (player.hasPermission("admincore.staff")) {
                         player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.YELLOW + p.getName() + ": " + message);
                         FileConfiguration config = plugin.getConfig();
-                        if (DataHandler.getBoolean(player, "notifs") && p != player) {
+                        if(DataHandler.getBoolean(player, "notifs") && p != player) {
                             player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
                         }
                     }
