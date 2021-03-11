@@ -46,7 +46,9 @@ public class StaffmodeHandler implements CommandExecutor {
                     configMessage = configMessage.replaceAll("%p%", p.getName());
                     configMessage = ChatColor.translateAlternateColorCodes('&', configMessage);
                     for(Player player : plugin.getServer().getOnlinePlayers()) {
-                        player.sendMessage(configMessage);
+                        if(p != player && !player.hasPermission("admincore.staff")) {
+                            player.sendMessage(configMessage);
+                        }
                     }
                 }else{
                     p.sendMessage(ChatColor.YELLOW + "There is no pseudo disconnect message in config.yml, but pseudo disconnect messages are set to send. Please aleart an admin about this issue! For now, you can enter staffmode, but no disconnect message will be sent. This may compromise your secrecy.");
@@ -73,7 +75,9 @@ public class StaffmodeHandler implements CommandExecutor {
                     configMessage = configMessage.replaceAll("%p%", p.getName());
                     configMessage = ChatColor.translateAlternateColorCodes('&', configMessage);
                     for(Player player : plugin.getServer().getOnlinePlayers()) {
-                        player.sendMessage(configMessage);
+                        if(p != player && !player.hasPermission("admincore.staff")) {
+                            player.sendMessage(configMessage);
+                        }
                     }
                 }else{
                     p.sendMessage(ChatColor.YELLOW + "There is no pseudo join message in config.yml, but pseudo join messages are set to send. Please aleart an admin about this issue! For now, you can leave staffmode, but no join message will be sent. This may compromise your secrecy.");
@@ -109,8 +113,6 @@ public class StaffmodeHandler implements CommandExecutor {
             }
         }
     }
-
-    //TODO: Use entity#setMetadata to store staff or not
 
     public void show(Player p) {
         for(Player player : plugin.getServer().getOnlinePlayers()) {
