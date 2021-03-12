@@ -6,7 +6,7 @@
 
     <groupId>dev.rudrecciah</groupId>
     <artifactId>admincore</artifactId>
-    <version>0.0.6</version>
+    <version>0.0.7</version>
     <packaging>jar</packaging>
 
     <name>Admincore</name>
@@ -49,6 +49,7 @@
                 <version>2.3.1</version>
                 <configuration>
                     <outputDirectory>D:\Projects\spigot\plugins</outputDirectory>
+                    <finalName>Admincore</finalName>
                 </configuration>
             </plugin>
         </plugins>
