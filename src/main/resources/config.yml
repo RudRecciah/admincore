@@ -1,18 +1,34 @@
 # +------------------+
 # | AdminCore Config |
 # +------------------+
-#Stops the server when it starts if the plugin is made for a different version. Can be useful if you forget to update.
+#Stops the server when it starts if the plugin is made for a different version or the config is made for a different version of this plugin. Can be useful if you forget to update.
 killwhenoutdated: false
 #The title of server-wide announcements. The message you announce will be the subtitle.
 announcementtitle: 'A Very Cool Announcement'
-#The message to send to players when a staff member enters staffmode. Use &{color code} to format the text to match your actual disconnect message. Colors should come before bolding or italics. Use %p% to specify the name of the staff member. For example: '&e%p% left the game.'
-pseudodisconnect:
-  send-message: true
-  message: '&e%p% left the game.'
-#The message to send to players when a staff member leaves staffmode. Use &{color code} to format the text to match your actual disconnect message. Colors should come before bolding or italics. Use %p% to specify the name of the staff member. For example: '&e%p% left the game.'
-pseudojoin:
-  send-message: true
-  message: '&e%p% joined the game.'
+staffmode:
+  #Determines if players should be put back into the gamemode they entered staffmode with when they leave it. If this is false or an error occours with leaving staffmode, they will automatically enter adventure mode.
+  resetgamemode: true
+  #Determines if players should be teleported to spawn and in which world and coordinates they should be teleported to when leaving staffmode. If your server has a /spawn command, set "use-spawn-cmd" to true and set "spawn-cmd" to the command your server uses without the /, for example 'spawn'. This will override everything under "location" and will allow you to change your spawnpoint without worrying about updating this config.
+  tptospawn:
+    teleport: true
+    use-spawn-cmd: false
+    spawn-cmd: 'spawn'
+    location:
+      world: 'world'
+      coordinates:
+        x: 12.0
+        y: 8.0
+        z: 0.0
+        yaw: -90
+        pitch: 0
+  #The message to send to players when a staff member enters staffmode. Use &{color code} to format the text to match your actual disconnect message. Colors should come before bolding or italics. Use %p% to specify the name of the staff member. For example: '&e%p% left the game.'
+  pseudodisconnect:
+    send-message: true
+    message: '&e%p% left the game.'
+  #The message to send to players when a staff member leaves staffmode. Use &{color code} to format the text to match your actual disconnect message. Colors should come before bolding or italics. Use %p% to specify the name of the staff member. For example: '&e%p% left the game.'
+  pseudojoin:
+    send-message: true
+    message: '&e%p% joined the game.'
 #Settings for /status
 #Log determines whether the corresponding information will be shown to the player
 #Protect-sensitive will hide the ip and port from anyone without the "admincore.admin" permission

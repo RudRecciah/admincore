@@ -2,25 +2,29 @@ package dev.rudrecciah.admincore;
 
 import dev.rudrecciah.admincore.announcements.AnnouncementHandler;
 import dev.rudrecciah.admincore.data.DataLoader;
+import dev.rudrecciah.admincore.master.MasterCommand;
 import dev.rudrecciah.admincore.serverstatus.ServerStatus;
 import dev.rudrecciah.admincore.staffchat.StaffChat;
 import dev.rudrecciah.admincore.staffmode.StaffmodeHandler;
+import fr.minuskube.inv.InventoryManager;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin implements CommandExecutor, Listener {
 
     public static Main plugin;
+    private InventoryManager invManager;
 
     @Override
     public void onEnable() {
         plugin = this;
         plugin.saveDefaultConfig();
-        this.getLogger().info("hallo");
         getServer().getPluginManager().registerEvents(this, this);
         DataLoader.saveDefaultdata();
         DataLoader.get().options().copyDefaults(true);
@@ -28,7 +32,14 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         getCommand("status").setExecutor(new ServerStatus());
         getCommand("announce").setExecutor(new AnnouncementHandler());
         getCommand("staffmode").setExecutor(new StaffmodeHandler());
+        getCommand("admincore").setExecutor(new MasterCommand());
         getLogger().info("Admin Core Enabled");
+        invManager = new InventoryManager(this);
+        invManager.init();
+    }
+
+    public InventoryManager getInvManager() {
+        return invManager;
     }
 
     public static void rud() {
@@ -36,6 +47,17 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
     }
 
     /*
+    * Other things:
+    * die
+    * be gay
+    * do crime
+    * pogchamp
+    * TODO add something in the console about where to report bugs to, maybe also send that message when an exception is thrown
+    * TODO killwhenoutdated in config
+    *
+    * Bugs to fix:
+    * none yey
+    *
     * Things you can do in staffmode:
     * /spectate
     * /invsee
@@ -45,10 +67,11 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
     * Either saturation or nohunger task
     *
     * How it will work:
-    * When you enter, you can fly and become invulnerable, you also get added to saturation/food tasks
-    * When you punch a player, the hit won't register but you will open a gui with 5 buttons, report player, inventory see, name/uuid etc, full stats (ip, location, etc), and ban
+    * When you enter, you go into spectator mode
+    * When you leave, you return to the gamemode you were in before
+    * TODO: When you punch a player, the hit won't register but you will open a gui with 5 buttons, report player, inventory see, name/uuid etc, full stats (ip, location, etc), and ban
     *
-    * Report Player:
+    * Report Player/Ban:
     * to be handled by report module
     *
     * Invsee:
@@ -60,8 +83,19 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
     * Full stats:
     * Opens another gui with name, UUID, IP, all the important stuff from ipqs api, ban history, aliases, anything else i can think of
     *
-    * Ban:
-    * to be handled by ban module
+    * Close:
+    * Closes gui
+    * */
+
+
+    /*
+    *
+    * if(p.hasMetadata("")) {
+            List meta = p.getMetadata("");
+            FixedMetadataValue metaValue = (FixedMetadataValue) meta.get(0);
+            if(metaValue.asBoolean()) {}
+        }
+    *
     * */
 
     @EventHandler
@@ -71,7 +105,22 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
 
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e) {
-        StaffmodeHandler.clear(e.getPlayer());
+        StaffmodeHandler.clear(e.getPlayer(), e);
+    }
+
+    @EventHandler
+    public void onPlayerTeleport(PlayerTeleportEvent e) {
+        StaffmodeHandler.interactWithPlayer(e.getPlayer(), e);
+    }
+
+    @EventHandler
+    public void onPlayerChat(AsyncPlayerChatEvent e) {
+        if(e.getPlayer().hasPermission("admincore.staff")) {
+            boolean b = StaffmodeHandler.checkStaffmodeChat(e.getPlayer(), e.getMessage());
+            if(b) {
+                e.setCancelled(true);
+            }
+        }
     }
 
     @Override

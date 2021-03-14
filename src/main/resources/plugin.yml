@@ -24,6 +24,10 @@ commands:
     description: Hides staff from all players who are not staff themselves and allows staff to spectate players.
     permission: admincore.staff
     usage: /staffmode
+  admincore:
+    description: Main command for admincore.
+    permission: admincore.admin
+    usage: /admincore reload
 permissions:
   admincore.admin:
     description: Allows a player to use the full functionality of Admin Core
