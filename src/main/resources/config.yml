@@ -29,6 +29,30 @@ staffmode:
   pseudojoin:
     send-message: true
     message: '&e%p% joined the game.'
+  #Determines how punishment like reports and bans work on your server. While most settings are self-explanatory, tempban-length is in days, and mute-length is in minutes.
+  punishment:
+    report:
+      log-to-discord: true
+      reasons:
+        1: 'Cheating'
+        2: 'Chat Abuse'
+        3: 'idk fookin botum geah moates'
+        4: 'Chargebacks'
+        5: 'DDoS Threats'
+    ban:
+      log-to-discord: true
+      reasons:
+        1: 'Cheating'
+        2: 'Chat Abuse'
+        3: 'idk fookin botum geah moates'
+        4: 'Chargebacks'
+        5: 'DDoS Threats'
+      tempban-length: 30
+    mute:
+      log-to-discord: true
+      reason: 'Chat Abuse'
+      mute-length: 30
+
 #Settings for /status
 #Log determines whether the corresponding information will be shown to the player
 #Protect-sensitive will hide the ip and port from anyone without the "admincore.admin" permission

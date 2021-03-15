@@ -141,9 +141,25 @@ public class StaffmodeHandler implements CommandExecutor {
             if(p.hasMetadata("preStaffmodeGamemode")) {
                 p.removeMetadata("preStaffmodeGamemode", plugin);
             }
+            if(p.hasMetadata("staffmodeChecking")) {
+                p.removeMetadata("staffmodeChecking", plugin);
+            }
             if(plugin.getConfig().getBoolean("staffmode.pseudodisconnect.send-message")) {
                 e.setQuitMessage(null);
             }
+        }
+    }
+
+    //clears players metadata when they join if something went wrong when they left
+    public static void clearJoin(Player p) {
+        if(p.hasMetadata("staffmode")) {
+            p.removeMetadata("staffmode", plugin);
+        }
+        if(p.hasMetadata("preStaffmodeGamemode")) {
+            p.removeMetadata("preStaffmodeGamemode", plugin);
+        }
+        if(p.hasMetadata("staffmodeChecking")) {
+            p.removeMetadata("staffmodeChecking", plugin);
         }
     }
 
@@ -206,10 +222,9 @@ public class StaffmodeHandler implements CommandExecutor {
                     if(p.getSpectatorTarget() != null && p.getSpectatorTarget().getType() == EntityType.PLAYER) {
                         Location loc = e.getFrom();
                         e.setTo(loc);
-                        Player t = (Player) p.getSpectatorTarget();
                         p.setMetadata("staffmodeChecking", new FixedMetadataValue(plugin, p.getSpectatorTarget().getUniqueId()));
-                        p.setSpectatorTarget(null);
                         MainMenu.openMenu(p);
+                        p.setSpectatorTarget(null);
                     }
                 }
             }

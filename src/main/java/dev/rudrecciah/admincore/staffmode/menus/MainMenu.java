@@ -1,11 +1,10 @@
 package dev.rudrecciah.admincore.staffmode.menus;
 
-import dev.rudrecciah.admincore.Main;
 import dev.rudrecciah.admincore.staffmode.menus.providers.MainProvider;
-import fr.minuskube.inv.InventoryManager;
 import fr.minuskube.inv.SmartInventory;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.metadata.FixedMetadataValue;
 
 import static dev.rudrecciah.admincore.Main.plugin;
 
@@ -14,8 +13,9 @@ public class MainMenu {
     public static final SmartInventory MainMenu = SmartInventory.builder()
             .provider(new MainProvider())
             .id("staffmodeMain")
-            .title("Main Menu")
-            .type(InventoryType.HOPPER)
+            .title("Staffmode Menu")
+            .type(InventoryType.CHEST)
+            .size(1, 9)
             .closeable(true)
             .manager(plugin.getInvManager())
             .build();
@@ -26,8 +26,5 @@ public class MainMenu {
 
     public static void closeMenu(Player p) {
         p.closeInventory();
-        if(p.hasMetadata("staffmodeChecking")) {
-            p.removeMetadata("staffmodeChecking", plugin);
-        }
     }
 }

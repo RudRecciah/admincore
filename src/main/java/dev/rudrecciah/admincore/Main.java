@@ -8,8 +8,10 @@ import dev.rudrecciah.admincore.staffchat.StaffChat;
 import dev.rudrecciah.admincore.staffmode.StaffmodeHandler;
 import fr.minuskube.inv.InventoryManager;
 import org.bukkit.command.CommandExecutor;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -70,6 +72,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
     * When you enter, you go into spectator mode
     * When you leave, you return to the gamemode you were in before
     * TODO: When you punch a player, the hit won't register but you will open a gui with 5 buttons, report player, inventory see, name/uuid etc, full stats (ip, location, etc), and ban
+    * TODO: reports and bans have discord webhook integration
     *
     * Report Player/Ban:
     * to be handled by report module
@@ -101,6 +104,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
         StaffmodeHandler.hide();
+        StaffmodeHandler.clearJoin(e.getPlayer());
     }
 
     @EventHandler

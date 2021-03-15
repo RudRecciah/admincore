@@ -1,17 +1,18 @@
 package dev.rudrecciah.admincore.staffmode.menus.providers;
 
 import dev.rudrecciah.admincore.data.DataHandler;
+import dev.rudrecciah.admincore.staffmode.grabber.StatsGrabber;
+import dev.rudrecciah.admincore.staffmode.items.ItemCreator;
 import dev.rudrecciah.admincore.staffmode.menus.MainMenu;
 import fr.minuskube.inv.ClickableItem;
 import fr.minuskube.inv.content.InventoryContents;
 import fr.minuskube.inv.content.InventoryProvider;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.jetbrains.annotations.NotNull;
+import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.*;
 
@@ -28,50 +29,59 @@ public class MainProvider implements InventoryProvider {
         }
         String uuid = DataHandler.getMetaString(player, "staffmodeChecking");
         Player target = plugin.getServer().getPlayer(UUID.fromString(uuid));
-        ItemStack punishment = new ItemStack(Material.NAME_TAG);
-        ItemMeta punishmentMeta = punishment.getItemMeta();
-        punishmentMeta.setDisplayName(ChatColor.BLUE + "" + ChatColor.BOLD + "[PUNISH]");
-        punishmentMeta.setLore(Collections.singletonList(ChatColor.YELLOW + "Report or ban this player!"));
-        punishment.setItemMeta(punishmentMeta);
-        ItemStack inventory = new ItemStack(Material.ENDER_CHEST);
-        ItemMeta inventoryMeta = inventory.getItemMeta();
-        inventoryMeta.setDisplayName(ChatColor.BLUE + "" + ChatColor.BOLD + "[INVENTORY]");
-        inventoryMeta.setLore(Collections.singletonList(ChatColor.YELLOW + "See this player's inventory!"));
-        inventory.setItemMeta(inventoryMeta);
+        ItemStack report = ItemCreator.createSimpleItemStack(Material.WRITABLE_BOOK, 1, "REPORT " + target.getName().toUpperCase(Locale.ROOT), "Report " + target.getName() + " for an infraction!");
+        ItemStack mute = ItemCreator.createSimpleItemStack(Material.MAP, 1, "MUTE " + target.getName().toUpperCase(Locale.ROOT), "Mute " + target.getName() + " for a chat infraction!");
+        ItemStack ban = ItemCreator.createSimpleItemStack(Material.FIREWORK_STAR, 1, "BAN " + target.getName().toUpperCase(Locale.ROOT) + " PERMANENTLY", "Ban " + target.getName() + " permanently for an infraction!");
+        ItemStack tempban = ItemCreator.createSimpleItemStack(Material.FIRE_CHARGE, 1, "BAN " + target.getName().toUpperCase(Locale.ROOT) + " FOR 30 DAYS", "Ban " + target.getName() + " for 30 days for an infraction!");
         ItemStack head = itemFromUuid(UUID.fromString(uuid));
         ItemMeta headMeta = head.getItemMeta();
         headMeta.setDisplayName(ChatColor.BLUE + "" + ChatColor.BOLD + "[" + target.getName().toUpperCase(Locale.ROOT) + "]");
         headMeta.setLore(Collections.singletonList(ChatColor.YELLOW + "UUID: " + uuid));
         head.setItemMeta(headMeta);
-        ItemStack stats = new ItemStack(Material.BOOK);
-        ItemMeta statsMeta = stats.getItemMeta();
-        statsMeta.setDisplayName(ChatColor.BLUE + "" + ChatColor.BOLD + "[STATS]");
-        statsMeta.setLore(Collections.singletonList(ChatColor.YELLOW + "add statistics here"));
-        stats.setItemMeta(statsMeta);
-        ItemStack close = new ItemStack(Material.BARRIER);
-        ItemMeta closeMeta = close.getItemMeta();
-        closeMeta.setDisplayName(ChatColor.BLUE + "" + ChatColor.BOLD + "[EXIT]");
-        closeMeta.setLore(Collections.singletonList(ChatColor.YELLOW + "Exit this menu!"));
-        close.setItemMeta(closeMeta);
-        contents.set(0, 0, ClickableItem.of(punishment, e -> {
-            
+        ItemStack inventory = ItemCreator.createSimpleItemStack(Material.ENDER_CHEST, 1, "SEE " + target.getName().toUpperCase(Locale.ROOT) + "'S INVENTORY", "See " + target.getName() + "'s inventory to verify their items' legitimacy!");
+        ItemStack stats = ItemCreator.createSimpleItemStack(Material.NAME_TAG, 1, "SEE " + target.getName().toUpperCase(Locale.ROOT) + "'S STATISTICS", "See " + target.getName() + "'s statistics in detail to verify their legitimacy!");
+        ItemStack pastBans = ItemCreator.createSimpleItemStack(Material.REDSTONE, 1, "REVIEW " + target.getName().toUpperCase(Locale.ROOT) + "'S BAN HISTORY", "ban history here");
+        ItemStack close = ItemCreator.createSimpleItemStack(Material.BARRIER, 1, "EXIT", "Exit this menu!");
+        contents.set(0, 0, ClickableItem.of(report, e -> {
+            MainMenu.closeMenu(player);
+            //TODO: open report menu
         }));
-        contents.set(0, 1, ClickableItem.of(inventory, e -> {
-
-        }));
-        contents.set(0, 2, ClickableItem.of(head, e -> {
-
-        }));
-        contents.set(0, 3, ClickableItem.of(stats, e -> {
-
-        }));
-        contents.set(0, 4, ClickableItem.of(close, e -> {
+        contents.set(0, 1, ClickableItem.of(mute, e -> {
+            target.setMetadata("isMuted", new FixedMetadataValue(plugin, System.currentTimeMillis()));
+            //TODO: task to check if muted time is up
             MainMenu.closeMenu(player);
         }));
+        contents.set(0, 2, ClickableItem.of(ban, e -> {
+            MainMenu.closeMenu(player);
+            //TODO: open ban menu
+        }));
+        contents.set(0, 3, ClickableItem.of(tempban, e -> {
+            MainMenu.closeMenu(player);
+            //TODO: open tempban menu
+        }));
+        contents.set(0, 4, ClickableItem.of(head, e -> {
+            //TODO: nothing bish
+        }));
+        contents.set(0, 5, ClickableItem.of(inventory, e -> {
+            MainMenu.closeMenu(player);
+            //TODO: open invsee menu
+        }));
+        contents.set(0, 6, ClickableItem.of(stats, e -> {
+            StatsGrabber.grabStats(target);
+            //TODO: set lore
+        }));
+        contents.set(0, 7, ClickableItem.of(pastBans, e -> {
+            StatsGrabber.grabBans(target);
+            //TODO: set lore
+        }));
+        contents.set(0, 8, ClickableItem.of(close, e -> {
+            MainMenu.closeMenu(player);
+        }));
+
     }
 
     @Override
     public void update(Player player, InventoryContents contents) {
-
+        //if player is banned, close gui
     }
 }
