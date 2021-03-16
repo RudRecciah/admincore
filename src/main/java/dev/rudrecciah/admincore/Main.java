@@ -1,12 +1,16 @@
 package dev.rudrecciah.admincore;
 
 import dev.rudrecciah.admincore.announcements.AnnouncementHandler;
+import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.data.DataLoader;
 import dev.rudrecciah.admincore.master.MasterCommand;
+import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
+import dev.rudrecciah.admincore.playerdata.PlayerDataLoader;
 import dev.rudrecciah.admincore.serverstatus.ServerStatus;
 import dev.rudrecciah.admincore.staffchat.StaffChat;
 import dev.rudrecciah.admincore.staffmode.StaffmodeHandler;
 import fr.minuskube.inv.InventoryManager;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -105,6 +109,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
     public void onPlayerJoin(PlayerJoinEvent e) {
         StaffmodeHandler.hide();
         StaffmodeHandler.clearJoin(e.getPlayer());
+        PlayerDataHandler.handlePlayerData(e.getPlayer());
     }
 
     @EventHandler
@@ -124,6 +129,9 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
             if(b) {
                 e.setCancelled(true);
             }
+        }else if(!PlayerDataHandler.muteExpired(e.getPlayer())) {
+            e.setCancelled(true);
+            e.getPlayer().sendMessage(ChatColor.YELLOW + getConfig().getString("staffmode.punishment.mute.reason"));
         }
     }
 

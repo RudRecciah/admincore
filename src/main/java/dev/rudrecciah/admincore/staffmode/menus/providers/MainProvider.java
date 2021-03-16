@@ -1,6 +1,7 @@
 package dev.rudrecciah.admincore.staffmode.menus.providers;
 
 import dev.rudrecciah.admincore.data.DataHandler;
+import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
 import dev.rudrecciah.admincore.staffmode.grabber.StatsGrabber;
 import dev.rudrecciah.admincore.staffmode.items.ItemCreator;
 import dev.rudrecciah.admincore.staffmode.menus.MainMenu;
@@ -47,8 +48,9 @@ public class MainProvider implements InventoryProvider {
             //TODO: open report menu
         }));
         contents.set(0, 1, ClickableItem.of(mute, e -> {
-            target.setMetadata("isMuted", new FixedMetadataValue(plugin, System.currentTimeMillis()));
-            //TODO: task to check if muted time is up
+            int muteLength = plugin.getConfig().getInt("staffmode.punishment.mute.mute-length");
+            long muteEnd = System.currentTimeMillis() + (muteLength * 60000L);
+            PlayerDataHandler.mute(target, muteEnd);
             MainMenu.closeMenu(player);
         }));
         contents.set(0, 2, ClickableItem.of(ban, e -> {
