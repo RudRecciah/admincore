@@ -29,7 +29,7 @@ staffmode:
   pseudojoin:
     send-message: true
     message: '&e%p% joined the game.'
-  #Determines how punishment like reports and bans work on your server. "Tempban-length" is in days, and "mute-length" is in minutes. The reasons for reports, bans, and mutes are the reasons that staff can choose from. For bans, the reason of a ban is also what the player will see when they get banned. Leaving a reason as '' will just make a blank reason, not remove the reason. If log-to-discord is true, a discord webhook token must exist in "webhooktoken".
+  #Determines how punishment like reports and bans work on your server. "Tempban-length" is in days, and "mute-length" is in minutes. The reasons for reports, bans, and mutes are the reasons that staff can choose from. For bans, the reason of a ban is also what the player will see when they get banned. Leaving a reason as '' will just make a blank reason, not remove the reason. If log-to-discord is true, a discord webhook token must exist in "webhooktoken". The boolean "ip-ban" will determine if IP bans are enabled on your server for permanent bans. This will give staff a choice between account or IP ban, not force staff to use IP bans.
   punishment:
     report:
       log-to-discord: true
@@ -54,6 +54,7 @@ staffmode:
         7: 'Player Threats'
         8: ''
       tempban-length: 30
+      ip-ban: true
     mute:
       log-to-discord: true
       reason: 'Chat Abuse'

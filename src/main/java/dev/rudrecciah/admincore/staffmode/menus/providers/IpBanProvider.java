@@ -3,6 +3,7 @@ package dev.rudrecciah.admincore.staffmode.menus.providers;
 import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
 import dev.rudrecciah.admincore.staffmode.items.ItemCreator;
+import dev.rudrecciah.admincore.staffmode.menus.BanMenu;
 import dev.rudrecciah.admincore.staffmode.menus.MainMenu;
 import dev.rudrecciah.admincore.staffmode.menus.TempBanMenu;
 import fr.minuskube.inv.ClickableItem;
@@ -14,16 +15,11 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.lang.reflect.Array;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneOffset;
-import java.util.Date;
 import java.util.UUID;
 
 import static dev.rudrecciah.admincore.Main.plugin;
 
-public class TempBanProvider implements InventoryProvider {
+public class IpBanProvider implements InventoryProvider {
     @Override
     public void init(Player player, InventoryContents contents) {
         if(!player.hasMetadata("staffmodeChecking")) {
@@ -42,19 +38,19 @@ public class TempBanProvider implements InventoryProvider {
         ItemStack reason8 = ItemCreator.createSimpleItemStack(Material.MAP, 1, plugin.getConfig().getString("staffmode.punishment.ban.reasons.8"), "");
         ItemStack back = ItemCreator.createSimpleItemStack(Material.BARRIER, 1, "BACK", "Return to the main menu!");
         ItemStack[] reasons = {reason1, reason2, reason3, reason4, reason5, reason6, reason7, reason8};
-        Date endLD = Date.from(LocalDate.now().plusDays(plugin.getConfig().getLong("staffmode.punishment.ban.tempban-length")).atStartOfDay().toInstant(ZoneOffset.UTC));
         for(int i = 0; i < 8; i++) {
             if(!reasons[i].getItemMeta().getDisplayName().equalsIgnoreCase("NOREASON")) {
                 contents.set(0, i, ClickableItem.of(reasons[i], e -> {
-                    plugin.getServer().getBanList(BanList.Type.NAME).addBan(String.valueOf(target), plugin.getConfig().getString("staffmode.punishment.ban.reasons.1"), endLD, null);
+                    plugin.getServer().getBanList(BanList.Type.IP).addBan(String.valueOf(target), plugin.getConfig().getString("staffmode.punishment.ban.reasons.1"), null, null);
                     PlayerDataHandler.ban(target);
                     TempBanMenu.closeMenu(player);
-                    player.sendMessage(ChatColor.YELLOW + target.getName() + " has been temporarily banned!");
+                    //TODO: only show ip if trusted
+                    player.sendMessage(ChatColor.YELLOW + target.getName() + "'s IP Address (" + target.getAddress().getHostName() + ") has been permanently banned!");
                 }));
             }
         }
         contents.set(0, 8, ClickableItem.of(back, e -> {
-            TempBanMenu.closeMenu(player);
+            BanMenu.closeMenu(player);
             MainMenu.openMenu(player);
         }));
     }

@@ -34,6 +34,14 @@ permissions:
     default: op
     children:
       admincore.staff: true
+      admincore.stats: true
+      admincore.trusted: true
   admincore.staff:
     description: Allows a staff member to use Admin Core without giving the member administrator permissions
+    default: op
+  admincore.stats:
+    description: Allows a staff member to check the detailed statistics of another player in staffmode without giving the staff member access to sensitive information.
+    default: op
+  admincore.trusted:
+    description: Allows a staff member to check the detailed statistics of another player in staffmode including said player's sensitive information.
     default: op
