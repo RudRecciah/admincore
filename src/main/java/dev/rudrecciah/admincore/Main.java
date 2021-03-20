@@ -6,6 +6,7 @@ import dev.rudrecciah.admincore.data.DataLoader;
 import dev.rudrecciah.admincore.master.MasterCommand;
 import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
 import dev.rudrecciah.admincore.playerdata.PlayerDataLoader;
+import dev.rudrecciah.admincore.report.meta.ReportMetaCleaner;
 import dev.rudrecciah.admincore.serverstatus.ServerStatus;
 import dev.rudrecciah.admincore.staffchat.StaffChat;
 import dev.rudrecciah.admincore.staffmode.StaffmodeHandler;
@@ -83,26 +84,6 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
     *
     * Invsee:
     * Opens up a bigger gui with armor, inventory, and hotbar see that changes with the player's changes (might outsource this, idk)
-    *
-    * Name/uuid stats:
-    * Name, UUID
-    *
-    * Full stats:
-    * Opens another gui with name, UUID, IP, all the important stuff from ipqs api, ban history, aliases, anything else i can think of
-    *
-    * Close:
-    * Closes gui
-    * */
-
-
-    /*
-    *
-    * if(p.hasMetadata("")) {
-            List meta = p.getMetadata("");
-            FixedMetadataValue metaValue = (FixedMetadataValue) meta.get(0);
-            if(metaValue.asBoolean()) {}
-        }
-    *
     * */
 
     @EventHandler
@@ -110,11 +91,15 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         StaffmodeHandler.hide();
         StaffmodeHandler.clearJoin(e.getPlayer());
         PlayerDataHandler.handlePlayerData(e.getPlayer());
+        ReportMetaCleaner.cleanReportMeta(e.getPlayer());
     }
 
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e) {
         StaffmodeHandler.clear(e.getPlayer(), e);
+        if(e.getPlayer().isBanned()) {
+            PlayerDataHandler.ban(e.getPlayer());
+        }
     }
 
     @EventHandler

@@ -16,17 +16,17 @@ public class BanChoiceProvider implements InventoryProvider {
     @Override
     public void init(Player player, InventoryContents contents) {
         ItemStack ip = ItemCreator.createSimpleItemStack(Material.BLAZE_ROD, 1, "IP BAN", "Ban this player's IP address for an infraction!");
-        ItemStack acc = ItemCreator.createSimpleItemStack(Material.STICK, 1, "PLAYER BAN", "Ban this player for an infraction!");
+        ItemStack acc = ItemCreator.createSimpleItemStack(Material.FEATHER, 1, "PLAYER BAN", "Ban this player for an infraction!");
         ItemStack exit = ItemCreator.createSimpleItemStack(Material.BARRIER, 1, "EXIT", "Exit this menu!");
-        contents.set(0, 3, ClickableItem.of(ip, e ->{
+        contents.set(0, 0, ClickableItem.of(ip, e ->{
             BanChoiceMenu.closeMenu(player);
             IpBanMenu.openMenu(player);
         }));
-        contents.set(0, 4, ClickableItem.of(acc, e ->{
+        contents.set(0, 1, ClickableItem.of(acc, e ->{
             BanChoiceMenu.closeMenu(player);
             BanMenu.openMenu(player);
         }));
-        contents.set(0, 5, ClickableItem.of(exit, e ->{
+        contents.set(0, 8, ClickableItem.of(exit, e ->{
             BanChoiceMenu.closeMenu(player);
             MainMenu.openMenu(player);
         }));

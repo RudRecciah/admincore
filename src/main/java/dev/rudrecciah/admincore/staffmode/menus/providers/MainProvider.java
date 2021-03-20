@@ -2,6 +2,7 @@ package dev.rudrecciah.admincore.staffmode.menus.providers;
 
 import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
+import dev.rudrecciah.admincore.report.menu.ReportMenu;
 import dev.rudrecciah.admincore.staffmode.grabber.StatsGrabber;
 import dev.rudrecciah.admincore.staffmode.items.ItemCreator;
 import dev.rudrecciah.admincore.staffmode.menus.BanChoiceMenu;
@@ -50,15 +51,20 @@ public class MainProvider implements InventoryProvider {
         ItemStack close = ItemCreator.createSimpleItemStack(Material.BARRIER, 1, "EXIT", "Exit this menu!");
         contents.set(0, 0, ClickableItem.of(report, e -> {
             MainMenu.closeMenu(player);
-            //TODO: open report menu
+            player.setMetadata("reporting", new FixedMetadataValue(plugin, String.valueOf(target.getUniqueId())));
+            ReportMenu.openMenu(player);
         }));
         contents.set(0, 1, ClickableItem.of(mute, e -> {
             int muteLength = plugin.getConfig().getInt("staffmode.punishment.mute.mute-length");
-            long muteEnd = System.currentTimeMillis() + (muteLength * 60000L);
-            PlayerDataHandler.mute(target, muteEnd);
-            MainMenu.closeMenu(player);
-            player.sendMessage(ChatColor.YELLOW + target.getName() + " has been muted for " + muteLength + " minutes!");
-            target.sendMessage(ChatColor.YELLOW + "You have been muted for 30 minutes! Reason: " + plugin.getConfig().getString("staffmode.punishment.mute.reason"));
+            if(PlayerDataHandler.muteExpired(player)) {
+                long muteEnd = System.currentTimeMillis() + (muteLength * 60000L);
+                PlayerDataHandler.mute(target, muteEnd);
+                MainMenu.closeMenu(player);
+                player.sendMessage(ChatColor.YELLOW + target.getName() + " has been muted for " + muteLength + " minutes!");
+                target.sendMessage(ChatColor.YELLOW + "You have been muted for 30 minutes! Reason: " + plugin.getConfig().getString("staffmode.punishment.mute.reason"));
+            }else{
+                player.sendMessage(ChatColor.YELLOW + target.getName() + " is already muted!");
+            }
         }));
         contents.set(0, 2, ClickableItem.of(ban, e -> {
             MainMenu.closeMenu(player);

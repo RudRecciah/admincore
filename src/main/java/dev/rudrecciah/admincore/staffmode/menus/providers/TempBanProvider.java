@@ -47,7 +47,6 @@ public class TempBanProvider implements InventoryProvider {
             if(!reasons[i].getItemMeta().getDisplayName().equalsIgnoreCase("NOREASON")) {
                 contents.set(0, i, ClickableItem.of(reasons[i], e -> {
                     plugin.getServer().getBanList(BanList.Type.NAME).addBan(String.valueOf(target), plugin.getConfig().getString("staffmode.punishment.ban.reasons.1"), endLD, null);
-                    PlayerDataHandler.ban(target);
                     TempBanMenu.closeMenu(player);
                     player.sendMessage(ChatColor.YELLOW + target.getName() + " has been temporarily banned!");
                 }));

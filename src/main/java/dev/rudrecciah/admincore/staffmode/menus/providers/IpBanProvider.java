@@ -42,7 +42,6 @@ public class IpBanProvider implements InventoryProvider {
             if(!reasons[i].getItemMeta().getDisplayName().equalsIgnoreCase("NOREASON")) {
                 contents.set(0, i, ClickableItem.of(reasons[i], e -> {
                     plugin.getServer().getBanList(BanList.Type.IP).addBan(String.valueOf(target), plugin.getConfig().getString("staffmode.punishment.ban.reasons.1"), null, null);
-                    PlayerDataHandler.ban(target);
                     TempBanMenu.closeMenu(player);
                     //TODO: only show ip if trusted
                     player.sendMessage(ChatColor.YELLOW + target.getName() + "'s IP Address (" + target.getAddress().getHostName() + ") has been permanently banned!");

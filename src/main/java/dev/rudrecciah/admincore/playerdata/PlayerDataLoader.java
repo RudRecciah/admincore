@@ -48,7 +48,7 @@ public class PlayerDataLoader {
         try {
             customFile.save(file);
         } catch(IOException e) {
-            plugin.getLogger().severe("Couldn't save changes to data.yml!");
+            plugin.getLogger().severe("Couldn't save changes to playerdata!");
         }
     }
 
