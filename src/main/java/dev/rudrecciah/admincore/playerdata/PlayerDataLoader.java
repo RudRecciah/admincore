@@ -1,5 +1,6 @@
 package dev.rudrecciah.admincore.playerdata;
 
+import dev.rudrecciah.admincore.errors.ErrorHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -22,7 +23,7 @@ public class PlayerDataLoader {
             try {
                 file.createNewFile();
             } catch(IOException e) {
-                //nothing to see here
+                ErrorHandler.onError(2);
             }
         }
         customFile = YamlConfiguration.loadConfiguration(file);
@@ -34,7 +35,7 @@ public class PlayerDataLoader {
             try {
                 file.createNewFile();
             } catch(IOException e) {
-                //nothing to see here
+                ErrorHandler.onError(3);
             }
         }
         customFile = YamlConfiguration.loadConfiguration(file);
@@ -48,7 +49,7 @@ public class PlayerDataLoader {
         try {
             customFile.save(file);
         } catch(IOException e) {
-            plugin.getLogger().severe("Couldn't save changes to playerdata!");
+            ErrorHandler.onError(4);
         }
     }
 

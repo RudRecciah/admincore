@@ -1,5 +1,6 @@
 package dev.rudrecciah.admincore.report.data;
 
+import dev.rudrecciah.admincore.errors.ErrorHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -20,7 +21,7 @@ public class ReportDataLoader {
             try {
                 file.createNewFile();
             } catch(IOException e) {
-                //nothing to see here
+                ErrorHandler.onError(5);
             }
         }
         customFile = YamlConfiguration.loadConfiguration(file);
@@ -34,7 +35,7 @@ public class ReportDataLoader {
         try{
             customFile.save(file);
         }catch (IOException e){
-            plugin.getLogger().severe("Couldn't save changes to reports.yml!");
+            ErrorHandler.onError(6);
         }
     }
 }

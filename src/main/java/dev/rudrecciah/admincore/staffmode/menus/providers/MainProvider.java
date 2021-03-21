@@ -14,6 +14,7 @@ import fr.minuskube.inv.content.InventoryContents;
 import fr.minuskube.inv.content.InventoryProvider;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -56,14 +57,20 @@ public class MainProvider implements InventoryProvider {
         }));
         contents.set(0, 1, ClickableItem.of(mute, e -> {
             int muteLength = plugin.getConfig().getInt("staffmode.punishment.mute.mute-length");
-            if(PlayerDataHandler.muteExpired(player)) {
+            if(!PlayerDataHandler.muteExpired(target)) {
                 long muteEnd = System.currentTimeMillis() + (muteLength * 60000L);
                 PlayerDataHandler.mute(target, muteEnd);
                 MainMenu.closeMenu(player);
-                player.sendMessage(ChatColor.YELLOW + target.getName() + " has been muted for " + muteLength + " minutes!");
-                target.sendMessage(ChatColor.YELLOW + "You have been muted for 30 minutes! Reason: " + plugin.getConfig().getString("staffmode.punishment.mute.reason"));
+                player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + target.getName() + " has been muted for " + muteLength + " minutes!");
+                if(DataHandler.getBoolean(player, "notifs")) {
+                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                }
+                target.sendMessage(ChatColor.YELLOW + "You have been muted for " + muteLength + " minutes! Reason: " + plugin.getConfig().getString("staffmode.punishment.mute.reason"));
             }else{
-                player.sendMessage(ChatColor.YELLOW + target.getName() + " is already muted!");
+                player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + target.getName() + " is already muted!");
+                if(DataHandler.getBoolean(player, "notifs")) {
+                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                }
             }
         }));
         contents.set(0, 2, ClickableItem.of(ban, e -> {

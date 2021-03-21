@@ -11,6 +11,7 @@ import fr.minuskube.inv.content.InventoryProvider;
 import org.bukkit.BanList;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -45,10 +46,15 @@ public class TempBanProvider implements InventoryProvider {
         Date endLD = Date.from(LocalDate.now().plusDays(plugin.getConfig().getLong("staffmode.punishment.ban.tempban-length")).atStartOfDay().toInstant(ZoneOffset.UTC));
         for(int i = 0; i < 8; i++) {
             if(!reasons[i].getItemMeta().getDisplayName().equalsIgnoreCase("NOREASON")) {
+                int finalI = i;
                 contents.set(0, i, ClickableItem.of(reasons[i], e -> {
-                    plugin.getServer().getBanList(BanList.Type.NAME).addBan(String.valueOf(target), plugin.getConfig().getString("staffmode.punishment.ban.reasons.1"), endLD, null);
+                    plugin.getServer().getBanList(BanList.Type.NAME).addBan(String.valueOf(target.getUniqueId()), plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)), endLD, player.getName());
+                    target.kickPlayer("You have been banned for " + plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + " for " + plugin.getConfig().getLong("staffmode.punishment.ban.tempban-length") + " days!");
                     TempBanMenu.closeMenu(player);
-                    player.sendMessage(ChatColor.YELLOW + target.getName() + " has been temporarily banned!");
+                    player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + target.getName() + " has been temporarily banned!");
+                    if(DataHandler.getBoolean(player, "notifs")) {
+                        player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                    }
                 }));
             }
         }

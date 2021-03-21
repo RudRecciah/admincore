@@ -1,6 +1,7 @@
 package dev.rudrecciah.admincore.data;
 
 import com.sun.tools.sjavac.Log;
+import dev.rudrecciah.admincore.errors.ErrorHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -21,7 +22,7 @@ public class DataLoader {
             try{
                 file.createNewFile();
             }catch (IOException e){
-                //nothing to see here
+                ErrorHandler.onError(0);
             }
         }
         customFile = YamlConfiguration.loadConfiguration(file);
@@ -35,7 +36,7 @@ public class DataLoader {
         try{
             customFile.save(file);
         }catch (IOException e){
-            plugin.getLogger().severe("Couldn't save changes to data.yml!");
+            ErrorHandler.onError(1);
         }
     }
 }
