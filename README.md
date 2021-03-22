@@ -3,6 +3,7 @@
 Current features (0.1.0):
 * Player and Staff Report System
 * Staff Ban System
+* Staff Mute System
 * Staff Chat
 * Staff Notification System
 * Player Monitoring System: 
