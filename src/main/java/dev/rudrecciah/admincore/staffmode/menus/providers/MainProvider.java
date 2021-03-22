@@ -5,10 +5,7 @@ import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
 import dev.rudrecciah.admincore.report.menu.ReportMenu;
 import dev.rudrecciah.admincore.staffmode.grabber.StatsGrabber;
 import dev.rudrecciah.admincore.staffmode.items.ItemCreator;
-import dev.rudrecciah.admincore.staffmode.menus.BanChoiceMenu;
-import dev.rudrecciah.admincore.staffmode.menus.BanMenu;
-import dev.rudrecciah.admincore.staffmode.menus.MainMenu;
-import dev.rudrecciah.admincore.staffmode.menus.TempBanMenu;
+import dev.rudrecciah.admincore.staffmode.menus.*;
 import fr.minuskube.inv.ClickableItem;
 import fr.minuskube.inv.content.InventoryContents;
 import fr.minuskube.inv.content.InventoryProvider;
@@ -42,8 +39,6 @@ public class MainProvider implements InventoryProvider {
         ItemStack head = itemFromUuid(UUID.fromString(uuid));
         ItemMeta headMeta = head.getItemMeta();
         headMeta.setDisplayName(ChatColor.BLUE + "" + ChatColor.BOLD + "[" + target.getName().toUpperCase(Locale.ROOT) + "]");
-        //TODO: aliases for head
-//        headMeta.setLore(StatsGrabber.grabAliases(target));
         headMeta.setLore(StatsGrabber.grabAliases(target));
         head.setItemMeta(headMeta);
         ItemStack inventory = ItemCreator.createSimpleItemStack(Material.ENDER_CHEST, 1, "SEE " + target.getName().toUpperCase(Locale.ROOT) + "'S INVENTORY", "See " + target.getName() + "'s inventory to verify their items' legitimacy!");
@@ -87,20 +82,29 @@ public class MainProvider implements InventoryProvider {
             MainMenu.closeMenu(player);
             TempBanMenu.openMenu(player);
         }));
-        contents.set(0, 4, ClickableItem.of(head, e -> {
-            //TODO: nothing bish
-        }));
+        contents.set(0, 4, ClickableItem.of(head, e -> {}));
         contents.set(0, 5, ClickableItem.of(inventory, e -> {
             MainMenu.closeMenu(player);
-            //TODO: open invsee menu
+            InvSeeMenu.openMenu(player);
         }));
         contents.set(0, 6, ClickableItem.of(stats, e -> {
-            StatsGrabber.grabStats(target);
-            //TODO: set lore
+            if(player.hasPermission("admincore.stats")) {
+                ItemMeta sMeta = stats.getItemMeta();
+                player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "Loading statistics. . .");
+                if(DataHandler.getBoolean(player, "notifs")) {
+                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                }
+                sMeta.setLore(StatsGrabber.grabStats(player, target));
+                stats.setItemMeta(sMeta);
+                contents.set(0, 6, ClickableItem.empty(stats));
+            }else{
+                ItemMeta sMeta = stats.getItemMeta();
+                sMeta.setLore(Collections.singletonList(ChatColor.YELLOW + "You don't have permission to check a player's statistics!"));
+                stats.setItemMeta(sMeta);
+                contents.set(0, 6, ClickableItem.empty(stats));
+            }
         }));
-        contents.set(0, 7, ClickableItem.of(pastBans, e -> {
-            //TODO: nothing bish
-        }));
+        contents.set(0, 7, ClickableItem.of(pastBans, e -> {}));
         contents.set(0, 8, ClickableItem.of(close, e -> {
             MainMenu.closeMenu(player);
         }));

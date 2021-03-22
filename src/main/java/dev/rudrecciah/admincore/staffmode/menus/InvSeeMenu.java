@@ -1,7 +1,6 @@
 package dev.rudrecciah.admincore.staffmode.menus;
 
 import dev.rudrecciah.admincore.staffmode.menus.providers.InvSeeProvider;
-import dev.rudrecciah.admincore.staffmode.menus.providers.MainProvider;
 import fr.minuskube.inv.SmartInventory;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;

@@ -225,7 +225,7 @@ public class StaffmodeHandler implements CommandExecutor {
                         p.setMetadata("staffmodeChecking", new FixedMetadataValue(plugin, p.getSpectatorTarget().getUniqueId()));
                         MainMenu.openMenu(p);
                         p.setSpectatorTarget(null);
-                    }else if(p.getSpectatorTarget().hasPermission("staffmode.staff")) {
+                    }else if(p.getSpectatorTarget() != null && p.getSpectatorTarget().hasPermission("staffmode.staff")) {
                         p.sendMessage(ChatColor.YELLOW + "You can't inspect a staff member!");
                     }
                 }

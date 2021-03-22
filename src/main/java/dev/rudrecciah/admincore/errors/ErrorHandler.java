@@ -3,9 +3,6 @@ package dev.rudrecciah.admincore.errors;
 import static dev.rudrecciah.admincore.Main.plugin;
 
 public class ErrorHandler {
-    public static void onError(Exception e) {
-
-    }
     public static void onError(int code) {
         switch(code) {
             case 0:

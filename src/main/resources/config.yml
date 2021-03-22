@@ -1,14 +1,10 @@
 # +------------------+
 # | AdminCore Config |
 # +------------------+
-#Stops the server when it starts if the plugin is made for a different version or the config is made for a different version of this plugin. Can be useful if you forget to update.
 killwhenoutdated: false
-#The title of server-wide announcements. The message you announce will be the subtitle.
 announcementtitle: 'A Very Cool Announcement'
 staffmode:
-  #Determines if players should be put back into the gamemode they entered staffmode with when they leave it. If this is false or an error occours with leaving staffmode, they will automatically enter adventure mode.
   resetgamemode: true
-  #Determines if players should be teleported to spawn and in which world and coordinates they should be teleported to when leaving staffmode. If your server has a /spawn command, set "use-spawn-cmd" to true and set "spawn-cmd" to the command your server uses without the /, for example 'spawn'. This will override everything under "location" and will allow you to change your spawnpoint without worrying about updating this config.
   tptospawn:
     teleport: true
     use-spawn-cmd: false
@@ -21,15 +17,13 @@ staffmode:
         z: 0.0
         yaw: -90
         pitch: 0
-  #The message to send to players when a staff member enters staffmode. Use &{color code} to format the text to match your actual disconnect message. Colors should come before bolding or italics. Use %p% to specify the name of the staff member. For example: '&e%p% left the game.'
   pseudodisconnect:
     send-message: true
     message: '&e%p% left the game.'
-  #The message to send to players when a staff member leaves staffmode. Use &{color code} to format the text to match your actual disconnect message. Colors should come before bolding or italics. Use %p% to specify the name of the staff member. For example: '&e%p% left the game.'
   pseudojoin:
     send-message: true
     message: '&e%p% joined the game.'
-  #Determines how punishment like reports and bans work on your server. "Tempban-length" is in days, and "mute-length" is in minutes. The reasons for reports, bans, and mutes are the reasons that staff can choose from. For bans, the reason of a ban is also what the player will see when they get banned. Leaving a reason as '' will just make a blank reason, not remove the reason. If log-to-discord is true, a discord webhook token must exist in "webhooktoken". The boolean "ip-ban" will determine if IP bans are enabled on your server for permanent bans. This will give staff a choice between account or IP ban, not force staff to use IP bans.
+  #"Tempban-length" is in days, and "mute-length" is in minutes.
   punishment:
     report:
       log-to-discord: true
@@ -59,9 +53,11 @@ staffmode:
       log-to-discord: true
       reason: 'Chat Abuse'
       mute-length: 30
-
-#Settings for /status
-#Log determines whether the corresponding information will be shown to the player
+  stats:
+    log-to-discord: true
+    api-key: 'your api key'
+    public-networks: false
+    strict: true
 #Protect-sensitive will hide the ip and port from anyone without the "admincore.admin" permission
 serverstatus:
   protect-sensitive: true

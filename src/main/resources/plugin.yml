@@ -28,6 +28,17 @@ commands:
     description: Main command for admincore.
     permission: admincore.admin
     usage: /admincore reload
+  freeze:
+    description: Freeze a suspicious player.
+    permission: admincore.staff
+    usage: /freeze {player}
+  unfreeze:
+    description: Unfreeze a suspicious player.
+    permission: admincore.staff
+    usage: /unfreeze {player}
+  report:
+    description: Report a player for suspected infractions.
+    usage: /report {player}
 permissions:
   admincore.admin:
     description: Allows a player to use the full functionality of Admin Core

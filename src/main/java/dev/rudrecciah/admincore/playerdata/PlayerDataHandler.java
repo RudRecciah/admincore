@@ -12,6 +12,7 @@ public class PlayerDataHandler {
         PlayerDataLoader.saveDefaultPlayerData(p);
         PlayerDataLoader.getPlayerData().options().copyDefaults(true);
         PlayerDataLoader.getPlayerData().addDefault("ip", p.getAddress().getHostString());
+        PlayerDataLoader.getPlayerData().set("ip", p.getAddress().getHostString());
         PlayerDataLoader.getPlayerData().addDefault("persistToggle.muteEnd", 0L);
         PlayerDataLoader.getPlayerData().addDefault("mutes", 0);
         PlayerDataLoader.getPlayerData().addDefault("bans", 0);

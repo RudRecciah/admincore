@@ -31,10 +31,22 @@ public class ItemCreator {
         return item;
     }
 
+    public static ItemStack createSimpleItemStack(Material type, int amount, String name) {
+        ItemStack item = new ItemStack(type, amount);
+        ItemMeta itemMeta = item.getItemMeta();
+        if(!name.equals("")) {
+            itemMeta.setDisplayName(ChatColor.BLUE + "" + ChatColor.BOLD + "[" + name + "]");
+            item.setItemMeta(itemMeta);
+        }else{
+            itemMeta.setDisplayName("NOREASON");
+            item.setItemMeta(itemMeta);
+        }
+        return item;
+    }
+
     public static ItemStack createBanItem(Material type, int amount, String name, Player target) {
         ItemStack item = new ItemStack(type, amount);
         ItemMeta itemMeta = item.getItemMeta();
-        //TODO: lore
         int bans = PlayerDataHandler.getBans(target);
         int mutes = PlayerDataHandler.getMutes(target);
         if(!name.equals("")) {

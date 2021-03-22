@@ -1,22 +1,26 @@
 package dev.rudrecciah.admincore;
 
 import dev.rudrecciah.admincore.announcements.AnnouncementHandler;
+import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.data.DataLoader;
+import dev.rudrecciah.admincore.errors.ExceptionHandler;
+import dev.rudrecciah.admincore.freeze.FreezeChecker;
+import dev.rudrecciah.admincore.freeze.PlayerFreezer;
+import dev.rudrecciah.admincore.freeze.PlayerUnfreezer;
 import dev.rudrecciah.admincore.master.MasterCommand;
 import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
+import dev.rudrecciah.admincore.report.ReportCommandHandler;
 import dev.rudrecciah.admincore.report.meta.ReportMetaCleaner;
 import dev.rudrecciah.admincore.serverstatus.ServerStatus;
 import dev.rudrecciah.admincore.staffchat.StaffChat;
 import dev.rudrecciah.admincore.staffmode.StaffmodeHandler;
 import fr.minuskube.inv.InventoryManager;
+import jdk.jfr.events.ExceptionThrownEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin implements CommandExecutor, Listener {
@@ -26,6 +30,8 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
 
     @Override
     public void onEnable() {
+        ExceptionHandler handler = new ExceptionHandler();
+        Thread.setDefaultUncaughtExceptionHandler(handler);
         plugin = this;
         plugin.saveDefaultConfig();
         getServer().getPluginManager().registerEvents(this, this);
@@ -36,6 +42,9 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         getCommand("announce").setExecutor(new AnnouncementHandler());
         getCommand("staffmode").setExecutor(new StaffmodeHandler());
         getCommand("admincore").setExecutor(new MasterCommand());
+        getCommand("freeze").setExecutor(new PlayerFreezer());
+        getCommand("unfreeze").setExecutor(new PlayerUnfreezer());
+        getCommand("report").setExecutor(new ReportCommandHandler());
         getLogger().info("Admin Core Enabled");
         invManager = new InventoryManager(this);
         invManager.init();
@@ -55,31 +64,11 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
     * be gay
     * do crime
     * pogchamp
-    * TODO add something in the console about where to report bugs to, maybe also send that message when an exception is thrown
     * TODO killwhenoutdated in config
     *
     * Bugs to fix:
     * none yey
-    *
-    * Things you can do in staffmode:
-    * /spectate
-    * /invsee
-    * fly
-    * no hitbox (not spectator mode)
-    * Invulnerable
-    * Either saturation or nohunger task
-    *
-    * How it will work:
-    * When you enter, you go into spectator mode
-    * When you leave, you return to the gamemode you were in before
-    * TODO: When you punch a player, the hit won't register but you will open a gui with 5 buttons, report player, inventory see, name/uuid etc, full stats (ip, location, etc), and ban
-    * TODO: reports and bans have discord webhook integration
-    * TODO: freeze
-    * Report Player/Ban:
-    * to be handled by report module
-    *
-    * Invsee:
-    * Opens up a bigger gui with armor, inventory, and hotbar see that changes with the player's changes (might outsource this, idk)
+    * TODO: discord integration
     * */
 
     @EventHandler
@@ -88,6 +77,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         StaffmodeHandler.clearJoin(e.getPlayer());
         PlayerDataHandler.handlePlayerData(e.getPlayer());
         ReportMetaCleaner.cleanReportMeta(e.getPlayer());
+        FreezeChecker.playerFrozen(e.getPlayer());
     }
 
     @EventHandler
@@ -113,6 +103,16 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         }else if(PlayerDataHandler.muteExpired(e.getPlayer())) {
             e.setCancelled(true);
             e.getPlayer().sendMessage(ChatColor.YELLOW + "You're currently muted! Reason: " + getConfig().getString("staffmode.punishment.mute.reason"));
+        }
+    }
+
+    @EventHandler
+    public void onPlayerMove(PlayerMoveEvent e) {
+        if(e.getPlayer().hasMetadata("frozen")) {
+            boolean b = DataHandler.getMetaBoolean(e.getPlayer(), "frozen");
+            if(b) {
+                e.setCancelled(true);
+            }
         }
     }
 
