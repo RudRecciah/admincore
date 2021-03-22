@@ -29,6 +29,7 @@ Current features (0.1.0):
 Planned Features (1.0.0):
   * Discord Webhook Integration
   * Discord Bot Integration
+  * Staffmode Features As Standalone Commands
 
 Planned Features (Future):
   * Nothing yet
