@@ -26,7 +26,7 @@ Current features (0.1.0):
   * Puesdo-Leave/Join Messages
   * Staff Hidden From Players
   * Staff Hidden From Tablist
-* Error and Exception Logging/Tracking System
+* Error and Exception Logging/Tracking System:
   * Error Codes
   * More Information Than Spigot Provides
 
