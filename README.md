@@ -30,6 +30,7 @@ Planned Features (1.0.0):
   * Discord Webhook Integration
   * Discord Bot Integration
   * Staffmode Features As Standalone Commands
+  * Github Project
 
 Planned Features (Future):
   * Nothing yet
@@ -43,6 +44,8 @@ Planned Versions (Future):
 Roadmap (0.2.0-1.0.0):
   * 0.2.0
     * Discord Webhook Integration
+    * Staffmode Features As Standalone Commands
+    * Github Project
   * 0.3.0
     * Discord Bot Integration
   * 0.4.0
