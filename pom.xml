@@ -78,6 +78,10 @@
             <id>skullcreator-repo</id>
             <url>https://dl.bintray.com/deanveloper/SkullCreator</url>
         </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -108,6 +112,11 @@
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
             <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.MrPowerGamerBR</groupId>
+            <artifactId>TemmieWebhook</artifactId>
+            <version>-59de40c3b6-1</version>
         </dependency>
     </dependencies>
 </project>

@@ -1,6 +1,7 @@
 package dev.rudrecciah.admincore.staffmode.grabber;
 
 import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
+import dev.rudrecciah.admincore.webhook.ErrorLogger;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -111,6 +112,7 @@ public class StatsGrabber {
                     lore.add(ChatColor.YELLOW + "An error occoured!");
                     lore.add(ChatColor.YELLOW + "Aleart an admin about this issue and tell them to check the console or an error log via Discord.");
                     lore.add(ChatColor.YELLOW + "Error Code: API-" + code);
+                    ErrorLogger.logError("API-" + code, "API");
                 }
                 return lore;
             }
@@ -118,12 +120,13 @@ public class StatsGrabber {
             plugin.getLogger().severe("An error occured while trying to get this player's statistics!");
             long code = System.currentTimeMillis();
             plugin.getLogger().severe("Error Code: O-" + code);
-            plugin.getLogger().severe("This is most likely an HTTP error. For debuggung purposes, here's the stack trace. If it exists, the HttpResponseCode will tell you what happened when trying to connect to the IPQS API. If you think this is an error with Admincore rather than your usage or implementation of the plugin, please report this at https://rudrecciah.dev/admincore/bugs.");
+            plugin.getLogger().severe("This is an error dealing with getting a player's detailed IPQS statistics and is most likely an HTTP error. For debuggung purposes, here's the stack trace. If it exists, the HttpResponseCode will tell you what happened when trying to connect to the IPQS API. If you think this is an error with Admincore rather than your usage or implementation of the plugin, please report this at https://rudrecciah.dev/admincore/bugs.");
             e.printStackTrace();
             ArrayList<String> lore = new ArrayList<>();
             lore.add(ChatColor.YELLOW + "An error occoured!");
             lore.add(ChatColor.YELLOW + "Aleart an admin about this issue and tell them to check the console or an error log via Discord.");
             lore.add(ChatColor.YELLOW + "Error Code: O-" + code);
+            ErrorLogger.logError("O-" + code, "HTTP");
             return lore;
         }
     }

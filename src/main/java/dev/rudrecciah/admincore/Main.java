@@ -1,13 +1,17 @@
 package dev.rudrecciah.admincore;
 
+import dev.rudrecciah.admincore.alias.AliasChecker;
 import dev.rudrecciah.admincore.announcements.AnnouncementHandler;
+import dev.rudrecciah.admincore.ban.Banner;
 import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.data.DataLoader;
 import dev.rudrecciah.admincore.errors.ExceptionHandler;
 import dev.rudrecciah.admincore.freeze.FreezeChecker;
 import dev.rudrecciah.admincore.freeze.PlayerFreezer;
 import dev.rudrecciah.admincore.freeze.PlayerUnfreezer;
+import dev.rudrecciah.admincore.inspect.Inspector;
 import dev.rudrecciah.admincore.master.MasterCommand;
+import dev.rudrecciah.admincore.mute.Muter;
 import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
 import dev.rudrecciah.admincore.report.ReportCommandHandler;
 import dev.rudrecciah.admincore.report.meta.ReportMetaCleaner;
@@ -15,7 +19,6 @@ import dev.rudrecciah.admincore.serverstatus.ServerStatus;
 import dev.rudrecciah.admincore.staffchat.StaffChat;
 import dev.rudrecciah.admincore.staffmode.StaffmodeHandler;
 import fr.minuskube.inv.InventoryManager;
-import jdk.jfr.events.ExceptionThrownEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.EventHandler;
@@ -45,6 +48,10 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         getCommand("freeze").setExecutor(new PlayerFreezer());
         getCommand("unfreeze").setExecutor(new PlayerUnfreezer());
         getCommand("report").setExecutor(new ReportCommandHandler());
+        getCommand("inspect").setExecutor(new Inspector());
+        getCommand("ban").setExecutor(new Banner());
+        getCommand("mute").setExecutor(new Muter());
+        getCommand("aliases").setExecutor(new AliasChecker());
         getLogger().info("Admin Core Enabled");
         invManager = new InventoryManager(this);
         invManager.init();
@@ -65,7 +72,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
     * do crime
     * pogchamp
     * TODO killwhenoutdated in config
-    *
+    * TODO: command testing, discord testing
     * Bugs to fix:
     * none yey
     * TODO: discord integration

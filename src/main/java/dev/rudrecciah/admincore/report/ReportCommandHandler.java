@@ -22,7 +22,7 @@ public class ReportCommandHandler implements CommandExecutor {
             sender.sendMessage(ChatColor.YELLOW + "You can't report yourself!");
             return true;
         }
-        if(args.length != 1) {
+        if(args.length != 1 || plugin.getServer().getPlayer(args[0]) == null) {
             return false;
         }
         Player p = (Player) sender;

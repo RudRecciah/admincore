@@ -1,5 +1,7 @@
 package dev.rudrecciah.admincore.errors;
 
+import dev.rudrecciah.admincore.webhook.ErrorLogger;
+
 import static dev.rudrecciah.admincore.Main.plugin;
 
 public class ExceptionHandler implements Thread.UncaughtExceptionHandler {
@@ -12,6 +14,7 @@ public class ExceptionHandler implements Thread.UncaughtExceptionHandler {
         plugin.getLogger().severe("Thread: " + t.toString());
         plugin.getLogger().severe("Stack Trace:");
         e.printStackTrace();
+        ErrorLogger.logError("U-" + time, t, e);
     }
 
 }

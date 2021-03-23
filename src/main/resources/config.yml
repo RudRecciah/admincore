@@ -3,6 +3,20 @@
 # +------------------+
 killwhenoutdated: false
 announcementtitle: 'A Very Cool Announcement'
+webhook:
+  #token is full url, not just id
+  errorLogger:
+    use: true
+    token: 'a cool token'
+  banLogger:
+    use: true
+    token: 'an even cooler token'
+  muteLogger:
+    use: true
+    token: 'an even cooler token'
+  chatLogger:
+    use: true
+    token: 'the coolest token'
 staffmode:
   resetgamemode: true
   tptospawn:

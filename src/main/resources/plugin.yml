@@ -39,6 +39,22 @@ commands:
   report:
     description: Report a player for suspected infractions.
     usage: /report {player}
+  inspect:
+    description: Inspect a player.
+    permission: admincore.staff
+    usage: /inspect {player}
+  ban:
+    description: Ban a player.
+    permission: admincore.staff
+    usage: /ban {player}
+  mute:
+    description: Mute a player.
+    permission: admincore.staff
+    usage: /mute {player}
+  aliases:
+    description: Check a player's other accounts.
+    permission: admincore.staff
+    usage: /alias {player}
 permissions:
   admincore.admin:
     description: Allows a player to use the full functionality of Admin Core
