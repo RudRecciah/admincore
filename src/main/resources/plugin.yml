@@ -27,7 +27,7 @@ commands:
   admincore:
     description: Main command for admincore.
     permission: admincore.admin
-    usage: /admincore reload
+    usage: /admincore
   freeze:
     description: Freeze a suspicious player.
     permission: admincore.staff
@@ -55,6 +55,10 @@ commands:
     description: Check a player's other accounts.
     permission: admincore.staff
     usage: /alias {player}
+  staffnotifications:
+    description: Toggle your notifications.
+    permission: admincore.staff
+    usage: /staffnotifications
 permissions:
   admincore.admin:
     description: Allows a player to use the full functionality of Admin Core

@@ -12,6 +12,7 @@ import dev.rudrecciah.admincore.freeze.PlayerUnfreezer;
 import dev.rudrecciah.admincore.inspect.Inspector;
 import dev.rudrecciah.admincore.master.MasterCommand;
 import dev.rudrecciah.admincore.mute.Muter;
+import dev.rudrecciah.admincore.notifs.NotificationHandler;
 import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
 import dev.rudrecciah.admincore.report.ReportCommandHandler;
 import dev.rudrecciah.admincore.report.meta.ReportMetaCleaner;
@@ -33,10 +34,12 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
 
     @Override
     public void onEnable() {
-        ExceptionHandler handler = new ExceptionHandler();
-        Thread.setDefaultUncaughtExceptionHandler(handler);
         plugin = this;
         plugin.saveDefaultConfig();
+        if(plugin.getConfig().getBoolean("logexceptions")) {
+            ExceptionHandler handler = new ExceptionHandler();
+            Thread.setDefaultUncaughtExceptionHandler(handler);
+        }
         getServer().getPluginManager().registerEvents(this, this);
         DataLoader.saveDefaultdata();
         DataLoader.get().options().copyDefaults(true);
@@ -52,6 +55,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         getCommand("ban").setExecutor(new Banner());
         getCommand("mute").setExecutor(new Muter());
         getCommand("aliases").setExecutor(new AliasChecker());
+        getCommand("staffnotifications").setExecutor(new NotificationHandler());
         getLogger().info("Admin Core Enabled");
         invManager = new InventoryManager(this);
         invManager.init();

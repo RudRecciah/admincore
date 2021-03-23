@@ -1,5 +1,6 @@
 package dev.rudrecciah.admincore.data;
 
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.metadata.FixedMetadataValue;
@@ -14,7 +15,23 @@ public class DataHandler {
         DataLoader.saveData();
     }
 
+    public static void toggleNotifs(Player p) {
+        DataLoader.saveDefaultdata();
+        DataLoader.get().options().copyDefaults(true);
+        if(DataLoader.get().getBoolean("players." + p.getUniqueId() + ".notifs")) {
+            DataLoader.get().set("players." + p.getUniqueId() + ".notifs", false);
+            p.sendMessage(ChatColor.YELLOW + "You will no longer recieve auditory notifications!");
+            DataLoader.saveData();
+        }else{
+            DataLoader.get().set("players." + p.getUniqueId() + ".notifs", true);
+            p.sendMessage(ChatColor.YELLOW + "You will now recieve auditory notifications!");
+            DataLoader.saveData();
+        }
+    }
+
     public static boolean getBoolean(Player p, String path) {
+        DataLoader.saveDefaultdata();
+        DataLoader.get().options().copyDefaults(true);
         boolean exists = DataLoader.get().isBoolean("players." + p.getUniqueId() + "." + path);
         if(exists) {
             return DataLoader.get().getBoolean("players." + p.getUniqueId() + "." + path);

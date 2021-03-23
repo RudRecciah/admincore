@@ -6,6 +6,7 @@ import dev.rudrecciah.admincore.report.data.ReportDataLoader;
 import dev.rudrecciah.admincore.report.menu.ReportMenu;
 import dev.rudrecciah.admincore.staffmode.items.ItemCreator;
 import dev.rudrecciah.admincore.staffmode.menus.MainMenu;
+import dev.rudrecciah.admincore.webhook.ReportLogger;
 import fr.minuskube.inv.ClickableItem;
 import fr.minuskube.inv.content.InventoryContents;
 import fr.minuskube.inv.content.InventoryProvider;
@@ -43,7 +44,7 @@ public class ReportProvider implements InventoryProvider {
                 int finalI = i;
                 contents.set(0, i, ClickableItem.of(reasons[i], e -> {
                     ReportDataHandler.handleReportData(target, finalI, player);
-                    ReportMenu.openMenu(player);
+                    ReportLogger.logReport(target, finalI, player);
                     player.sendMessage(ChatColor.YELLOW + target.getName() + " has been reported!");
                     ReportMenu.closeMenu(player);
                 }));
