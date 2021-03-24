@@ -30,6 +30,8 @@ Current features (0.1.0):
   * Error Codes
   * More Information Than Spigot Provides
 
+Check the github project for the most up-to-date plans and roadmap!
+
 Planned Features (1.0.0):
   * Discord Webhook Integration
   * Discord Bot Integration
