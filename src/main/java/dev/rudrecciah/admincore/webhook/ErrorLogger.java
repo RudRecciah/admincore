@@ -80,7 +80,7 @@ public class ErrorLogger {
             de.setThumbnail(te);
             de.setTitle("An Error Occoured!");
             de.setDescription(notes);
-            de.setFields(Arrays.asList(FieldEmbed.builder().name("Error Type:").value(finalType).name("Error Code:").value(code).name("Source:").value("Admincore").build()));
+            de.setFields(Arrays.asList(FieldEmbed.builder().name("Error Type:").value(finalType).build(), FieldEmbed.builder().name("Error Code:").value(code).build(), FieldEmbed.builder().name("Source:").value("Admincore").build()));
             de.setFooter(FooterEmbed.builder().text("Admincore Error Logger").icon_url("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/icons/logo.png").build());
             DiscordMessage dm = new DiscordMessage(name, "", icon);
             dm.getEmbeds().add(de);
@@ -110,7 +110,7 @@ public class ErrorLogger {
             de.setThumbnail(te);
             de.setTitle("An Error Occoured!");
             de.setDescription("This is an exception. The nature of this error is unknown. It's most likely an error with Admincore, but we're not sure. Check your console logs using the error code below for more details. If you find this to be an error with Admincore, report this bug to https://rudrecciah.dev/admincore/bugs. If you find this error to be an error with something else, check that thing's information/documentation to check what it recommends doing in response to this error.");
-            de.setFields(Arrays.asList(FieldEmbed.builder().name("Error Type:").value("Exception").name("Error Code:").value(code).name("Source:").value("Unknown").name("Thread").value(t.getName()).build()));
+            de.setFields(Arrays.asList(FieldEmbed.builder().name("Error Type:").value("Exception").build(), FieldEmbed.builder().name("Error Code:").value(code).build(), FieldEmbed.builder().name("Source:").value("Unknown").build(), FieldEmbed.builder().name("Thread").value(t.getName()).build()));
             de.setFooter(FooterEmbed.builder().text("Admincore Error Logger").icon_url("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/icons/logo.png").build());
             DiscordMessage dm = new DiscordMessage(name, "", icon);
             dm.getEmbeds().add(de);

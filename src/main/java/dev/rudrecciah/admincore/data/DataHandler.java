@@ -50,6 +50,9 @@ public class DataHandler {
 
     public static boolean getMetaBoolean(Player p, String metadata) {
         List meta = p.getMetadata(metadata);
+        if(meta.size() == 0) {
+            return false;
+        }
         FixedMetadataValue metaValue = (FixedMetadataValue) meta.get(0);
         return metaValue.asBoolean();
     }

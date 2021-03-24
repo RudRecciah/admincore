@@ -47,6 +47,10 @@ commands:
     description: Ban a player.
     permission: admincore.staff
     usage: /ban {player}
+  tempban:
+    description: Ban a player temporarily.
+    permission: admincore.staff
+    usage: /tempban {player}
   mute:
     description: Mute a player.
     permission: admincore.staff

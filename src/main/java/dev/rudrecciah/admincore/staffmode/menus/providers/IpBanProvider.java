@@ -44,8 +44,7 @@ public class IpBanProvider implements InventoryProvider {
             if(!reasons[i].getItemMeta().getDisplayName().equalsIgnoreCase("NOREASON")) {
                 int finalI = i;
                 contents.set(0, i, ClickableItem.of(reasons[i], e -> {
-                    plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "ban-ip " + target.getAddress().getHostString() + " " + plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)));
-                    plugin.getServer().getBanList(BanList.Type.IP).addBan(String.valueOf(target.getUniqueId()), plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)), null, player.getName());
+                    plugin.getServer().getBanList(BanList.Type.IP).addBan(target.getAddress().getHostString(), plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)), null, player.getName());
                     target.kickPlayer("You have been ip-banned for " + plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + " forever!");
                     TempBanMenu.closeMenu(player);
                     //TODO: only show ip if trusted

@@ -18,12 +18,12 @@ public class ReportCommandHandler implements CommandExecutor {
             plugin.getLogger().severe("This command can only be executed by a player!");
             return true;
         }
+        if(args.length != 1 || plugin.getServer().getPlayer(args[0]) == null) {
+            return false;
+        }
         if(sender.getName().equalsIgnoreCase(args[0])) {
             sender.sendMessage(ChatColor.YELLOW + "You can't report yourself!");
             return true;
-        }
-        if(args.length != 1 || plugin.getServer().getPlayer(args[0]) == null) {
-            return false;
         }
         Player p = (Player) sender;
         Player t = plugin.getServer().getPlayer(args[0]);

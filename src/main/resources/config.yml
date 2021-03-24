@@ -3,27 +3,31 @@
 # +------------------+
 killwhenoutdated: false
 announcementtitle: 'A Very Cool Announcement'
-logexceptions: true
+logexceptions: false
+chatlink:
+  send:
+    enable: false
+    token: ''
+  get:
+    enable: true
+    token: ''
 webhook:
   #token is full url, not just id
-  customName: true
-  name: 'Admincore'
-  icon: 'https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/icons/logo.png'
-  reportLogger:
-    use: true
-    token: 'a token'
+  customName: false
+  name: 'jams'
+  icon: 'https://thumbnailer.mixcloud.com/unsafe/300x300/extaudio/9/0/d/1/3f46-6ee1-4ccd-b21c-14ed5bbc1703.jpg'
   errorLogger:
     use: true
-    token: 'a cool token'
+    token: ''
+  reportLogger:
+    use: true
+    token: ''
   banLogger:
     use: true
-    token: 'an even cooler token'
+    token: ''
   muteLogger:
     use: true
-    token: 'an even cooler token'
-  chatLogger:
-    use: true
-    token: 'the coolest token'
+    token: ''
 staffmode:
   resetgamemode: true
   tptospawn:

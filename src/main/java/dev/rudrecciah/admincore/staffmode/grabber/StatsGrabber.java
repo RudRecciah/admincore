@@ -44,13 +44,28 @@ public class StatsGrabber {
                 aliases.add(ChatColor.YELLOW + player.getName());
             }
         }
+        if(aliases.size() == 3) {
+            aliases.add(ChatColor.YELLOW + "None");
+        }
+        return aliases;
+    }
+
+    public static List<String> grabAliases(Player p, boolean chat) {
+        ArrayList<String> aliases = new ArrayList<String>();
+        for(OfflinePlayer player:plugin.getServer().getOfflinePlayers()) {
+            if(String.valueOf(p.getAddress().getHostString()).equalsIgnoreCase(PlayerDataHandler.getIP(player.getUniqueId())) && p.getUniqueId() != player.getUniqueId()) {
+                aliases.add(ChatColor.YELLOW + player.getName());
+            }
+        }
+        if(aliases.size() == 0) {
+            aliases.add(ChatColor.YELLOW + "None");
+        }
         return aliases;
     }
 
     private static List<String> api(String path, Player p) {
         try {
             URL url = new URL("https://ipqualityscore.com/api/json/ip/" + path);
-            plugin.getLogger().info(String.valueOf(url));
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.connect();

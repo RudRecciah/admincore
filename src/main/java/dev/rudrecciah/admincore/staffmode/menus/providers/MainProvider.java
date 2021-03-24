@@ -6,6 +6,7 @@ import dev.rudrecciah.admincore.report.menu.ReportMenu;
 import dev.rudrecciah.admincore.staffmode.grabber.StatsGrabber;
 import dev.rudrecciah.admincore.staffmode.items.ItemCreator;
 import dev.rudrecciah.admincore.staffmode.menus.*;
+import dev.rudrecciah.admincore.webhook.MuteLogger;
 import fr.minuskube.inv.ClickableItem;
 import fr.minuskube.inv.content.InventoryContents;
 import fr.minuskube.inv.content.InventoryProvider;
@@ -56,6 +57,7 @@ public class MainProvider implements InventoryProvider {
                 long muteEnd = System.currentTimeMillis() + (muteLength * 60000L);
                 PlayerDataHandler.mute(target, muteEnd);
                 MainMenu.closeMenu(player);
+                MuteLogger.logMute(player, muteLength, target);
                 player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + target.getName() + " has been muted for " + muteLength + " minutes!");
                 if(DataHandler.getBoolean(player, "notifs")) {
                     player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);

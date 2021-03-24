@@ -12,6 +12,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Locale;
 
 import static dev.rudrecciah.admincore.Main.plugin;
 
@@ -25,16 +26,10 @@ public class AliasChecker implements CommandExecutor {
         if(args.length != 1 || plugin.getServer().getPlayer(args[0]) == null) {
             return false;
         }
-        if(!DataHandler.getMetaBoolean((Player) sender, "staffmode")) {
-            p.sendMessage(ChatColor.YELLOW + "You must be in staffmode to ban a player!");
-        }
-        if(!plugin.getServer().getPlayer(args[0]).hasPermission("admincore.staff")) {
-            p.sendMessage(ChatColor.YELLOW + "You can't ban a staff member!");
-        }
         p.setMetadata("staffmodeChecking", new FixedMetadataValue(plugin, plugin.getServer().getPlayer(args[0]).getUniqueId()));
         Player t = plugin.getServer().getPlayer(args[0]);
-        List<String> aliases = StatsGrabber.grabAliases(t);
-        p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[" + t.getName() + "'S ALIASES]");
+        List<String> aliases = StatsGrabber.grabAliases(t, true);
+        p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[" + t.getName().toUpperCase(Locale.ROOT) + "'S ALIASES]");
         for(String str : aliases) {
             p.sendMessage(str);
         }

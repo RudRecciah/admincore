@@ -3,6 +3,7 @@ package dev.rudrecciah.admincore.mute;
 import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
 import dev.rudrecciah.admincore.staffmode.menus.MainMenu;
+import dev.rudrecciah.admincore.webhook.MuteLogger;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -27,9 +28,11 @@ public class Muter implements CommandExecutor {
         }
         if(!DataHandler.getMetaBoolean((Player) sender, "staffmode")) {
             p.sendMessage(ChatColor.YELLOW + "You must be in staffmode to mute a player!");
+            return true;
         }
-        if(!plugin.getServer().getPlayer(args[0]).hasPermission("admincore.staff")) {
+        if(plugin.getServer().getPlayer(args[0]).hasPermission("admincore.staff")) {
             p.sendMessage(ChatColor.YELLOW + "You can't mute a staff member!");
+            return true;
         }
         p.setMetadata("staffmodeChecking", new FixedMetadataValue(plugin, plugin.getServer().getPlayer(args[0]).getUniqueId()));
         Player t = plugin.getServer().getPlayer(args[0]);
@@ -37,6 +40,7 @@ public class Muter implements CommandExecutor {
         if(!PlayerDataHandler.muteExpired(t)) {
             long muteEnd = System.currentTimeMillis() + (muteLength * 60000L);
             PlayerDataHandler.mute(t, muteEnd);
+            MuteLogger.logMute(p, muteLength, t);
             p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + t.getName() + " has been muted for " + muteLength + " minutes!");
             if(DataHandler.getBoolean(p, "notifs")) {
                 p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);

@@ -3,6 +3,7 @@ package dev.rudrecciah.admincore.ban;
 import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.staffmode.menus.BanChoiceMenu;
 import dev.rudrecciah.admincore.staffmode.menus.BanMenu;
+import dev.rudrecciah.admincore.staffmode.menus.TempBanMenu;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static dev.rudrecciah.admincore.Main.plugin;
 
-public class Banner implements CommandExecutor {
+public class Tempbanner implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(sender instanceof ConsoleCommandSender) {
@@ -33,11 +34,7 @@ public class Banner implements CommandExecutor {
             return true;
         }
         p.setMetadata("staffmodeChecking", new FixedMetadataValue(plugin, plugin.getServer().getPlayer(args[0]).getUniqueId()));
-        if(plugin.getConfig().getBoolean("staffmode.punishment.ban.ip-ban")) {
-            BanChoiceMenu.openMenu(p);
-        }else{
-            BanMenu.openMenu(p);
-        }
+        TempBanMenu.openMenu(p);
         return true;
     }
 }

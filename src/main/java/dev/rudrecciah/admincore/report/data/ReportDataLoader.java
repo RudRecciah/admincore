@@ -13,10 +13,15 @@ import static dev.rudrecciah.admincore.Main.plugin;
 
 public class ReportDataLoader {
     private static File file;
+    private static File dir;
     private static FileConfiguration customFile;
 
     public static void saveDefaultReportData(UUID uuid){
-        file = new File(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder()  + File.separator + "rd", uuid + ".yml");
+        dir = new File(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "rd");
+        if(!dir.exists()) {
+            dir.mkdirs();
+        }
+        file = new File(dir, uuid + ".yml");
         if(!file.exists()) {
             try {
                 file.createNewFile();

@@ -8,17 +8,22 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import static dev.rudrecciah.admincore.Main.plugin;
 
 public class DataLoader {
     private static File file;
+    private static File dir;
     private static FileConfiguration customFile;
 
     public static void saveDefaultdata(){
-        file = new File(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "sd", "data.yml");
-
-        if (!file.exists()){
+        dir = new File(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "sd");
+        if(!dir.exists()) {
+            dir.mkdirs();
+        }
+        file = new File(dir, "data.yml");
+        if(!file.exists()) {
             try{
                 file.createNewFile();
             }catch (IOException e){

@@ -13,12 +13,16 @@ import java.util.UUID;
 import static dev.rudrecciah.admincore.Main.plugin;
 
 public class PlayerDataLoader {
-
     private static File file;
+    private static File dir;
     private static FileConfiguration customFile;
 
     public static void saveDefaultPlayerData(Player p){
-        file = new File(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder()  + File.separator + "pd", p.getUniqueId() + ".yml");
+        dir = new File(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "pd");
+        if(!dir.exists()) {
+            dir.mkdirs();
+        }
+        file = new File(dir, p.getUniqueId() + ".yml");
         if(!file.exists()) {
             try {
                 file.createNewFile();
@@ -30,7 +34,11 @@ public class PlayerDataLoader {
     }
 
     public static void saveDefaultPlayerData(UUID uuid){
-        file = new File(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder()  + File.separator + "pd", uuid + ".yml");
+        dir = new File(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "pd");
+        if(!dir.exists()) {
+            dir.mkdirs();
+        }
+        file = new File(dir, uuid + ".yml");
         if(!file.exists()) {
             try {
                 file.createNewFile();
