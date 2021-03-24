@@ -10,3 +10,5 @@ To have your PR merged, it must meet the following criteria:
 * All sensitive information (tokens, passwords, etc) must come from the config and must be left as empty strings in the config included in your PR. Obviously you can have them in your local config, but don't put them in the project's config.
 * All dependencies must come from Maven's pom.xml, not added directly or with .CLASSPATH or something else.
 If you have questions, you can find my contact information [here](https://rudrecciah.dev/#contact)!
+### Getting config version errors?
+Manually create ./Admincore/data/sd/ver/OVERRIDE (OVERRIDE is a file without an extension, not a directory). This will allow you to skip config version checking.
