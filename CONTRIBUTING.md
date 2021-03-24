@@ -11,4 +11,4 @@ To have your PR merged, it must meet the following criteria:
 * All dependencies must come from Maven's pom.xml, not added directly or with .CLASSPATH or something else.
 If you have questions, you can find my contact information [here](https://rudrecciah.dev/#contact)!
 ### Getting config version errors?
-Manually create ./Admincore/data/sd/ver/OVERRIDE (OVERRIDE is a file without an extension, not a directory). This will allow you to skip config version checking.
+Manually create `./Admincore/data/sd/ver/OVERRIDE` (`OVERRIDE` is a file without an extension, not a directory). This will allow you to skip config version checking.
