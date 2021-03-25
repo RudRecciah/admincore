@@ -1,7 +1,6 @@
 # +------------------+
 # | AdminCore Config |
 # +------------------+
-killwhenoutdated: false
 announcementtitle: 'A Very Cool Announcement'
 logexceptions: false
 chatlink:
@@ -103,3 +102,5 @@ serverstatus:
     log: true
   ping:
     log: true
+#DO NOT EDIT THIS VALUE
+version: 1

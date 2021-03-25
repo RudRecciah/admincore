@@ -20,6 +20,8 @@ import dev.rudrecciah.admincore.report.meta.ReportMetaCleaner;
 import dev.rudrecciah.admincore.serverstatus.ServerStatus;
 import dev.rudrecciah.admincore.staffchat.StaffChat;
 import dev.rudrecciah.admincore.staffmode.StaffmodeHandler;
+import dev.rudrecciah.admincore.update.ConfigUpdateChecker;
+import dev.rudrecciah.admincore.update.PluginUpdateChecker;
 import dev.rudrecciah.admincore.webhook.BanLogger;
 import fr.minuskube.inv.InventoryManager;
 import org.bukkit.BanList;
@@ -65,13 +67,15 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         getCommand("aliases").setExecutor(new AliasChecker());
         getCommand("staffnotifications").setExecutor(new NotificationHandler());
         getCommand("tempban").setExecutor(new Tempbanner());
-        getLogger().info("Admin Core Enabled");
+        getLogger().info("Admincore Enabled");
         invManager = new InventoryManager(this);
         invManager.init();
         if(!configExists) {
             getLogger().info("It seems like you either didn't have a config file for Admincore before running or you've just installed Admincore. Either way, it cannot be used in this state and may generate errors. Your server has been shut down to prevent a potantially fatal error. You should set up your config file before starting your server again. Any errors that you've experienced right now shouldn't be worried about, and should only be investigated if the behavior continues. Thank you!");
             getServer().shutdown();
         }
+        PluginUpdateChecker.checkForUpdates();
+        ConfigUpdateChecker.checkVersion();
     }
 
     public InventoryManager getInvManager() {
@@ -89,10 +93,10 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
     * do crime
     * pogchamp
     * TODO killwhenoutdated in config
-    * TODO: command testing, discord testing
     * Bugs to fix:
     * none yey
     * TODO: discord integration
+    * TODO: ban appeal message
     * */
 
     @EventHandler
@@ -152,6 +156,6 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
 
     @Override
     public void onDisable() {
-        getLogger().info("Admin Core Disabled");
+        getLogger().info("Admincore Disabled");
     }
 }
