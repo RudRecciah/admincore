@@ -1,42 +1,41 @@
 # Admin-Core
 ### An indev core for Spigot and Paper server administration.
-Current features (0.1.0):
-* Player and Staff Report System
-* Staff Ban System
-* Staff Mute System
-* Staff Chat
-* Staff Notification System
-* Player Monitoring System: 
-  * Inventory Monitoring
-  * Ban Logging
-  * Mute Logging
-  * IP Logging
-  * Country Logging
-  * Region/State Logging
-  * City Logging
-  * Coordinate Logging
-  * IP Abuse Logging
-  * VPN Checking
-  * Proxy Checking
-  * Spectating
-  * Fraud Detection
-  * IP Type Checking
-  * IP Usage Checking (Bot/Human)
-* Staff Hiding System:
-  * Puesdo-Leave/Join Messages
-  * Staff Hidden From Players
-  * Staff Hidden From Tablist
-* Error and Exception Logging/Tracking System:
-  * Error Codes
-  * More Information Than Spigot Provides
+Current features (0.2.0):
+* Announcement System
+* Error Logging System
+    * Logging to console
+    * Logging to file
+    * Logging to Discord
+* Player Freeze system
+* Punishment Logging System
+    * Logging to file
+    * Logging to Discord
+* Player Reporting System
+* Server Status Checker
+* Staffchat With Notification System
+* Staffmode:
+    * Hides you from all non-staff players
+    * Sends puesdo-join and leave messages
+    * Player Management GUI:
+        * Report players
+        * Mute Players
+        * Ban Players
+        * IP Ban Players
+        * Tempban Players
+        * Check Player Aliases
+        * Check Player 
+        * Check Player IPQS Statistics (IP address information and threat potential)
+        * Check Past Punishments
+* Update Checker
+* Config Incompatibility Checker
+* Chat Logging System (Discord)
+* And More!
 
 Check the github project for the most up-to-date plans and roadmap!
 
 Planned Features (1.0.0):
-  * Discord Webhook Integration
   * Discord Bot Integration
-  * Staffmode Features As Standalone Commands
-  * Github Project
+  * And More!
 
 Planned Features (Future):
   * Nothing yet
@@ -47,12 +46,9 @@ Planned Versions (1.0.0):
 Planned Versions (Future):
   * 1.17.x
 
-Roadmap (0.2.0-1.0.0):
-  * 0.2.0
-    * Discord Webhook Integration
-    * Staffmode Features As Standalone Commands
-    * Github Project
+Roadmap (For a more accurate and complete roadmap, check out the github project for Admincore!):
   * 0.3.0
+    * Enhance Report System
     * Discord Bot Integration
   * 0.4.0
     * QA Testing/Bug Fixing
