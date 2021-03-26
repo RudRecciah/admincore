@@ -45,9 +45,12 @@ public class IpBanProvider implements InventoryProvider {
                 int finalI = i;
                 contents.set(0, i, ClickableItem.of(reasons[i], e -> {
                     plugin.getServer().getBanList(BanList.Type.IP).addBan(target.getAddress().getHostString(), plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)), null, player.getName());
-                    target.kickPlayer("You have been ip-banned for " + plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + " forever!");
+                    StringBuilder appeal = new StringBuilder();
+                    if(plugin.getConfig().getBoolean("staffmode.punishment.appeals.ip-ban.allow-appeals")) {
+                        appeal.append("\n").append(plugin.getConfig().getString("staffmode.punishment.appeals.ip-ban.message"));
+                    }
+                    target.kickPlayer("You have been ip-banned for " + plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + " forever!" + appeal.toString());
                     TempBanMenu.closeMenu(player);
-                    //TODO: only show ip if trusted
                     player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + target.getName() + "'s IP Address (" + target.getAddress().getHostName() + ") has been permanently banned!");
                     if(DataHandler.getBoolean(player, "notifs")) {
                         player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);

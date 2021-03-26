@@ -72,8 +72,29 @@ staffmode:
       tempban-length: 30
       ip-ban: true
     mute:
-      reason: 'Chat Abuse'
+      reasons:
+        1: 'Cheating'
+        2: 'Chat Abuse'
+        3: 'idk fookin botum geah moates'
+        4: 'Chargebacks'
+        5: 'DDoS Threats'
+        6: 'Name Abuse'
+        7: 'Player Threats'
+        8: ''
       mute-length: 30
+    appeals:
+      mute:
+        allow-appeals: true
+        message: 'To appeal your mute, go to https://example.com/appeals.'
+      tempban:
+        allow-appeals: true
+        message: 'To appeal your ban, go to https://example.com/appeals.'
+      ban:
+        allow-appeals: true
+        message: 'To appeal your ban, go to https://example.com/appeals.'
+      ip-ban:
+        allow-appeals: true
+        message: 'To appeal your IP ban, go to https://example.com/appeals.'
   stats:
     api-key: 'your api key'
     public-networks: false

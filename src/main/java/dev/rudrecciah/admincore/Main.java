@@ -13,8 +13,10 @@ import dev.rudrecciah.admincore.freeze.PlayerUnfreezer;
 import dev.rudrecciah.admincore.inspect.Inspector;
 import dev.rudrecciah.admincore.master.MasterCommand;
 import dev.rudrecciah.admincore.mute.Muter;
+import dev.rudrecciah.admincore.mute.Unmuter;
 import dev.rudrecciah.admincore.notifs.NotificationHandler;
 import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
+import dev.rudrecciah.admincore.punishlogs.PunishmentLogger;
 import dev.rudrecciah.admincore.report.ReportCommandHandler;
 import dev.rudrecciah.admincore.report.meta.ReportMetaCleaner;
 import dev.rudrecciah.admincore.serverstatus.ServerStatus;
@@ -67,7 +69,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         getCommand("aliases").setExecutor(new AliasChecker());
         getCommand("staffnotifications").setExecutor(new NotificationHandler());
         getCommand("tempban").setExecutor(new Tempbanner());
-        getLogger().info("Admincore Enabled");
+        getCommand("unmute").setExecutor(new Unmuter());
         invManager = new InventoryManager(this);
         invManager.init();
         if(!configExists) {
@@ -76,6 +78,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         }
         PluginUpdateChecker.checkForUpdates();
         ConfigUpdateChecker.checkVersion();
+        getLogger().info("Admincore Enabled");
     }
 
     public InventoryManager getInvManager() {
@@ -113,13 +116,14 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         StaffmodeHandler.clear(e.getPlayer(), e);
         if(e.getPlayer().isBanned() || getServer().getBanList(BanList.Type.IP).isBanned(e.getPlayer().getAddress().getHostString())) {
             if(getServer().getBanList(BanList.Type.IP).isBanned(e.getPlayer().getAddress().getHostString())) {
+                PlayerDataHandler.ban(e.getPlayer());
+                BanLogger.logBan(e.getPlayer());
                 for(Player p : getServer().getOnlinePlayers()) {
                     if(p.getAddress().getHostString().equalsIgnoreCase(e.getPlayer().getAddress().getHostString())) {
                         p.kickPlayer("Another account on your network was IP banned forever! You probably live together, so go smack them a bit to get them to stop cheating.");
                     }
                 }
-                PlayerDataHandler.ban(e.getPlayer());
-                BanLogger.logBan(e.getPlayer());
+                return;
             }
             PlayerDataHandler.ban(e.getPlayer());
             BanLogger.logBan(e.getPlayer());

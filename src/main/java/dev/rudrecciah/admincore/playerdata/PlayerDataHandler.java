@@ -38,6 +38,13 @@ public class PlayerDataHandler {
         PlayerDataLoader.savePlayerData();
     }
 
+    public static void unmute(Player p) {
+        PlayerDataLoader.saveDefaultPlayerData(p);
+        PlayerDataLoader.getPlayerData().options().copyDefaults(true);
+        PlayerDataLoader.getPlayerData().set("persistToggle.muteEnd", 0);
+        PlayerDataLoader.savePlayerData();
+    }
+
     public static void ban(Player p) {
         PlayerDataLoader.saveDefaultPlayerData(p);
         PlayerDataLoader.getPlayerData().options().copyDefaults(true);

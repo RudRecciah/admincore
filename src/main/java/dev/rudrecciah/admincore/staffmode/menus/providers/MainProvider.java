@@ -52,23 +52,8 @@ public class MainProvider implements InventoryProvider {
             ReportMenu.openMenu(player);
         }));
         contents.set(0, 1, ClickableItem.of(mute, e -> {
-            int muteLength = plugin.getConfig().getInt("staffmode.punishment.mute.mute-length");
-            if(!PlayerDataHandler.muteExpired(target)) {
-                long muteEnd = System.currentTimeMillis() + (muteLength * 60000L);
-                PlayerDataHandler.mute(target, muteEnd);
-                MainMenu.closeMenu(player);
-                MuteLogger.logMute(player, muteLength, target);
-                player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + target.getName() + " has been muted for " + muteLength + " minutes!");
-                if(DataHandler.getBoolean(player, "notifs")) {
-                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
-                }
-                target.sendMessage(ChatColor.YELLOW + "You have been muted for " + muteLength + " minutes! Reason: " + plugin.getConfig().getString("staffmode.punishment.mute.reason"));
-            }else{
-                player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + target.getName() + " is already muted!");
-                if(DataHandler.getBoolean(player, "notifs")) {
-                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
-                }
-            }
+            MainMenu.closeMenu(player);
+            MuteMenu.openMenu(player);
         }));
         contents.set(0, 2, ClickableItem.of(ban, e -> {
             MainMenu.closeMenu(player);

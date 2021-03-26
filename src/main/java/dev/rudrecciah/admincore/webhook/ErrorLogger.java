@@ -88,6 +88,35 @@ public class ErrorLogger {
         }
     }
 
+    public static void logWarn(String warn, String desc) {
+        if(plugin.getConfig().getBoolean("webhook.errorLogger.use")) {
+            StringBuilder nameBuilder = new StringBuilder();
+            StringBuilder iconBuilder = new StringBuilder();
+            if(plugin.getConfig().getBoolean("webhook.customName")) {
+                nameBuilder.append(plugin.getConfig().getString("webhook.name"));
+                iconBuilder.append(plugin.getConfig().getString("webhook.icon"));
+            }else{
+                nameBuilder.append("Admincore");
+                iconBuilder.append("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/icons/logo.png");
+            }
+            String name = nameBuilder.toString();
+            String icon = iconBuilder.toString();
+            TemmieWebhook webhook = new TemmieWebhook(plugin.getConfig().getString("webhook.errorLogger.token"));
+            DiscordEmbed de = new DiscordEmbed();
+            ThumbnailEmbed te = new ThumbnailEmbed();
+            te.setUrl("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/icons/warn.png");
+            te.setHeight(96);
+            te.setWidth(96);
+            de.setThumbnail(te);
+            de.setTitle("A Warning Occoured!");
+            de.setDescription(desc);
+            de.setFooter(FooterEmbed.builder().text("Admincore Warning Logger").icon_url("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/icons/logo.png").build());
+            DiscordMessage dm = new DiscordMessage(name, "", icon);
+            dm.getEmbeds().add(de);
+            webhook.sendMessage(dm);
+        }
+    }
+
     public static void logError(String code, Thread t) {
         if(plugin.getConfig().getBoolean("webhook.errorLogger.use")) {
             StringBuilder nameBuilder = new StringBuilder();

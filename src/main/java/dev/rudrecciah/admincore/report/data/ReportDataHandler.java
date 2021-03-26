@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ReportDataHandler {
 
-    public static void handleReportData(OfflinePlayer p, int reason, Player r) {
+    public static int handleReportData(OfflinePlayer p, int reason, Player r) {
         ReportDataLoader.saveDefaultReportData(p.getUniqueId());
         ReportDataLoader.get().options().copyDefaults(true);
         ReportDataLoader.get().addDefault("amount", 0);
@@ -18,5 +18,6 @@ public class ReportDataHandler {
         ReportDataLoader.get().addDefault("report" + i + ".reporter", String.valueOf(r.getUniqueId()));
         ReportDataLoader.get().addDefault("report" + i + ".closed", false);
         ReportDataLoader.saveReportData();
+        return i;
     }
 }

@@ -3,6 +3,7 @@ package dev.rudrecciah.admincore.mute;
 import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
 import dev.rudrecciah.admincore.staffmode.menus.MainMenu;
+import dev.rudrecciah.admincore.staffmode.menus.MuteMenu;
 import dev.rudrecciah.admincore.webhook.MuteLogger;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -35,23 +36,7 @@ public class Muter implements CommandExecutor {
             return true;
         }
         p.setMetadata("staffmodeChecking", new FixedMetadataValue(plugin, plugin.getServer().getPlayer(args[0]).getUniqueId()));
-        Player t = plugin.getServer().getPlayer(args[0]);
-        int muteLength = plugin.getConfig().getInt("staffmode.punishment.mute.mute-length");
-        if(!PlayerDataHandler.muteExpired(t)) {
-            long muteEnd = System.currentTimeMillis() + (muteLength * 60000L);
-            PlayerDataHandler.mute(t, muteEnd);
-            MuteLogger.logMute(p, muteLength, t);
-            p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + t.getName() + " has been muted for " + muteLength + " minutes!");
-            if(DataHandler.getBoolean(p, "notifs")) {
-                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
-            }
-            t.sendMessage(ChatColor.YELLOW + "You have been muted for " + muteLength + " minutes! Reason: " + plugin.getConfig().getString("staffmode.punishment.mute.reason"));
-        }else{
-            p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + t.getName() + " is already muted!");
-            if(DataHandler.getBoolean(p, "notifs")) {
-                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
-            }
-        }
+        MuteMenu.openMenu(p);
         return true;
     }
 }

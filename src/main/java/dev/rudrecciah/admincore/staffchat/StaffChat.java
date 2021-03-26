@@ -1,6 +1,7 @@
 package dev.rudrecciah.admincore.staffchat;
 
 import dev.rudrecciah.admincore.data.DataHandler;
+import dev.rudrecciah.admincore.webhook.ChatLogger;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -35,11 +36,11 @@ public class StaffChat implements CommandExecutor {
             message.append(arg).append(" ");
         }
         plugin.getLogger().info("[Staff Chat Channel] " + p.getName() + ": " + message);
+        ChatLogger.logChat(p, message.toString());
         List<Player> players = (List) plugin.getServer().getOnlinePlayers();
         for (Player player : players) {
             if (player.hasPermission("admincore.staff")) {
                 player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.YELLOW + p.getName() + ": " + message);
-                FileConfiguration config = plugin.getConfig();
                 if(DataHandler.getBoolean(player, "notifs") && p != player) {
                     player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
                 }

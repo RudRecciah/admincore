@@ -43,8 +43,8 @@ public class ReportProvider implements InventoryProvider {
             if(!reasons[i].getItemMeta().getDisplayName().equalsIgnoreCase("NOREASON")) {
                 int finalI = i;
                 contents.set(0, i, ClickableItem.of(reasons[i], e -> {
-                    ReportDataHandler.handleReportData(target, finalI, player);
-                    ReportLogger.logReport(target, finalI, player);
+                    int num = ReportDataHandler.handleReportData(target, finalI, player);
+                    ReportLogger.logReport(target, finalI, player, num);
                     player.sendMessage(ChatColor.YELLOW + target.getName() + " has been reported!");
                     ReportMenu.closeMenu(player);
                 }));

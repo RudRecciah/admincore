@@ -47,7 +47,11 @@ public class BanProvider implements InventoryProvider {
                 int finalI = i;
                 contents.set(0, i, ClickableItem.of(reasons[i], e -> {
                     plugin.getServer().getBanList(BanList.Type.NAME).addBan(String.valueOf(target.getUniqueId()), plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)), null, player.getName());
-                    target.kickPlayer("You have been banned for " + plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + " forever!");
+                    StringBuilder appeal = new StringBuilder();
+                    if(plugin.getConfig().getBoolean("staffmode.punishment.appeals.ban.allow-appeals")) {
+                        appeal.append("\n").append(plugin.getConfig().getString("staffmode.punishment.appeals.ban.message"));
+                    }
+                    target.kickPlayer("You have been banned for " + plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + " forever!" + appeal.toString());
                     TempBanMenu.closeMenu(player);
                     player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + target.getName() + " has been permanently banned!");
                     if(DataHandler.getBoolean(player, "notifs")) {

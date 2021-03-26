@@ -6,6 +6,7 @@ import com.mrpowergamerbr.temmiewebhook.TemmieWebhook;
 import com.mrpowergamerbr.temmiewebhook.embed.FieldEmbed;
 import com.mrpowergamerbr.temmiewebhook.embed.FooterEmbed;
 import com.mrpowergamerbr.temmiewebhook.embed.ThumbnailEmbed;
+import dev.rudrecciah.admincore.punishlogs.PunishmentLogger;
 import org.bukkit.BanList;
 import org.bukkit.entity.Player;
 
@@ -15,13 +16,64 @@ import static dev.rudrecciah.admincore.Main.plugin;
 
 public class BanLogger {
     public static void logBan(Player p) {
+        plugin.getLogger().info("This BanLogger has been ran a time!");
+        StringBuilder reasonBuilder = new StringBuilder();
+        StringBuilder typeBuilder = new StringBuilder();
+        StringBuilder lengthBuilder = new StringBuilder();
+        StringBuilder sourceBuilder = new StringBuilder();
+        Boolean ip = false;
+        if(plugin.getServer().getBanList(BanList.Type.NAME).isBanned(p.getUniqueId().toString())) {
+            typeBuilder.append("Player");
+            if(plugin.getServer().getBanList(BanList.Type.NAME).getBanEntry(p.getUniqueId().toString()).getReason() != null) {
+                reasonBuilder.append(plugin.getServer().getBanList(BanList.Type.NAME).getBanEntry(p.getUniqueId().toString()).getReason());
+            }else{
+                reasonBuilder.append("None");
+            }
+            if(plugin.getServer().getBanList(BanList.Type.NAME).getBanEntry(p.getUniqueId().toString()).getExpiration() != null) {
+                lengthBuilder.append(plugin.getConfig().getInt("staffmode.punishment.ban.tempban-length"));
+            }else{
+                lengthBuilder.append("Forever");
+            }
+            if(plugin.getServer().getBanList(BanList.Type.NAME).getBanEntry(p.getUniqueId().toString()).getSource() != null) {
+                sourceBuilder.append(plugin.getServer().getBanList(BanList.Type.NAME).getBanEntry(p.getUniqueId().toString()).getSource());
+            }else{
+                sourceBuilder.append("Unknown");
+            }
+        }else{
+            ip = true;
+            typeBuilder.append("IP");
+            if(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(p.getAddress().getHostString()).getReason() != null) {
+                reasonBuilder.append(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(p.getAddress().getHostString()).getReason());
+            }else{
+                reasonBuilder.append("None");
+            }
+            if(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(p.getAddress().getHostString()).getExpiration() != null) {
+                lengthBuilder.append("Until ").append(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(p.getAddress().getHostString()).getExpiration());
+            }else{
+                lengthBuilder.append("Forever");
+            }
+            if(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(p.getAddress().getHostString()).getSource() != null) {
+                sourceBuilder.append(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(p.getAddress().getHostString()).getSource());
+            }else{
+                sourceBuilder.append("Unknown");
+            }
+        }
+        String type = typeBuilder.toString();
+        String reason = reasonBuilder.toString();
+        String length = lengthBuilder.toString();
+        String source = sourceBuilder.toString();
+        if(ip) {
+            PunishmentLogger.logIpBan(p, reason, source);
+        }else{
+            if(!length.equalsIgnoreCase("forever")) {
+                PunishmentLogger.logTempban(p, reason, length, source);
+            }else{
+                PunishmentLogger.logBan(p, reason, source);
+            }
+        }
         if(plugin.getConfig().getBoolean("webhook.banLogger.use")) {
             StringBuilder nameBuilder = new StringBuilder();
             StringBuilder iconBuilder = new StringBuilder();
-            StringBuilder reasonBuilder = new StringBuilder();
-            StringBuilder typeBuilder = new StringBuilder();
-            StringBuilder lengthBuilder = new StringBuilder();
-            StringBuilder sourceBuilder = new StringBuilder();
             if(plugin.getConfig().getBoolean("webhook.customName")) {
                 nameBuilder.append(plugin.getConfig().getString("webhook.name"));
                 iconBuilder.append(plugin.getConfig().getString("webhook.icon"));
@@ -29,45 +81,6 @@ public class BanLogger {
                 nameBuilder.append("Admincore");
                 iconBuilder.append("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/icons/logo.png");
             }
-            if(plugin.getServer().getBanList(BanList.Type.NAME).isBanned(p.getUniqueId().toString())) {
-                typeBuilder.append("Player");
-                if(plugin.getServer().getBanList(BanList.Type.NAME).getBanEntry(p.getUniqueId().toString()).getReason() != null) {
-                    reasonBuilder.append(plugin.getServer().getBanList(BanList.Type.NAME).getBanEntry(p.getUniqueId().toString()).getReason());
-                }else{
-                    reasonBuilder.append("None");
-                }
-                if(plugin.getServer().getBanList(BanList.Type.NAME).getBanEntry(p.getUniqueId().toString()).getExpiration() != null) {
-                    lengthBuilder.append("Until ").append(plugin.getServer().getBanList(BanList.Type.NAME).getBanEntry(p.getUniqueId().toString()).getExpiration());
-                }else{
-                    lengthBuilder.append("Forever");
-                }
-                if(plugin.getServer().getBanList(BanList.Type.NAME).getBanEntry(p.getUniqueId().toString()).getSource() != null) {
-                    sourceBuilder.append(plugin.getServer().getBanList(BanList.Type.NAME).getBanEntry(p.getUniqueId().toString()).getSource());
-                }else{
-                    sourceBuilder.append("Unknown");
-                }
-            }else{
-                typeBuilder.append("IP");
-                if(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(p.getAddress().getHostString()).getReason() != null) {
-                    reasonBuilder.append(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(p.getAddress().getHostString()).getReason());
-                }else{
-                    reasonBuilder.append("None");
-                }
-                if(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(p.getAddress().getHostString()).getExpiration() != null) {
-                    lengthBuilder.append("Until ").append(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(p.getAddress().getHostString()).getExpiration());
-                }else{
-                    lengthBuilder.append("Forever");
-                }
-                if(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(p.getAddress().getHostString()).getSource() != null) {
-                    sourceBuilder.append(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(p.getAddress().getHostString()).getSource());
-                }else{
-                    sourceBuilder.append("Unknown");
-                }
-            }
-            String type = typeBuilder.toString();
-            String reason = reasonBuilder.toString();
-            String length = lengthBuilder.toString();
-            String source = sourceBuilder.toString();
             String name = nameBuilder.toString();
             String icon = iconBuilder.toString();
             TemmieWebhook webhook = new TemmieWebhook(plugin.getConfig().getString("webhook.banLogger.token"));
