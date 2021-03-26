@@ -88,8 +88,8 @@ public class ErrorLogger {
         }
     }
 
-    public static void logWarn(String warn, String desc) {
-        if(plugin.getConfig().getBoolean("webhook.errorLogger.use")) {
+    public static void logWarn(String warn) {
+        if(plugin.getConfig().getBoolean("webhook.errorLogger.use") && plugin.getConfig().getBoolean("webhook.errorLogger.reload")) {
             StringBuilder nameBuilder = new StringBuilder();
             StringBuilder iconBuilder = new StringBuilder();
             if(plugin.getConfig().getBoolean("webhook.customName")) {
@@ -109,7 +109,7 @@ public class ErrorLogger {
             te.setWidth(96);
             de.setThumbnail(te);
             de.setTitle("A Warning Occoured!");
-            de.setDescription(desc);
+            de.setDescription(warn);
             de.setFooter(FooterEmbed.builder().text("Admincore Warning Logger").icon_url("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/icons/logo.png").build());
             DiscordMessage dm = new DiscordMessage(name, "", icon);
             dm.getEmbeds().add(de);

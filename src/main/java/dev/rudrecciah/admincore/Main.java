@@ -25,6 +25,7 @@ import dev.rudrecciah.admincore.staffmode.StaffmodeHandler;
 import dev.rudrecciah.admincore.update.ConfigUpdateChecker;
 import dev.rudrecciah.admincore.update.PluginUpdateChecker;
 import dev.rudrecciah.admincore.webhook.BanLogger;
+import dev.rudrecciah.admincore.webhook.ErrorLogger;
 import fr.minuskube.inv.InventoryManager;
 import org.bukkit.BanList;
 import org.bukkit.ChatColor;
@@ -35,6 +36,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.Console;
+import java.util.ArrayList;
+import java.util.List;
+
 public final class Main extends JavaPlugin implements CommandExecutor, Listener {
 
     public static Main plugin;
@@ -42,12 +47,17 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
 
     @Override
     public void onEnable() {
+        int ps = getServer().getOnlinePlayers().size();
         plugin = this;
         Boolean configExists = true;
         if(!getDataFolder().exists()) {
             configExists = false;
         }
         saveDefaultConfig();
+        if(ps > 0) {
+            getLogger().severe("A server reload was detected! Never do this! Admincore, along with many other plugins, does not handle reloads gracefully and will generate errors. Stop your server and run your startup script manually to restart it. If you didn't reload, don't worry, this is just a false positive.");
+            ErrorLogger.logWarn("A server reload was detected! Never do this! Admincore, along with many other plugins, does not handle reloads gracefully and will generate errors. Stop your server and run your startup script manually to restart it. If you didn't reload, don't worry, this is just a false positive.");
+        }
         if(getConfig().getBoolean("logexceptions")) {
             ExceptionHandler handler = new ExceptionHandler();
             Thread.setDefaultUncaughtExceptionHandler(handler);
@@ -88,19 +98,6 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
     public static void rud() {
         return;
     }
-
-    /*
-    * Other things:
-    * die
-    * be gay
-    * do crime
-    * pogchamp
-    * TODO killwhenoutdated in config
-    * Bugs to fix:
-    * none yey
-    * TODO: discord integration
-    * TODO: ban appeal message
-    * */
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {

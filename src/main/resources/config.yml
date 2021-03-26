@@ -17,6 +17,7 @@ webhook:
   icon: 'https://thumbnailer.mixcloud.com/unsafe/300x300/extaudio/9/0/d/1/3f46-6ee1-4ccd-b21c-14ed5bbc1703.jpg'
   errorLogger:
     use: true
+    reload: true
     token: ''
   reportLogger:
     use: true

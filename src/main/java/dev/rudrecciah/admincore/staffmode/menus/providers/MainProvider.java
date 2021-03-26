@@ -100,7 +100,6 @@ public class MainProvider implements InventoryProvider {
 
     @Override
     public void update(Player player, InventoryContents contents) {
-        //TODO: if player is banned, close all guis for this player
-        //TODO: if player leaves, close gui (maybe)
+
     }
 }
