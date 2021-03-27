@@ -2,6 +2,7 @@ package dev.rudrecciah.admincore.report;
 
 import dev.rudrecciah.admincore.report.menu.ReportMenu;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,7 +19,7 @@ public class ReportCommandHandler implements CommandExecutor {
             plugin.getLogger().severe("This command can only be executed by a player!");
             return true;
         }
-        if(args.length != 1 || plugin.getServer().getPlayer(args[0]) == null) {
+        if(args.length != 1 || plugin.getServer().getOfflinePlayer(args[0]) == null) {
             return false;
         }
         if(sender.getName().equalsIgnoreCase(args[0])) {
@@ -26,7 +27,7 @@ public class ReportCommandHandler implements CommandExecutor {
             return true;
         }
         Player p = (Player) sender;
-        Player t = plugin.getServer().getPlayer(args[0]);
+        OfflinePlayer t = plugin.getServer().getOfflinePlayer(args[0]);
         p.setMetadata("reporting", new FixedMetadataValue(plugin, String.valueOf(t.getUniqueId())));
         ReportMenu.openMenu(p);
         return true;

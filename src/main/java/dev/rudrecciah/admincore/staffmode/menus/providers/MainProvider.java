@@ -33,6 +33,13 @@ public class MainProvider implements InventoryProvider {
         }
         String uuid = DataHandler.getMetaString(player, "staffmodeChecking");
         Player target = plugin.getServer().getPlayer(UUID.fromString(uuid));
+        if(target == null) {
+            player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "This player is offline, you cannot inspect them!");
+            if(DataHandler.getBoolean(player, "notifs")) {
+                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+            }
+            return;
+        }
         ItemStack report = ItemCreator.createSimpleItemStack(Material.WRITABLE_BOOK, 1, "REPORT " + target.getName().toUpperCase(Locale.ROOT), "Report " + target.getName() + " for an infraction!");
         ItemStack mute = ItemCreator.createSimpleItemStack(Material.MAP, 1, "MUTE " + target.getName().toUpperCase(Locale.ROOT), "Mute " + target.getName() + " for a chat infraction!");
         ItemStack ban = ItemCreator.createSimpleItemStack(Material.FIREWORK_STAR, 1, "BAN " + target.getName().toUpperCase(Locale.ROOT) + " PERMANENTLY", "Ban " + target.getName() + " permanently for an infraction!");

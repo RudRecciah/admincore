@@ -31,6 +31,13 @@ public class MuteProvider implements InventoryProvider {
         }
         String uuid = DataHandler.getMetaString(player, "staffmodeChecking");
         Player target = plugin.getServer().getPlayer(UUID.fromString(uuid));
+        if(target == null) {
+            player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "This player is offline, you can't mute them!");
+            if(DataHandler.getBoolean(player, "notifs")) {
+                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+            }
+            return;
+        }
         ItemStack reason1 = ItemCreator.createSimpleItemStack(Material.MAP, 1, plugin.getConfig().getString("staffmode.punishment.mute.reasons.1"), "");
         ItemStack reason2 = ItemCreator.createSimpleItemStack(Material.MAP, 1, plugin.getConfig().getString("staffmode.punishment.mute.reasons.2"), "");
         ItemStack reason3 = ItemCreator.createSimpleItemStack(Material.MAP, 1, plugin.getConfig().getString("staffmode.punishment.mute.reasons.3"), "");

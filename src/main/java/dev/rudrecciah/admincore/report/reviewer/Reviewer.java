@@ -3,6 +3,7 @@ package dev.rudrecciah.admincore.report.reviewer;
 import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.report.data.ReportDataHandler;
 import dev.rudrecciah.admincore.report.data.ReportDataLoader;
+import dev.rudrecciah.admincore.webhook.ReportLogger;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -29,7 +30,7 @@ public class Reviewer implements CommandExecutor {
             sender.sendMessage(ChatColor.YELLOW + "You must be in staffmode to review a player's reports!");
             return true;
         }
-        if(args.length != 0 && !args[0].equalsIgnoreCase("last") && !args[0].equalsIgnoreCase("close") && plugin.getServer().getPlayer(args[0]) == null) {
+        if(args.length != 0 && !args[0].equalsIgnoreCase("last") && !args[0].equalsIgnoreCase("close") && plugin.getServer().getOfflinePlayer(args[0]).getUniqueId().toString() == null) {
             sender.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "This player either does not exist, or the server has no record of them stored!");
             Player p = (Player) sender;
             if(DataHandler.getBoolean(p, "notifs")) {
@@ -53,6 +54,7 @@ public class Reviewer implements CommandExecutor {
         if(args.length != 0 && args[0].equalsIgnoreCase("close")) {
             if(p.hasMetadata("reportChecking") && p.hasMetadata("reportNum")) {
                 ReportDataHandler.closeReport(UUID.fromString(DataHandler.getMetaString(p, "reportChecking")), DataHandler.getMetaInt(p, "reportNum"));
+                ReportLogger.logReportClose(UUID.fromString(DataHandler.getMetaString(p, "reportChecking")), DataHandler.getMetaInt(p, "reportNum"));
                 p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "Report closed!");
                 if(DataHandler.getBoolean(p, "notifs")) {
                     p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
@@ -70,7 +72,7 @@ public class Reviewer implements CommandExecutor {
             if(t != null) {
                 reports = Getter.getReports(t);
             }else{
-                reports = Getter.getReports(plugin.getServer().getPlayer(args[0]).getUniqueId());
+                reports = Getter.getReports(plugin.getServer().getOfflinePlayer(args[0]).getUniqueId());
             }
             if(reports == null) {
                 p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "There aren't any open reports for that player!");

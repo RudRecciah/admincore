@@ -3,6 +3,7 @@ package dev.rudrecciah.admincore.alias;
 import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.staffmode.grabber.StatsGrabber;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -23,11 +24,11 @@ public class AliasChecker implements CommandExecutor {
             plugin.getLogger().info("This command can only be executed by a player!");
         }
         Player p = (Player) sender;
-        if(args.length != 1 || plugin.getServer().getPlayer(args[0]) == null) {
+        if(args.length != 1 || plugin.getServer().getOfflinePlayer(args[0]) == null) {
             return false;
         }
-        p.setMetadata("staffmodeChecking", new FixedMetadataValue(plugin, plugin.getServer().getPlayer(args[0]).getUniqueId()));
-        Player t = plugin.getServer().getPlayer(args[0]);
+        p.setMetadata("staffmodeChecking", new FixedMetadataValue(plugin, plugin.getServer().getOfflinePlayer(args[0]).getUniqueId()));
+        Player t = (Player) plugin.getServer().getOfflinePlayer(args[0]);
         List<String> aliases = StatsGrabber.grabAliases(t, true);
         p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[" + t.getName().toUpperCase(Locale.ROOT) + "'S ALIASES]");
         for(String str : aliases) {

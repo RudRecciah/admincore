@@ -14,7 +14,7 @@ public class PlayerUnfreezer implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if(args.length != 1) {
+        if(args.length != 1 || plugin.getServer().getPlayer(args[0]) == null) {
             return false;
         }
         String tName = args[0];

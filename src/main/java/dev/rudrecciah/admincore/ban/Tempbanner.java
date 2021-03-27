@@ -22,18 +22,14 @@ public class Tempbanner implements CommandExecutor {
             plugin.getLogger().info("This command can only be executed by a player! (Use minecraft:ban or minecraft:ban-ip instead if needed.)");
         }
         Player p = (Player) sender;
-        if(args.length != 1 || plugin.getServer().getPlayer(args[0]) == null) {
+        if(args.length != 1 || plugin.getServer().getOfflinePlayer(args[0]) == null) {
             return false;
         }
         if(!DataHandler.getMetaBoolean((Player) sender, "staffmode")) {
             p.sendMessage(ChatColor.YELLOW + "You must be in staffmode to ban a player!");
             return true;
         }
-        if(plugin.getServer().getPlayer(args[0]).hasPermission("admincore.staff")) {
-            p.sendMessage(ChatColor.YELLOW + "You can't ban a staff member! (Use /minecraft:ban or /minecraft:ban-ip instead if needed.)");
-            return true;
-        }
-        p.setMetadata("staffmodeChecking", new FixedMetadataValue(plugin, plugin.getServer().getPlayer(args[0]).getUniqueId()));
+        p.setMetadata("staffmodeChecking", new FixedMetadataValue(plugin, plugin.getServer().getOfflinePlayer(args[0]).getUniqueId()));
         TempBanMenu.openMenu(p);
         return true;
     }

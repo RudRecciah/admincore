@@ -228,14 +228,12 @@ public class StaffmodeHandler implements CommandExecutor {
                 List meta = p.getMetadata("staffmode");
                 FixedMetadataValue metaValue = (FixedMetadataValue) meta.get(0);
                 if(metaValue.asBoolean()) {
-                    if(p.getSpectatorTarget() != null && p.getSpectatorTarget().getType() == EntityType.PLAYER && !p.getSpectatorTarget().hasPermission("staffmode.staff")) {
+                    if(p.getSpectatorTarget() != null && p.getSpectatorTarget().getType() == EntityType.PLAYER) {
                         Location loc = e.getFrom();
                         e.setTo(loc);
                         p.setMetadata("staffmodeChecking", new FixedMetadataValue(plugin, p.getSpectatorTarget().getUniqueId()));
                         MainMenu.openMenu(p);
                         p.setSpectatorTarget(null);
-                    }else if(p.getSpectatorTarget() != null && p.getSpectatorTarget().hasPermission("staffmode.staff")) {
-                        p.sendMessage(ChatColor.YELLOW + "You can't inspect a staff member!");
                     }
                 }
             }

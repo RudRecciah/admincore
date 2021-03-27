@@ -26,9 +26,6 @@ public class Inspector implements CommandExecutor {
         if(!DataHandler.getMetaBoolean((Player) sender, "staffmode")) {
             p.sendMessage(ChatColor.YELLOW + "You must be in staffmode to inspect a player!");
         }
-        if(!plugin.getServer().getPlayer(args[0]).hasPermission("admincore.staff")) {
-            p.sendMessage(ChatColor.YELLOW + "You can't inspect a staff member!");
-        }
         p.setMetadata("staffmodeChecking", new FixedMetadataValue(plugin, plugin.getServer().getPlayer(args[0]).getUniqueId()));
         MainMenu.openMenu(p);
         return true;

@@ -27,6 +27,13 @@ public class InvSeeProvider implements InventoryProvider {
         }
         String uuid = DataHandler.getMetaString(player, "staffmodeChecking");
         Player target = plugin.getServer().getPlayer(UUID.fromString(uuid));
+        if(target == null) {
+            player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "This player is offline, you cannot inspect their inventory!");
+            if(DataHandler.getBoolean(player, "notifs")) {
+                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+            }
+            return;
+        }
         fill(player, target, contents);
         ItemStack reload = ItemCreator.createSimpleItemStack(Material.SUNFLOWER, 1, "RELOAD", "Reload this inventory to see changes!");
         contents.set(0, 7, ClickableItem.of(reload, e -> {

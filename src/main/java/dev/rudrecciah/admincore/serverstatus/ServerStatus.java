@@ -50,7 +50,7 @@ public class ServerStatus implements CommandExecutor {
                 }
             }if(plugin.getConfig().getBoolean("serverstatus.port.log")) {
                 if(plugin.getConfig().getBoolean("serverstatus.protect-sensitive")) {
-                    if(p.hasPermission("admincore.admin")) {
+                    if(p.hasPermission("admincore.trusted")) {
                         p.sendMessage(ChatColor.YELLOW + "Port: " + port);
                     }
                 }else{

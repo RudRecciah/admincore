@@ -58,11 +58,15 @@ public class ReportLogger {
             de.setThumbnail(te);
             de.setTitle("Report Opened!");
             de.setDescription("A player has been reported.");
-            de.setFields(Arrays.asList(FieldEmbed.builder().name("Player:").value(t.getName()).build(), FieldEmbed.builder().name("Occurance:").value("This is " + t.getName() + "'s " + n + e.toString() + " report.").build(), FieldEmbed.builder().name("Reason:").value(plugin.getConfig().getString("staffmode.punishment.report.reasons." + (reason + 1))).build(), FieldEmbed.builder().name("Reported By: ").value(p.getName()).build()));
+            de.setFields(Arrays.asList(FieldEmbed.builder().name("Player:").value(t.getName()).build(), FieldEmbed.builder().name("UUID:").value(String.valueOf(t.getUniqueId())).build(), FieldEmbed.builder().name("Occurance:").value("This is " + t.getName() + "'s " + n + e.toString() + " report.").build(), FieldEmbed.builder().name("Reason:").value(plugin.getConfig().getString("staffmode.punishment.report.reasons." + (reason + 1))).build(), FieldEmbed.builder().name("Reported By: ").value(p.getName()).build()));
             de.setFooter(FooterEmbed.builder().text("Admincore Report Logger").icon_url("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/icons/logo.png").build());
             DiscordMessage dm = new DiscordMessage(name, "", icon);
             dm.getEmbeds().add(de);
             webhook.sendMessage(dm);
         }
+    }
+
+    public static void logReportClose() {
+
     }
 }

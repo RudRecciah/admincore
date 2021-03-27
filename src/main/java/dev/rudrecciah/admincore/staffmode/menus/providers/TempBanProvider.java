@@ -8,10 +8,7 @@ import dev.rudrecciah.admincore.staffmode.menus.TempBanMenu;
 import fr.minuskube.inv.ClickableItem;
 import fr.minuskube.inv.content.InventoryContents;
 import fr.minuskube.inv.content.InventoryProvider;
-import org.bukkit.BanList;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -32,7 +29,7 @@ public class TempBanProvider implements InventoryProvider {
             return;
         }
         String uuid = DataHandler.getMetaString(player, "staffmodeChecking");
-        Player target = plugin.getServer().getPlayer(UUID.fromString(uuid));
+        OfflinePlayer target = plugin.getServer().getOfflinePlayer(UUID.fromString(uuid));
         ItemStack reason1 = ItemCreator.createSimpleItemStack(Material.MAP, 1, plugin.getConfig().getString("staffmode.punishment.ban.reasons.1"), "");
         ItemStack reason2 = ItemCreator.createSimpleItemStack(Material.MAP, 1, plugin.getConfig().getString("staffmode.punishment.ban.reasons.2"), "");
         ItemStack reason3 = ItemCreator.createSimpleItemStack(Material.MAP, 1, plugin.getConfig().getString("staffmode.punishment.ban.reasons.3"), "");
@@ -53,7 +50,9 @@ public class TempBanProvider implements InventoryProvider {
                     if(plugin.getConfig().getBoolean("staffmode.punishment.appeals.tempban.allow-appeals")) {
                         appeal.append("\n").append(plugin.getConfig().getString("staffmode.punishment.appeals.tempban.message"));
                     }
-                    target.kickPlayer("You have been banned for " + plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + " for " + plugin.getConfig().getLong("staffmode.punishment.ban.tempban-length") + " days!" + appeal.toString());
+                    if(target.getPlayer() != null) {
+                        target.getPlayer().kickPlayer("You have been banned for " + plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + " for " + plugin.getConfig().getLong("staffmode.punishment.ban.tempban-length") + " days!" + appeal.toString());
+                    }
                     TempBanMenu.closeMenu(player);
                     player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + target.getName() + " has been temporarily banned!");
                     if(DataHandler.getBoolean(player, "notifs")) {

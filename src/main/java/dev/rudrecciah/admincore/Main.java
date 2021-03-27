@@ -136,14 +136,14 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
 
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent e) {
-        if(e.getPlayer().hasPermission("admincore.staff")) {
+        if(PlayerDataHandler.muteExpired(e.getPlayer())) {
+            e.setCancelled(true);
+            e.getPlayer().sendMessage(ChatColor.YELLOW + "You're currently muted! Reason: " + getConfig().getString("staffmode.punishment.mute.reason"));
+        }else if(e.getPlayer().hasPermission("admincore.staff")) {
             boolean b = StaffmodeHandler.checkStaffmodeChat(e.getPlayer(), e.getMessage());
             if(b) {
                 e.setCancelled(true);
             }
-        }else if(PlayerDataHandler.muteExpired(e.getPlayer())) {
-            e.setCancelled(true);
-            e.getPlayer().sendMessage(ChatColor.YELLOW + "You're currently muted! Reason: " + getConfig().getString("staffmode.punishment.mute.reason"));
         }
     }
 
