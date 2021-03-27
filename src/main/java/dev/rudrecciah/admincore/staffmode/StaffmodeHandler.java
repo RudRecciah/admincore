@@ -144,6 +144,12 @@ public class StaffmodeHandler implements CommandExecutor {
             if(p.hasMetadata("staffmodeChecking")) {
                 p.removeMetadata("staffmodeChecking", plugin);
             }
+            if(p.hasMetadata("reportChecking")) {
+                p.removeMetadata("reportChecking", plugin);
+            }
+            if(p.hasMetadata("reportNum")) {
+                p.removeMetadata("reportNum", plugin);
+            }
             if(plugin.getConfig().getBoolean("staffmode.pseudodisconnect.send-message")) {
                 e.setQuitMessage(null);
             }
@@ -160,6 +166,9 @@ public class StaffmodeHandler implements CommandExecutor {
         }
         if(p.hasMetadata("staffmodeChecking")) {
             p.removeMetadata("staffmodeChecking", plugin);
+        }
+        if(p.hasMetadata("reportChecking")) {
+            p.removeMetadata("reportChecking", plugin);
         }
     }
 

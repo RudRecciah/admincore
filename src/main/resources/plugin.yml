@@ -67,6 +67,11 @@ commands:
     description: Toggle your notifications.
     permission: admincore.staff
     usage: /staffnotifications
+  reviewreport:
+    description: Review player reports.
+    permission: admincore.staff
+    usage: /reportreview|review [player]|last|close
+    aliases: review
 permissions:
   admincore.admin:
     description: Allows a player to use the full functionality of Admin Core

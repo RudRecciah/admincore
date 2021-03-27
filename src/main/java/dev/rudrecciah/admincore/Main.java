@@ -19,6 +19,7 @@ import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
 import dev.rudrecciah.admincore.punishlogs.PunishmentLogger;
 import dev.rudrecciah.admincore.report.ReportCommandHandler;
 import dev.rudrecciah.admincore.report.meta.ReportMetaCleaner;
+import dev.rudrecciah.admincore.report.reviewer.Reviewer;
 import dev.rudrecciah.admincore.serverstatus.ServerStatus;
 import dev.rudrecciah.admincore.staffchat.StaffChat;
 import dev.rudrecciah.admincore.staffmode.StaffmodeHandler;
@@ -80,6 +81,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         getCommand("staffnotifications").setExecutor(new NotificationHandler());
         getCommand("tempban").setExecutor(new Tempbanner());
         getCommand("unmute").setExecutor(new Unmuter());
+        getCommand("reviewreport").setExecutor(new Reviewer());
         invManager = new InventoryManager(this);
         invManager.init();
         if(!configExists) {

@@ -5,7 +5,9 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.metadata.FixedMetadataValue;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static dev.rudrecciah.admincore.Main.plugin;
 
@@ -46,6 +48,12 @@ public class DataHandler {
         List meta = p.getMetadata(metadata);
         FixedMetadataValue metaValue = (FixedMetadataValue) meta.get(0);
         return metaValue.asString();
+    }
+
+    public static int getMetaInt(Player p, String metadata) {
+        List meta = p.getMetadata(metadata);
+        FixedMetadataValue metaValue = (FixedMetadataValue) meta.get(0);
+        return metaValue.asInt();
     }
 
     public static boolean getMetaBoolean(Player p, String metadata) {

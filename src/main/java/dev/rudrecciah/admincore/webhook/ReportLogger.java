@@ -27,6 +27,26 @@ public class ReportLogger {
                 nameBuilder.append("Admincore");
                 iconBuilder.append("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/icons/logo.png");
             }
+            StringBuilder e = new StringBuilder();
+            char[] ns = String.valueOf(n).toCharArray();
+            if(n == 11 || n == 12 || n == 13) {
+                e.append("th");
+            }else{
+                switch(ns[ns.length - 1]) {
+                    case '1':
+                        e.append("st");
+                        break;
+                    case '2':
+                        e.append("nd");
+                        break;
+                    case '3':
+                        e.append("rd");
+                        break;
+                    default:
+                        e.append("th");
+                        break;
+                }
+            }
             String name = nameBuilder.toString();
             String icon = iconBuilder.toString();
             TemmieWebhook webhook = new TemmieWebhook(plugin.getConfig().getString("webhook.reportLogger.token"));
@@ -36,9 +56,9 @@ public class ReportLogger {
             te.setHeight(96);
             te.setWidth(96);
             de.setThumbnail(te);
-            de.setTitle("New Report!");
+            de.setTitle("Report Opened!");
             de.setDescription("A player has been reported.");
-            de.setFields(Arrays.asList(FieldEmbed.builder().name("Player:").value(t.getName()).build(), FieldEmbed.builder().name("Amount:").value(t.getName() + " has been reported " + n + " times.").build(), FieldEmbed.builder().name("Reason:").value(plugin.getConfig().getString("staffmode.punishment.report.reasons." + (reason + 1))).build(), FieldEmbed.builder().name("Reported By: ").value(p.getName()).build()));
+            de.setFields(Arrays.asList(FieldEmbed.builder().name("Player:").value(t.getName()).build(), FieldEmbed.builder().name("Occurance:").value("This is " + t.getName() + "'s " + n + e.toString() + " report.").build(), FieldEmbed.builder().name("Reason:").value(plugin.getConfig().getString("staffmode.punishment.report.reasons." + (reason + 1))).build(), FieldEmbed.builder().name("Reported By: ").value(p.getName()).build()));
             de.setFooter(FooterEmbed.builder().text("Admincore Report Logger").icon_url("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/icons/logo.png").build());
             DiscordMessage dm = new DiscordMessage(name, "", icon);
             dm.getEmbeds().add(de);

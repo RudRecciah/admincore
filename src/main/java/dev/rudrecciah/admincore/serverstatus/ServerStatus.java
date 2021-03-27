@@ -42,7 +42,7 @@ public class ServerStatus implements CommandExecutor {
                 p.sendMessage(ChatColor.YELLOW + "Build: " + version);
             }if(plugin.getConfig().getBoolean("serverstatus.ip.log")) {
                 if(plugin.getConfig().getBoolean("serverstatus.protect-sensitive")) {
-                    if(p.hasPermission("admincore.admin")) {
+                    if(p.hasPermission("admincore.trusted")) {
                         p.sendMessage(ChatColor.YELLOW + "IP Address: " + ip);
                     }
                 }else{

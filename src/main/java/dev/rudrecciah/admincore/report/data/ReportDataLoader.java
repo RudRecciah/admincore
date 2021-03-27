@@ -32,6 +32,15 @@ public class ReportDataLoader {
         customFile = YamlConfiguration.loadConfiguration(file);
     }
 
+    public static boolean checkForReportData(UUID uuid) {
+        dir = new File(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "rd");
+        if(!dir.exists()) {
+            return false;
+        }
+        file = new File(dir, uuid + ".yml");
+        return file.exists();
+    }
+
     public static FileConfiguration get(){
         return customFile;
     }
