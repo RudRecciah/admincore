@@ -16,7 +16,6 @@ import static dev.rudrecciah.admincore.Main.plugin;
 
 public class BanLogger {
     public static void logBan(Player p) {
-        plugin.getLogger().info("This BanLogger has been ran a time!");
         StringBuilder reasonBuilder = new StringBuilder();
         StringBuilder typeBuilder = new StringBuilder();
         StringBuilder lengthBuilder = new StringBuilder();
@@ -59,6 +58,9 @@ public class BanLogger {
             }
         }
         String type = typeBuilder.toString();
+        if(reasonBuilder.toString().contains("\n")) {
+            reasonBuilder.append(reasonBuilder.toString().split("\n")[0]);
+        }
         String reason = reasonBuilder.toString();
         String length = lengthBuilder.toString();
         String source = sourceBuilder.toString();

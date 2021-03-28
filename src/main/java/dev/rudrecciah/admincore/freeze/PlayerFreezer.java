@@ -18,7 +18,7 @@ public class PlayerFreezer implements CommandExecutor {
         if(sender instanceof ConsoleCommandSender) {
             plugin.getLogger().warning("You can execute this command from the console, but make sure there's a staff member online ready to inspect the frozen player!");
         }
-        if(args.length != 1 || plugin.getServer().getPlayer(args[0]) == null) {
+        if(args.length != 1 || plugin.getServer().getPlayer(args[0]) == null || plugin.getServer().getPlayer(args[0]) == sender) {
             return false;
         }
         String tName = args[0];

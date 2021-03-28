@@ -13,17 +13,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class PunishmentLogger {
-    public static void logReport(OfflinePlayer t, int a, String r, Player p) {
-        StringBuilder str = new StringBuilder().append("*REPORT*").append(System.lineSeparator()).append("Player: ").append(t.getName()).append(System.lineSeparator()).append("Amount: ").append(a).append(System.lineSeparator()).append("Reason: ").append(r).append(System.lineSeparator()).append("Reporter: ").append(p.getName());
-        doFileWork(str.toString());
-    }
-
-    public static void logTempban(Player t, String r, String l, String p) {
+    public static void logTempban(OfflinePlayer t, String r, String l, String p) {
         StringBuilder str = new StringBuilder().append("*TEMPBAN*").append(System.lineSeparator()).append("Player: ").append(t.getName()).append(System.lineSeparator()).append("Length: ").append(l).append(System.lineSeparator()).append("Reason: ").append(r).append(System.lineSeparator()).append("Banner: ").append(p);
         doFileWork(str.toString());
     }
 
-    public static void logBan(Player t, String r, String p) {
+    public static void logBan(OfflinePlayer t, String r, String p) {
         StringBuilder str = new StringBuilder().append("*BAN*").append(System.lineSeparator()).append("Player: ").append(t.getName()).append(System.lineSeparator()).append("Length: ").append("Forever").append(System.lineSeparator()).append("Reason: ").append(r).append(System.lineSeparator()).append("Banner: ").append(p);
         doFileWork(str.toString());
     }

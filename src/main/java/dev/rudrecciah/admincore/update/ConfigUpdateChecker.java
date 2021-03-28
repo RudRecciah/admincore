@@ -14,6 +14,7 @@ public class ConfigUpdateChecker {
     private ConfigUpdateChecker() {
         ver.put("0.1.0", 0);
         ver.put("0.2.0", 1);
+        ver.put("0.3.0", 2);
     }
 
     public static void checkVersion() {

@@ -52,10 +52,24 @@ public class ReportDataHandler {
         return null;
     }
 
-    public static void closeReport(UUID uuid, int i) {
+    public static boolean closeReport(UUID uuid, int i) {
         ReportDataLoader.saveDefaultReportData(uuid);
         ReportDataLoader.get().options().copyDefaults(true);
+        if(ReportDataLoader.get().getBoolean("report" + i + ".closed")) {
+            return true;
+        }
         ReportDataLoader.get().set("report" + (i) + ".closed", true);
+        ReportDataLoader.saveReportData();
+        return false;
+    }
+
+    public static void closeAllReports(UUID uuid) {
+        ReportDataLoader.saveDefaultReportData(uuid);
+        ReportDataLoader.get().options().copyDefaults(true);
+        int amount = ReportDataLoader.get().getInt("amount");
+        for(int i = 1; i < amount + 1; i++) {
+            ReportDataLoader.get().set("report" + i + ".closed", true);
+        }
         ReportDataLoader.saveReportData();
     }
 }

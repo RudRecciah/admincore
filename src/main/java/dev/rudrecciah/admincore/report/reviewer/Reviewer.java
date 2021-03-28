@@ -53,7 +53,13 @@ public class Reviewer implements CommandExecutor {
         }
         if(args.length != 0 && args[0].equalsIgnoreCase("close")) {
             if(p.hasMetadata("reportChecking") && p.hasMetadata("reportNum")) {
-                ReportDataHandler.closeReport(UUID.fromString(DataHandler.getMetaString(p, "reportChecking")), DataHandler.getMetaInt(p, "reportNum"));
+                if(ReportDataHandler.closeReport(UUID.fromString(DataHandler.getMetaString(p, "reportChecking")), DataHandler.getMetaInt(p, "reportNum"))) {
+                    p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "You have no open report to close!");
+                    if(DataHandler.getBoolean(p, "notifs")) {
+                        p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                    }
+                    return true;
+                }
                 ReportLogger.logReportClose(UUID.fromString(DataHandler.getMetaString(p, "reportChecking")), DataHandler.getMetaInt(p, "reportNum"));
                 p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "Report closed!");
                 if(DataHandler.getBoolean(p, "notifs")) {

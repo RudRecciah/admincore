@@ -2,6 +2,7 @@ package dev.rudrecciah.admincore.staffmode.menus.providers;
 
 import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
+import dev.rudrecciah.admincore.report.data.ReportDataHandler;
 import dev.rudrecciah.admincore.staffmode.items.ItemCreator;
 import dev.rudrecciah.admincore.staffmode.menus.BanMenu;
 import dev.rudrecciah.admincore.staffmode.menus.MainMenu;
@@ -47,11 +48,14 @@ public class IpBanProvider implements InventoryProvider {
         for(int i = 0; i < 8; i++) {
             if(!reasons[i].getItemMeta().getDisplayName().equalsIgnoreCase("NOREASON")) {
                 int finalI = i;
+                StringBuilder appeal = new StringBuilder();
+                if(plugin.getConfig().getBoolean("staffmode.punishment.appeals.ip-ban.allow-appeals")) {
+                    appeal.append("\n").append(plugin.getConfig().getString("staffmode.punishment.appeals.ban.message"));
+                }
                 contents.set(0, i, ClickableItem.of(reasons[i], e -> {
-                    plugin.getServer().getBanList(BanList.Type.IP).addBan(target.getAddress().getHostString(), plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)), null, player.getName());
-                    StringBuilder appeal = new StringBuilder();
-                    if(plugin.getConfig().getBoolean("staffmode.punishment.appeals.ip-ban.allow-appeals")) {
-                        appeal.append("\n").append(plugin.getConfig().getString("staffmode.punishment.appeals.ip-ban.message"));
+                    plugin.getServer().getBanList(BanList.Type.IP).addBan(target.getAddress().getHostString(), plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + "\n" + appeal, null, player.getName());
+                    if(plugin.getConfig().getBoolean("staffmode.punishment.report.autoclose.close-on-ip-ban")) {
+                        ReportDataHandler.closeAllReports(target.getUniqueId());
                     }
                     target.kickPlayer("You have been ip-banned for " + plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + " forever!" + appeal.toString());
                     TempBanMenu.closeMenu(player);

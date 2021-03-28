@@ -2,6 +2,8 @@ package dev.rudrecciah.admincore.staffmode.menus.providers;
 
 import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
+import dev.rudrecciah.admincore.report.data.ReportDataHandler;
+import dev.rudrecciah.admincore.report.data.ReportDataLoader;
 import dev.rudrecciah.admincore.staffmode.items.ItemCreator;
 import dev.rudrecciah.admincore.staffmode.menus.BanMenu;
 import dev.rudrecciah.admincore.staffmode.menus.MainMenu;
@@ -60,6 +62,9 @@ public class MuteProvider implements InventoryProvider {
                         player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + target.getName() + " has been muted for " + muteLength + " minutes!");
                         if(DataHandler.getBoolean(player, "notifs")) {
                             player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                        }
+                        if(plugin.getConfig().getBoolean("staffmode.punishment.report.autoclose.close-on-mute")) {
+                            ReportDataHandler.closeAllReports(target.getUniqueId());
                         }
                         target.sendMessage(ChatColor.YELLOW + "You have been muted for " + muteLength + " minutes! Reason: " + plugin.getConfig().getString("staffmode.punishment.mute.reasons." + (finalI + 1)));
                         if(plugin.getConfig().getBoolean("staffmode.punishment.appeals.mute.allow-appeals")) {

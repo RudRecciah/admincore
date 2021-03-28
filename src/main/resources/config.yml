@@ -3,10 +3,28 @@
 # +------------------+
 announcementtitle: 'A Very Cool Announcement'
 logexceptions: false
+bot:
+  enable: true
+  token: ''
+  customName: false
+  presence:
+    do-not-disturb: true
+    action: LISTENING
+    status: 'staff members'
+  prefix: '/'
+  channel: ''
+  commands:
+    alias: true
+    announce: true
+    freeze: true
+    stats: true
+    history: true
+    aliases: true
+    report: true
+    status: true
 chatlink:
   send:
     enable: false
-    token: ''
   get:
     enable: true
     token: ''
@@ -44,10 +62,10 @@ staffmode:
         pitch: 0
   pseudodisconnect:
     send-message: true
-    message: '&e%p% left the game.'
+    message: '&e%p% left the game'
   pseudojoin:
     send-message: true
-    message: '&e%p% joined the game.'
+    message: '&e%p% joined the game'
   #"Tempban-length" is in days, and "mute-length" is in minutes.
   punishment:
     report:
@@ -60,6 +78,11 @@ staffmode:
         6: 'Name Abuse'
         7: 'Player Threats'
         8: ''
+      autoclose:
+        close-on-mute: true
+        close-on-tempban: true
+        close-on-ban: true
+        close-on-ip-ban: true
     ban:
       reasons:
         1: 'Cheating'
@@ -125,4 +148,4 @@ serverstatus:
   ping:
     log: true
 #DO NOT EDIT THIS VALUE
-version: 1
+version: 2

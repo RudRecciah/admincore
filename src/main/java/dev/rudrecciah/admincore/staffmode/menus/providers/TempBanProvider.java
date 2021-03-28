@@ -2,6 +2,7 @@ package dev.rudrecciah.admincore.staffmode.menus.providers;
 
 import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
+import dev.rudrecciah.admincore.report.data.ReportDataHandler;
 import dev.rudrecciah.admincore.staffmode.items.ItemCreator;
 import dev.rudrecciah.admincore.staffmode.menus.MainMenu;
 import dev.rudrecciah.admincore.staffmode.menus.TempBanMenu;
@@ -44,11 +45,14 @@ public class TempBanProvider implements InventoryProvider {
         for(int i = 0; i < 8; i++) {
             if(!reasons[i].getItemMeta().getDisplayName().equalsIgnoreCase("NOREASON")) {
                 int finalI = i;
+                StringBuilder appeal = new StringBuilder();
+                if(plugin.getConfig().getBoolean("staffmode.punishment.appeals.tempban.allow-appeals")) {
+                    appeal.append("\n").append(plugin.getConfig().getString("staffmode.punishment.appeals.ban.message"));
+                }
                 contents.set(0, i, ClickableItem.of(reasons[i], e -> {
-                    plugin.getServer().getBanList(BanList.Type.NAME).addBan(String.valueOf(target.getUniqueId()), plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)), endLD, player.getName());
-                    StringBuilder appeal = new StringBuilder();
-                    if(plugin.getConfig().getBoolean("staffmode.punishment.appeals.tempban.allow-appeals")) {
-                        appeal.append("\n").append(plugin.getConfig().getString("staffmode.punishment.appeals.tempban.message"));
+                    plugin.getServer().getBanList(BanList.Type.NAME).addBan(String.valueOf(target.getUniqueId()), plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + "\n" + appeal, endLD, player.getName());
+                    if(plugin.getConfig().getBoolean("staffmode.punishment.report.autoclose.close-on-tempban")) {
+                        ReportDataHandler.closeAllReports(target.getUniqueId());
                     }
                     if(target.getPlayer() != null) {
                         target.getPlayer().kickPlayer("You have been banned for " + plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + " for " + plugin.getConfig().getLong("staffmode.punishment.ban.tempban-length") + " days!" + appeal.toString());
