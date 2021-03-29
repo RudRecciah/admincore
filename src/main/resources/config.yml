@@ -14,13 +14,11 @@ bot:
   prefix: '/'
   channel: ''
   commands:
-    alias: true
     announce: true
     freeze: true
     stats: true
     history: true
     aliases: true
-    report: true
     status: true
 chatlink:
   send:
@@ -29,7 +27,6 @@ chatlink:
     enable: true
     token: ''
 webhook:
-  #token is full url, not just id
   customName: false
   name: 'jams'
   icon: 'https://thumbnailer.mixcloud.com/unsafe/300x300/extaudio/9/0/d/1/3f46-6ee1-4ccd-b21c-14ed5bbc1703.jpg'
@@ -66,7 +63,6 @@ staffmode:
   pseudojoin:
     send-message: true
     message: '&e%p% joined the game'
-  #"Tempban-length" is in days, and "mute-length" is in minutes.
   punishment:
     report:
       reasons:
@@ -123,7 +119,6 @@ staffmode:
     api-key: 'your api key'
     public-networks: false
     strict: true
-#Protect-sensitive will hide the ip and port from anyone without the "admincore.admin" permission
 serverstatus:
   protect-sensitive: true
   serverVersion:
@@ -147,5 +142,4 @@ serverstatus:
     log: true
   ping:
     log: true
-#DO NOT EDIT THIS VALUE
 version: 2

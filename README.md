@@ -50,13 +50,21 @@ Roadmap (For a more accurate and complete roadmap, check out the github project 
   * 0.3.0
     * Enhance Report System
     * Discord Bot Integration
+    * Misc
   * 0.4.0
-    * QA Testing/Bug Fixing
+    * Punishment Appeal System
+    * Misc
   * 0.5.0
-    * Site/Advertisement
+    * 1.16.x Support
+    * 1.15.x Support
+    * 1.14.x Support
+    * 1.13.x Support
+    * 1.12.x Support
   * 0.6.0
-    * Documentation
+    * QA Testing/Bug Fixing
   * 0.7.0
+    * Documentation
+  * 0.8.0
     * Final Touches
   * 1.0.0
     * Release

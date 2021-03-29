@@ -4,6 +4,7 @@ import dev.rudrecciah.admincore.alias.AliasChecker;
 import dev.rudrecciah.admincore.announcements.AnnouncementHandler;
 import dev.rudrecciah.admincore.ban.Banner;
 import dev.rudrecciah.admincore.ban.Tempbanner;
+import dev.rudrecciah.admincore.bot.Bot;
 import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.data.DataLoader;
 import dev.rudrecciah.admincore.errors.ExceptionHandler;
@@ -37,6 +38,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import javax.security.auth.login.LoginException;
 import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +64,13 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         if(getConfig().getBoolean("logexceptions")) {
             ExceptionHandler handler = new ExceptionHandler();
             Thread.setDefaultUncaughtExceptionHandler(handler);
+        }
+        if(getConfig().getBoolean("bot.enable")) {
+            try {
+                Bot.enableBot();
+            } catch (LoginException e) {
+                e.printStackTrace();
+            }
         }
         getServer().getPluginManager().registerEvents(this, this);
         DataLoader.saveDefaultdata();
@@ -159,6 +168,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
 
     @Override
     public void onDisable() {
+        Bot.disableBot();
         getLogger().info("Admincore Disabled");
     }
 }
