@@ -38,9 +38,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import javax.imageio.ImageIO;
 import javax.security.auth.login.LoginException;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.Console;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public final class Main extends JavaPlugin implements CommandExecutor, Listener {
@@ -68,7 +74,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         if(getConfig().getBoolean("bot.enable")) {
             try {
                 Bot.enableBot();
-            } catch (LoginException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -120,6 +126,16 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
     }
 
     @EventHandler
+    public void onCommand(PlayerCommandPreprocessEvent e) {
+        if(e.getPlayer().hasPermission("bukkit.command.unban.player") && e.getMessage().split(" ")[0].equalsIgnoreCase("pardon") && e.getMessage().split(" ").length > 1 && getServer().getPlayer(e.getMessage().split(" ")[1]) != null) {
+            PunishmentLogger.logPardon(getServer().getPlayer(e.getMessage().split(" ")[1]), e.getPlayer().getName());
+        }
+        if(e.getPlayer().hasPermission("bukkit.command.unban.ip") && e.getMessage().split(" ")[0].equalsIgnoreCase("pardon") && e.getMessage().split(" ").length > 1) {
+            PunishmentLogger.logIpPardon(e.getMessage().split(" ")[1], e.getPlayer().getName());
+        }
+    }
+
+    @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e) {
         StaffmodeHandler.clear(e.getPlayer(), e);
         if(e.getPlayer().isBanned() || getServer().getBanList(BanList.Type.IP).isBanned(e.getPlayer().getAddress().getHostString())) {
@@ -168,7 +184,9 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
 
     @Override
     public void onDisable() {
-        Bot.disableBot();
+        if(getConfig().getBoolean("bot.enable")) {
+            Bot.disableBot();
+        }
         getLogger().info("Admincore Disabled");
     }
 }

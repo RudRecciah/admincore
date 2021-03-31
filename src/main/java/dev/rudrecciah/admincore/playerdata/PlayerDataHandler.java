@@ -1,5 +1,6 @@
 package dev.rudrecciah.admincore.playerdata;
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
@@ -9,20 +10,22 @@ import static dev.rudrecciah.admincore.Main.plugin;
 public class PlayerDataHandler {
 
     public static void handlePlayerData(Player p) {
-        PlayerDataLoader.saveDefaultPlayerData(p);
-        PlayerDataLoader.getPlayerData().options().copyDefaults(true);
-        PlayerDataLoader.getPlayerData().addDefault("ip", p.getAddress().getHostString());
-        PlayerDataLoader.getPlayerData().set("ip", p.getAddress().getHostString());
-        PlayerDataLoader.getPlayerData().addDefault("persistToggle.muteEnd", 0L);
-        PlayerDataLoader.getPlayerData().addDefault("mutes", 0);
-        PlayerDataLoader.getPlayerData().addDefault("bans", 0);
-        PlayerDataLoader.savePlayerData();
+        PlayerDataLoader loader = new PlayerDataLoader();
+        loader.saveDefaultPlayerData(p);
+        loader.getPlayerData().options().copyDefaults(true);
+        loader.getPlayerData().addDefault("ip", p.getAddress().getHostString());
+        loader.getPlayerData().set("ip", p.getAddress().getHostString());
+        loader.getPlayerData().addDefault("persistToggle.muteEnd", 0L);
+        loader.getPlayerData().addDefault("mutes", 0);
+        loader.getPlayerData().addDefault("bans", 0);
+        loader.savePlayerData();
     }
 
     public static boolean muteExpired(Player p) {
-        PlayerDataLoader.saveDefaultPlayerData(p);
-        PlayerDataLoader.getPlayerData().options().copyDefaults(true);
-        long end = PlayerDataLoader.getPlayerData().getLong("persistToggle.muteEnd");
+        PlayerDataLoader loader = new PlayerDataLoader();
+        loader.saveDefaultPlayerData(p);
+        loader.getPlayerData().options().copyDefaults(true);
+        long end = loader.getPlayerData().getLong("persistToggle.muteEnd");
         if(end <= System.currentTimeMillis()) {
             return false;
         }else{
@@ -31,42 +34,62 @@ public class PlayerDataHandler {
     }
 
     public static void mute(Player p, long l) {
-        PlayerDataLoader.saveDefaultPlayerData(p);
-        PlayerDataLoader.getPlayerData().options().copyDefaults(true);
-        PlayerDataLoader.getPlayerData().set("persistToggle.muteEnd", l);
-        PlayerDataLoader.getPlayerData().set("mutes", PlayerDataLoader.getPlayerData().getInt("mutes")+ 1);
-        PlayerDataLoader.savePlayerData();
+        PlayerDataLoader loader = new PlayerDataLoader();
+        loader.saveDefaultPlayerData(p);
+        loader.getPlayerData().options().copyDefaults(true);
+        loader.getPlayerData().set("persistToggle.muteEnd", l);
+        loader.getPlayerData().set("mutes", loader.getPlayerData().getInt("mutes")+ 1);
+        loader.savePlayerData();
     }
 
     public static void unmute(Player p) {
-        PlayerDataLoader.saveDefaultPlayerData(p);
-        PlayerDataLoader.getPlayerData().options().copyDefaults(true);
-        PlayerDataLoader.getPlayerData().set("persistToggle.muteEnd", 0);
-        PlayerDataLoader.savePlayerData();
+        PlayerDataLoader loader = new PlayerDataLoader();
+        loader.saveDefaultPlayerData(p);
+        loader.getPlayerData().options().copyDefaults(true);
+        loader.getPlayerData().set("persistToggle.muteEnd", 0);
+        loader.savePlayerData();
     }
 
     public static void ban(Player p) {
-        PlayerDataLoader.saveDefaultPlayerData(p);
-        PlayerDataLoader.getPlayerData().options().copyDefaults(true);
-        PlayerDataLoader.getPlayerData().set("bans", PlayerDataLoader.getPlayerData().getInt("bans")+ 1);
-        PlayerDataLoader.savePlayerData();
+        PlayerDataLoader loader = new PlayerDataLoader();
+        loader.saveDefaultPlayerData(p);
+        loader.getPlayerData().options().copyDefaults(true);
+        loader.getPlayerData().set("bans", loader.getPlayerData().getInt("bans")+ 1);
+        loader.savePlayerData();
     }
 
     public static int getBans(Player p) {
-        PlayerDataLoader.saveDefaultPlayerData(p);
-        PlayerDataLoader.getPlayerData().options().copyDefaults(true);
-        return PlayerDataLoader.getPlayerData().getInt("bans");
+        PlayerDataLoader loader = new PlayerDataLoader();
+        loader.saveDefaultPlayerData(p);
+        loader.getPlayerData().options().copyDefaults(true);
+        return loader.getPlayerData().getInt("bans");
     }
 
     public static int getMutes(Player p) {
-        PlayerDataLoader.saveDefaultPlayerData(p);
-        PlayerDataLoader.getPlayerData().options().copyDefaults(true);
-        return PlayerDataLoader.getPlayerData().getInt("mutes");
+        PlayerDataLoader loader = new PlayerDataLoader();
+        loader.saveDefaultPlayerData(p);
+        loader.getPlayerData().options().copyDefaults(true);
+        return loader.getPlayerData().getInt("mutes");
+    }
+
+    public static int getBans(OfflinePlayer p) {
+        PlayerDataLoader loader = new PlayerDataLoader();
+        loader.saveDefaultPlayerData(p.getUniqueId());
+        loader.getPlayerData().options().copyDefaults(true);
+        return loader.getPlayerData().getInt("bans");
+    }
+
+    public static int getMutes(OfflinePlayer p) {
+        PlayerDataLoader loader = new PlayerDataLoader();
+        loader.saveDefaultPlayerData(p.getUniqueId());
+        loader.getPlayerData().options().copyDefaults(true);
+        return loader.getPlayerData().getInt("mutes");
     }
 
     public static String getIP(UUID uuid) {
-        PlayerDataLoader.saveDefaultPlayerData(uuid);
-        PlayerDataLoader.getPlayerData().options().copyDefaults(true);
-        return (String) PlayerDataLoader.getPlayerData().get("ip");
+        PlayerDataLoader loader = new PlayerDataLoader();
+        loader.saveDefaultPlayerData(uuid);
+        loader.getPlayerData().options().copyDefaults(true);
+        return (String) loader.getPlayerData().get("ip");
     }
 }

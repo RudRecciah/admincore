@@ -64,24 +64,24 @@ public class ServerStatus implements CommandExecutor {
                 p.sendMessage(ChatColor.YELLOW + "Ping: " + pingPlaceholder);
             }if(plugin.getConfig().getBoolean("serverstatus.uptime.log")) {
                 p.sendMessage(ChatColor.YELLOW + "Server Uptime: " + uptimePlaceholder);
-            }if(!plugin.getConfig().getBoolean("serverstatus.tps.admin-onlyadmincore-admin")) {
-                StringBuilder tps = new StringBuilder();
-                tps.append(ChatColor.YELLOW);
-                if(plugin.getConfig().getBoolean("serverstatus.tps.log.one-minute")) {
-                    tps.append("TPS: ");
-                    char[] tps1MinPlaceholderCharArray = tps1MinPlaceholder.toCharArray();
-                    tps.append(tps1MinPlaceholderCharArray[0] + tps1MinPlaceholderCharArray[1] + tps1MinPlaceholderCharArray[2] + tps1MinPlaceholderCharArray[3]);
-                    tps.append(" (1 minute) ");
-                }if(plugin.getConfig().getBoolean("serverstatus.tps.log.one-minute")) {
-                    char[] tps5MinPlaceholderCharArray = tps5MinPlaceholder.toCharArray();
-                    tps.append(tps5MinPlaceholderCharArray[0] + tps5MinPlaceholderCharArray[1] + tps5MinPlaceholderCharArray[2] + tps5MinPlaceholderCharArray[3]);
-                    tps.append(" (5 minutes) ");
-                }if(plugin.getConfig().getBoolean("serverstatus.tps.log.one-minute")) {
-                    char[] tps15MinPlaceholderCharArray = tps15MinPlaceholder.toCharArray();
-                    tps.append(tps15MinPlaceholderCharArray[0] + tps15MinPlaceholderCharArray[1] + tps15MinPlaceholderCharArray[2] + tps15MinPlaceholderCharArray[3]);                    tps.append(" (15 minutes)");
-                }
-                p.sendMessage(String.valueOf(tps));
             }
+            StringBuilder tps = new StringBuilder();
+            tps.append(ChatColor.YELLOW);
+            if(plugin.getConfig().getBoolean("serverstatus.tps.log.one-minute")) {
+                tps.append("TPS: ");
+                char[] tps1MinPlaceholderCharArray = tps1MinPlaceholder.toCharArray();
+                tps.append(tps1MinPlaceholderCharArray[0] + tps1MinPlaceholderCharArray[1] + tps1MinPlaceholderCharArray[2] + tps1MinPlaceholderCharArray[3]);
+                tps.append(" (1 minute) ");
+            }if(plugin.getConfig().getBoolean("serverstatus.tps.log.one-minute")) {
+                char[] tps5MinPlaceholderCharArray = tps5MinPlaceholder.toCharArray();
+                tps.append(tps5MinPlaceholderCharArray[0] + tps5MinPlaceholderCharArray[1] + tps5MinPlaceholderCharArray[2] + tps5MinPlaceholderCharArray[3]);
+                tps.append(" (5 minutes) ");
+            }if(plugin.getConfig().getBoolean("serverstatus.tps.log.one-minute")) {
+                char[] tps15MinPlaceholderCharArray = tps15MinPlaceholder.toCharArray();
+                tps.append(tps15MinPlaceholderCharArray[0] + tps15MinPlaceholderCharArray[1] + tps15MinPlaceholderCharArray[2] + tps15MinPlaceholderCharArray[3]);
+                tps.append(" (15 minutes)");
+            }
+            p.sendMessage(String.valueOf(tps));
         }else{
             plugin.getLogger().severe("This command can only be executed by a player!");
         }

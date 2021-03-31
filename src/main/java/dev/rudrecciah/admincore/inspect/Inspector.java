@@ -23,8 +23,13 @@ public class Inspector implements CommandExecutor {
         if(args.length != 1 || plugin.getServer().getPlayer(args[0]) == null) {
             return false;
         }
+        if(plugin.getServer().getPlayer(args[0]) == p) {
+            p.sendMessage(ChatColor.YELLOW + "You can't inspect yourself!");
+            return true;
+        }
         if(!DataHandler.getMetaBoolean((Player) sender, "staffmode")) {
             p.sendMessage(ChatColor.YELLOW + "You must be in staffmode to inspect a player!");
+            return true;
         }
         p.setMetadata("staffmodeChecking", new FixedMetadataValue(plugin, plugin.getServer().getPlayer(args[0]).getUniqueId()));
         MainMenu.openMenu(p);

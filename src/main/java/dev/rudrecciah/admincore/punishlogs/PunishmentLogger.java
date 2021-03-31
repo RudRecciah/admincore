@@ -28,8 +28,23 @@ public class PunishmentLogger {
         doFileWork(str.toString());
     }
 
-    public static void logMute(Player t, String r, int l, Player p) {
-        StringBuilder str = new StringBuilder().append("*MUTE*").append(System.lineSeparator()).append("Player: ").append(t.getName()).append(System.lineSeparator()).append("Length: ").append(l).append(System.lineSeparator()).append("Reason: ").append(r).append(System.lineSeparator()).append("Muter: ").append(p.getName());
+    public static void logMute(Player t, String r, int i, Player p) {
+        StringBuilder str = new StringBuilder().append("*MUTE*").append(System.lineSeparator()).append("Player: ").append(t.getName()).append(System.lineSeparator()).append("Reason: ").append(r).append(System.lineSeparator()).append("Length: ").append(i).append(System.lineSeparator()).append("Muter: ").append(p);
+        doFileWork(str.toString());
+    }
+
+    public static void logUnmute(Player t, String p) {
+        StringBuilder str = new StringBuilder().append("*UNMUTE*").append(System.lineSeparator()).append("Player: ").append(t.getName()).append(System.lineSeparator()).append("Unmuter: ").append(p);
+        doFileWork(str.toString());
+    }
+
+    public static void logPardon(Player t, String p) {
+        StringBuilder str = new StringBuilder().append("*PARDON*").append(System.lineSeparator()).append("Player: ").append(t.getName()).append(System.lineSeparator()).append("Pardoner: ").append(p);
+        doFileWork(str.toString());
+    }
+
+    public static void logIpPardon(String t, String p) {
+        StringBuilder str = new StringBuilder().append("*IPPARDON*").append(System.lineSeparator()).append("IP/Hostname: ").append(t).append(System.lineSeparator()).append("Pardoner: ").append(p);
         doFileWork(str.toString());
     }
 

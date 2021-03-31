@@ -2,6 +2,7 @@ package dev.rudrecciah.admincore.mute;
 
 import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
+import dev.rudrecciah.admincore.punishlogs.PunishmentLogger;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -24,6 +25,7 @@ public class Unmuter implements CommandExecutor {
             return true;
         }
         PlayerDataHandler.unmute(plugin.getServer().getPlayer(args[0]));
+        PunishmentLogger.logUnmute(plugin.getServer().getPlayer(args[0]), sender.getName());
         plugin.getServer().getPlayer(args[0]).sendMessage(ChatColor.YELLOW + "You have been unmuted!");
         if(sender instanceof ConsoleCommandSender) {
             plugin.getLogger().info(args[0] + " has been unmuted!");

@@ -6,20 +6,22 @@ logexceptions: false
 bot:
   enable: true
   token: ''
-  customName: false
   presence:
-    do-not-disturb: true
-    action: LISTENING
+    action: 0
+    url: 'https://rudrecciah.dev/admincore'
     status: 'staff members'
   prefix: '/'
-  channel: ''
+  channels:
+    admin: ''
+    trusted: ''
+    staff: ''
   commands:
     announce: true
     freeze: true
+    unfreeze: true
     stats: true
     history: true
     aliases: true
-    status: true
 chatlink:
   send:
     enable: false
