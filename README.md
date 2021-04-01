@@ -66,6 +66,8 @@ Roadmap (For a more accurate and complete roadmap, check out the github project 
     * Documentation
   * 0.8.0
     * Final Touches
+  * 0.9.0
+    * Public Beta
   * 1.0.0
     * Release
      

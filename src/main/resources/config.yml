@@ -2,9 +2,8 @@
 # | AdminCore Config |
 # +------------------+
 announcementtitle: 'A Very Cool Announcement'
-logexceptions: false
 bot:
-  enable: true
+  enable: false
   token: ''
   presence:
     action: 0
@@ -25,6 +24,7 @@ bot:
 chatlink:
   send:
     enable: false
+    channel: ''
   get:
     enable: true
     token: ''

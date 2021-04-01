@@ -2,6 +2,7 @@ package dev.rudrecciah.admincore.bot.listener;
 
 import dev.rudrecciah.admincore.bot.aliases.Aliases;
 import dev.rudrecciah.admincore.bot.announce.Announce;
+import dev.rudrecciah.admincore.bot.chat.Chat;
 import dev.rudrecciah.admincore.bot.freeze.Freeze;
 import dev.rudrecciah.admincore.bot.freeze.Unfreeze;
 import dev.rudrecciah.admincore.bot.help.Help;
@@ -58,6 +59,8 @@ public class Listener extends ListenerAdapter {
                     Help.handle(content, channel);
                     break;
             }
+        }else if(plugin.getConfig().getBoolean("chatlink.send.enable") && message.getChannel().getId().equalsIgnoreCase(plugin.getConfig().getString("chatlink.send.channel"))) {
+            Chat.handle(message.getContentRaw().split(" "), message.getChannel(), message.getAuthor());
         }
     }
 }

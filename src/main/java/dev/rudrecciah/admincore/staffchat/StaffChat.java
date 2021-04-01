@@ -7,7 +7,6 @@ import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -40,7 +39,7 @@ public class StaffChat implements CommandExecutor {
         List<Player> players = (List) plugin.getServer().getOnlinePlayers();
         for (Player player : players) {
             if (player.hasPermission("admincore.staff")) {
-                player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.YELLOW + p.getName() + ": " + message);
+                player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Minecraft " + ChatColor.YELLOW + p.getName() + ": " + message);
                 if(DataHandler.getBoolean(player, "notifs") && p != player) {
                     player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
                 }

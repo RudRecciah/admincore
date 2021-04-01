@@ -67,10 +67,6 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
             getLogger().severe("A server reload was detected! Never do this! Admincore, along with many other plugins, does not handle reloads gracefully and will generate errors. Stop your server and run your startup script manually to restart it. If you didn't reload, don't worry, this is just a false positive.");
             ErrorLogger.logWarn("A server reload was detected! Never do this! Admincore, along with many other plugins, does not handle reloads gracefully and will generate errors. Stop your server and run your startup script manually to restart it. If you didn't reload, don't worry, this is just a false positive.");
         }
-        if(getConfig().getBoolean("logexceptions")) {
-            ExceptionHandler handler = new ExceptionHandler();
-            Thread.setDefaultUncaughtExceptionHandler(handler);
-        }
         if(getConfig().getBoolean("bot.enable")) {
             try {
                 Bot.enableBot();
