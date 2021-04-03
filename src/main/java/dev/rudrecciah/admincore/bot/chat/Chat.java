@@ -1,7 +1,6 @@
 package dev.rudrecciah.admincore.bot.chat;
 
 import dev.rudrecciah.admincore.data.DataHandler;
-import dev.rudrecciah.admincore.webhook.ChatLogger;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.User;
 import org.bukkit.ChatColor;

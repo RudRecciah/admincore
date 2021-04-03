@@ -59,7 +59,8 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         int ps = getServer().getOnlinePlayers().size();
         plugin = this;
         Boolean configExists = true;
-        if(!getDataFolder().exists()) {
+        File file = new File(plugin.getDataFolder(), "config.yml");
+        if(!file.exists()) {
             configExists = false;
         }
         saveDefaultConfig();
