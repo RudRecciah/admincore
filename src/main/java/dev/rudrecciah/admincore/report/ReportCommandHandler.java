@@ -19,7 +19,7 @@ public class ReportCommandHandler implements CommandExecutor {
             plugin.getLogger().severe("This command can only be executed by a player!");
             return true;
         }
-        if(args.length != 1 || plugin.getServer().getOfflinePlayer(args[0]) == null) {
+        if(args.length != 1 || !plugin.getServer().getOfflinePlayer(args[0]).hasPlayedBefore()) {
             return false;
         }
         if(sender.getName().equalsIgnoreCase(args[0])) {

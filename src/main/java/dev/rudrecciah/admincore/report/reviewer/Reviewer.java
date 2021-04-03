@@ -30,7 +30,7 @@ public class Reviewer implements CommandExecutor {
             sender.sendMessage(ChatColor.YELLOW + "You must be in staffmode to review a player's reports!");
             return true;
         }
-        if(args.length != 0 && !args[0].equalsIgnoreCase("last") && !args[0].equalsIgnoreCase("close") && plugin.getServer().getOfflinePlayer(args[0]).getUniqueId().toString() == null) {
+        if(args.length != 0 && !args[0].equalsIgnoreCase("last") && !args[0].equalsIgnoreCase("close") && !plugin.getServer().getOfflinePlayer(args[0]).hasPlayedBefore()) {
             sender.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "This player either does not exist, or the server has no record of them stored!");
             Player p = (Player) sender;
             if(DataHandler.getBoolean(p, "notifs")) {

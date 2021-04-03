@@ -72,6 +72,10 @@ commands:
     permission: admincore.staff
     usage: /reportreview|review [player]|last|close
     aliases: review
+  history:
+    description: Check the ban and mute history of a player.
+    permission: admincore.staff
+    usage: /history {player}
 permissions:
   admincore.admin:
     description: Allows a player to use the full functionality of Admin Core

@@ -118,7 +118,7 @@ staffmode:
         allow-appeals: true
         message: 'To appeal your IP ban, go to https://example.com/appeals.'
   stats:
-    api-key: 'your api key'
+    api-key: ''
     public-networks: false
     strict: true
 serverstatus:

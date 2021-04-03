@@ -11,6 +11,7 @@ import dev.rudrecciah.admincore.errors.ExceptionHandler;
 import dev.rudrecciah.admincore.freeze.FreezeChecker;
 import dev.rudrecciah.admincore.freeze.PlayerFreezer;
 import dev.rudrecciah.admincore.freeze.PlayerUnfreezer;
+import dev.rudrecciah.admincore.history.HistoryLogger;
 import dev.rudrecciah.admincore.inspect.Inspector;
 import dev.rudrecciah.admincore.master.MasterCommand;
 import dev.rudrecciah.admincore.mute.Muter;
@@ -94,6 +95,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         getCommand("tempban").setExecutor(new Tempbanner());
         getCommand("unmute").setExecutor(new Unmuter());
         getCommand("reviewreport").setExecutor(new Reviewer());
+        getCommand("history").setExecutor(new HistoryLogger());
         invManager = new InventoryManager(this);
         invManager.init();
         if(!configExists) {

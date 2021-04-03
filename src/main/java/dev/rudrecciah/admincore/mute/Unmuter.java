@@ -21,7 +21,7 @@ public class Unmuter implements CommandExecutor {
             return false;
         }
         if(sender instanceof Player && !DataHandler.getMetaBoolean((Player) sender, "staffmode")) {
-            sender.sendMessage(ChatColor.YELLOW + "You must be in staffmode to mute a player!");
+            sender.sendMessage(ChatColor.YELLOW + "You must be in staffmode to unmute a player!");
             return true;
         }
         PlayerDataHandler.unmute(plugin.getServer().getPlayer(args[0]));
