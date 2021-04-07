@@ -1,6 +1,6 @@
 # Admin-Core
 ### An indev core for Spigot and Paper server administration.
-Current features (0.2.0):
+**Current Features (0.3.0)**:
 * Announcement System
 * Error Logging System
     * Logging to console
@@ -11,24 +11,38 @@ Current features (0.2.0):
     * Logging to file
     * Logging to Discord
 * Player Reporting System
+* Staff Report Management System
+    * Report reviewing
+    * Report closing
 * Server Status Checker
 * Staffchat With Notification System
 * Staffmode:
     * Hides you from all non-staff players
     * Sends puesdo-join and leave messages
     * Player Management GUI:
-        * Report players
-        * Mute Players
-        * Ban Players
-        * IP Ban Players
-        * Tempban Players
-        * Check Player Aliases
-        * Check Player 
+        * Report players (also via /report)
+        * Mute Players (also via /mute)
+        * Ban Players (also via /ban)
+        * IP Ban Players (also via /ban)
+        * Tempban Players (also via /tempban)
+        * Check Player Aliases (also via /alias)
+        * Check Player Inventory
         * Check Player IPQS Statistics (IP address information and threat potential)
-        * Check Past Punishments
+        * Check Past Punishments (also via /history)
 * Update Checker
 * Config Incompatibility Checker
-* Chat Logging System (Discord)
+* Discord Integration
+    * Punishment logging (webhook)
+    * Report logging (webhook)
+    * Error logging (webhook)
+    * Warning logging (webhook)
+    * Staffchat (bot to send messages, webhook to receive messages)
+    * Alias checking (bot)
+    * Announcement sending (bot)
+    * Player freezing (bot)
+    * Player punishment history checking (bot)
+    * Player IPQS statistic checking (bot)
+    *  (bot)
 * And More!
 
 Check the github project for the most up-to-date plans and roadmap!
