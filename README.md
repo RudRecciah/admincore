@@ -45,8 +45,6 @@
     *  (bot)
 * And More!
 
-Check the github project for the most up-to-date plans and roadmap!
-
 Roadmap (For a more accurate and complete roadmap, check out the github project for Admincore!):
   * 0.3.0
     * Enhance Report System
@@ -61,22 +59,23 @@ Roadmap (For a more accurate and complete roadmap, check out the github project 
     * 1.14.x Support
     * 1.13.x Support
     * 1.12.x Support
+    * Misc
   * 0.6.0
     * QA Testing/Bug Fixing
+    * Misc
   * 0.7.0
     * Documentation
   * 0.8.0
     * Final Touches
   * 0.9.0
     * Public Beta
+    * Bug Fixes
+    * Misc
   * 1.0.0
     * Release
   * 1.1.0
     * Bungeecord Support
+    * Misc
   * 1.2.0
     * 1.17.x Support
-     
-Roadmap (Future):
-  * Fix Bugs
-  * Add New Features
-  * Expand Admincore With Other Cores (Playercore, Lobbycore, etc.) (May Be Scrapped)
+    * Misc
