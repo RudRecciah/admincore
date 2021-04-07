@@ -33,19 +33,6 @@ Current features (0.2.0):
 
 Check the github project for the most up-to-date plans and roadmap!
 
-Planned Features (1.0.0):
-  * Discord Bot Integration
-  * And More!
-
-Planned Features (Future):
-  * Nothing yet
-
-Planned Versions (1.0.0):
-  * 1.12.x-1.16.x
-
-Planned Versions (Future):
-  * 1.17.x
-
 Roadmap (For a more accurate and complete roadmap, check out the github project for Admincore!):
   * 0.3.0
     * Enhance Report System
@@ -70,6 +57,10 @@ Roadmap (For a more accurate and complete roadmap, check out the github project 
     * Public Beta
   * 1.0.0
     * Release
+  * 1.1.0
+    * Bungeecord Support
+  * 1.2.0
+    * 1.17.x Support
      
 Roadmap (Future):
   * Fix Bugs
