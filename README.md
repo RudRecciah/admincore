@@ -1,6 +1,6 @@
 # Admin-Core
 ### An indev core for Spigot and Paper server administration.
-Current features (0.2.0):
+**Current Features (0.3.0)**:
 * Announcement System
 * Error Logging System
     * Logging to console
@@ -11,40 +11,39 @@ Current features (0.2.0):
     * Logging to file
     * Logging to Discord
 * Player Reporting System
+* Staff Report Management System
+    * Report reviewing
+    * Report closing
 * Server Status Checker
 * Staffchat With Notification System
 * Staffmode:
     * Hides you from all non-staff players
     * Sends puesdo-join and leave messages
     * Player Management GUI:
-        * Report players
-        * Mute Players
-        * Ban Players
-        * IP Ban Players
-        * Tempban Players
-        * Check Player Aliases
-        * Check Player 
+        * Report players (also via /report)
+        * Mute Players (also via /mute)
+        * Ban Players (also via /ban)
+        * IP Ban Players (also via /ban)
+        * Tempban Players (also via /tempban)
+        * Check Player Aliases (also via /alias)
+        * Check Player Inventory
         * Check Player IPQS Statistics (IP address information and threat potential)
-        * Check Past Punishments
+        * Check Past Punishments (also via /history)
 * Update Checker
 * Config Incompatibility Checker
-* Chat Logging System (Discord)
+* Discord Integration
+    * Punishment logging (webhook)
+    * Report logging (webhook)
+    * Error logging (webhook)
+    * Warning logging (webhook)
+    * Staffchat (bot to send messages, webhook to receive messages)
+    * Alias checking (bot)
+    * Announcement sending (bot)
+    * Player freezing (bot)
+    * Player punishment history checking (bot)
+    * Player IPQS statistic checking (bot)
+    *  (bot)
 * And More!
-
-Check the github project for the most up-to-date plans and roadmap!
-
-Planned Features (1.0.0):
-  * Discord Bot Integration
-  * And More!
-
-Planned Features (Future):
-  * Nothing yet
-
-Planned Versions (1.0.0):
-  * 1.12.x-1.16.x
-
-Planned Versions (Future):
-  * 1.17.x
 
 Roadmap (For a more accurate and complete roadmap, check out the github project for Admincore!):
   * 0.4.0
@@ -57,18 +56,23 @@ Roadmap (For a more accurate and complete roadmap, check out the github project 
     * 1.14.x Support
     * 1.13.x Support
     * 1.12.x Support
+    * Misc
   * 0.6.0
     * QA Testing/Bug Fixing
+    * Misc
   * 0.7.0
     * Documentation
   * 0.8.0
     * Final Touches
   * 0.9.0
     * Public Beta
+    * Bug Fixes
+    * Misc
   * 1.0.0
     * Release
-     
-Roadmap (Future):
-  * Fix Bugs
-  * Add New Features
-  * Expand Admincore With Other Cores (Playercore, Lobbycore, etc.) (May Be Scrapped)
+  * 1.1.0
+    * Bungeecord Support
+    * Misc
+  * 1.2.0
+    * 1.17.x Support
+    * Misc
