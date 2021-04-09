@@ -15,9 +15,7 @@ import static dev.rudrecciah.admincore.Main.plugin;
 
 public class AppealDataHandler {
     public static int makeAppeal(HashMap<String, Object> map) {
-        //TODO: can only mess with things if they arent null
         AppealDataLoader loader = new AppealDataLoader();
-        //TODO: check to see if player is punished currently
         if(map.get("type").toString().equalsIgnoreCase("IP_BAN")) {
             if(plugin.getServer().getBanList(BanList.Type.IP).isBanned(map.get("ip").toString())) {
                 if(!loader.saveDefaultAppealData(map.get("id").toString())) {
