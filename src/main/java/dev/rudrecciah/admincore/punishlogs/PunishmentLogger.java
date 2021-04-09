@@ -29,17 +29,17 @@ public class PunishmentLogger {
     }
 
     public static void logMute(Player t, String r, int i, Player p) {
-        StringBuilder str = new StringBuilder().append("*MUTE*").append(System.lineSeparator()).append("Player: ").append(t.getName()).append(System.lineSeparator()).append("Reason: ").append(r).append(System.lineSeparator()).append("Length: ").append(i).append(System.lineSeparator()).append("Muter: ").append(p);
+        StringBuilder str = new StringBuilder().append("*MUTE*").append(System.lineSeparator()).append("Player: ").append(t.getDisplayName()).append(System.lineSeparator()).append("Reason: ").append(r).append(System.lineSeparator()).append("Length: ").append(i).append(System.lineSeparator()).append("Muter: ").append(p);
         doFileWork(str.toString());
     }
 
     public static void logUnmute(Player t, String p) {
-        StringBuilder str = new StringBuilder().append("*UNMUTE*").append(System.lineSeparator()).append("Player: ").append(t.getName()).append(System.lineSeparator()).append("Unmuter: ").append(p);
+        StringBuilder str = new StringBuilder().append("*UNMUTE*").append(System.lineSeparator()).append("Player: ").append(t.getDisplayName()).append(System.lineSeparator()).append("Unmuter: ").append(p);
         doFileWork(str.toString());
     }
 
-    public static void logPardon(Player t, String p) {
-        StringBuilder str = new StringBuilder().append("*PARDON*").append(System.lineSeparator()).append("Player: ").append(t.getName()).append(System.lineSeparator()).append("Pardoner: ").append(p);
+    public static void logPardon(String t, String p) {
+        StringBuilder str = new StringBuilder().append("*PARDON*").append(System.lineSeparator()).append("Player: ").append(t).append(System.lineSeparator()).append("Pardoner: ").append(p);
         doFileWork(str.toString());
     }
 
@@ -53,7 +53,7 @@ public class PunishmentLogger {
         if(!dir.exists()) {
             dir.mkdirs();
         }
-        File file = new File(dir, "PUNISHMENT_LOGS.acl");
+        File file = new File(dir, "PUNISHMENT_LOGS.rtl");
         if(!file.exists()) {
             try {
                 file.createNewFile();
@@ -65,7 +65,7 @@ public class PunishmentLogger {
         FileWriter writer;
         try {
             StringBuilder logs = new StringBuilder();
-            logs.append(new String(Files.readAllBytes(Paths.get(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "sd" + File.separator + "log" + File.separator + "PUNISHMENT_LOGS.acl")), StandardCharsets.UTF_8)).append(System.lineSeparator()).append("------").append(System.lineSeparator()).append("-EPOCH ").append(System.currentTimeMillis()).append("-").append(System.lineSeparator()).append(str);
+            logs.append(new String(Files.readAllBytes(Paths.get(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "sd" + File.separator + "log" + File.separator + "PUNISHMENT_LOGS.rtl")), StandardCharsets.UTF_8)).append(System.lineSeparator()).append("------").append(System.lineSeparator()).append("-EPOCH ").append(System.currentTimeMillis()).append("-").append(System.lineSeparator()).append(str);
             writer = new FileWriter(file);
             writer.write(logs.toString());
             writer.flush();

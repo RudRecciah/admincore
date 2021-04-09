@@ -76,6 +76,16 @@ commands:
     description: Check the ban and mute history of a player.
     permission: admincore.staff
     usage: /history {player}
+  pardon:
+    description: Pardon a player.
+    permission: admincore.staff
+    usage: /pardon {player}
+    aliases: unban
+  pardon-ip:
+    description: Pardon an IP address.
+    permission: admincore.staff
+    usage: /pardon-ip {ip}
+    aliases: unban-ip
 permissions:
   admincore.admin:
     description: Allows a player to use the full functionality of Admin Core

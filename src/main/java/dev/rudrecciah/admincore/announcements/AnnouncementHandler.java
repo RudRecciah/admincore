@@ -27,6 +27,11 @@ public class AnnouncementHandler implements CommandExecutor {
             }
             return true;
         }
-        return false;
+        if(sender instanceof Player) {
+            sender.sendMessage(ChatColor.YELLOW + "You need to specify an announcement!");
+            return true;
+        }
+        plugin.getLogger().severe("You need to specify an announcement!");
+        return true;
     }
 }

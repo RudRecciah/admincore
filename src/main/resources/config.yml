@@ -81,6 +81,7 @@ staffmode:
         close-on-tempban: true
         close-on-ban: true
         close-on-ip-ban: true
+      teleport: true
     ban:
       reasons:
         1: 'Cheating'
@@ -117,6 +118,9 @@ staffmode:
       ip-ban:
         allow-appeals: true
         message: 'To appeal your IP ban, go to https://example.com/appeals.'
+      api:
+        enable: false
+        port: 9090
   stats:
     api-key: ''
     public-networks: false
@@ -144,4 +148,4 @@ serverstatus:
     log: true
   ping:
     log: true
-version: 2
+version: 3

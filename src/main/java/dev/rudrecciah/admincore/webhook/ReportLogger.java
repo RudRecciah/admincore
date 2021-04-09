@@ -6,11 +6,15 @@ import com.mrpowergamerbr.temmiewebhook.TemmieWebhook;
 import com.mrpowergamerbr.temmiewebhook.embed.FieldEmbed;
 import com.mrpowergamerbr.temmiewebhook.embed.FooterEmbed;
 import com.mrpowergamerbr.temmiewebhook.embed.ThumbnailEmbed;
+import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.punishlogs.PunishmentLogger;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import static dev.rudrecciah.admincore.Main.plugin;
@@ -63,6 +67,15 @@ public class ReportLogger {
             DiscordMessage dm = new DiscordMessage(name, "", icon);
             dm.getEmbeds().add(de);
             webhook.sendMessage(dm);
+            List<Player> players = (List) plugin.getServer().getOnlinePlayers();
+            for (Player player : players) {
+                if(player.hasPermission("admincore.staff")) {
+                    player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Admincore " + ChatColor.YELLOW + "Report Logger: " + t.getName() + " was just reported!");
+                    if(DataHandler.getBoolean(player, "notifs")) {
+                        player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                    }
+                }
+            }
         }
     }
 

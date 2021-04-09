@@ -47,12 +47,9 @@ Planned Versions (Future):
   * 1.17.x
 
 Roadmap (For a more accurate and complete roadmap, check out the github project for Admincore!):
-  * 0.3.0
-    * Enhance Report System
-    * Discord Bot Integration
-    * Misc
   * 0.4.0
     * Punishment Appeal System
+    * Report & Punishment System API
     * Misc
   * 0.5.0
     * 1.16.x Support

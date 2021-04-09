@@ -1,5 +1,6 @@
 package dev.rudrecciah.admincore.alias;
 
+import dev.rudrecciah.admincore.bot.chat.Chat;
 import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.staffmode.grabber.StatsGrabber;
 import org.bukkit.ChatColor;
@@ -24,8 +25,13 @@ public class AliasChecker implements CommandExecutor {
             plugin.getLogger().info("This command can only be executed by a player!");
         }
         Player p = (Player) sender;
-        if(args.length != 1 || plugin.getServer().getOfflinePlayer(args[0]) == null) {
-            return false;
+        if(args.length != 1) {
+            p.sendMessage(ChatColor.YELLOW + "You need to specify a player!");
+            return true;
+        }
+        if(!plugin.getServer().getOfflinePlayer(args[0]).hasPlayedBefore()) {
+            p.sendMessage(ChatColor.YELLOW + "This player has never joined the server before!");
+            return true;
         }
         p.setMetadata("staffmodeChecking", new FixedMetadataValue(plugin, plugin.getServer().getOfflinePlayer(args[0]).getUniqueId()));
         Player t = (Player) plugin.getServer().getOfflinePlayer(args[0]);

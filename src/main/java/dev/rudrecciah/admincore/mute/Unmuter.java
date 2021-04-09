@@ -17,8 +17,21 @@ import static dev.rudrecciah.admincore.Main.plugin;
 public class Unmuter implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if(args.length != 1 || plugin.getServer().getPlayer(args[0]) == null) {
-            return false;
+        if(args.length != 1) {
+            if(sender instanceof Player) {
+                sender.sendMessage(ChatColor.YELLOW + "You need to specify a player!");
+                return true;
+            }
+            plugin.getLogger().severe("You need to specify a player!");
+            return true;
+        }
+        if(plugin.getServer().getPlayer(args[0]) == null) {
+            if(sender instanceof Player) {
+                sender.sendMessage(ChatColor.YELLOW + "This player is offline!");
+                return true;
+            }
+            plugin.getLogger().severe("This player is offline!");
+            return true;
         }
         if(sender instanceof Player && !DataHandler.getMetaBoolean((Player) sender, "staffmode")) {
             sender.sendMessage(ChatColor.YELLOW + "You must be in staffmode to unmute a player!");

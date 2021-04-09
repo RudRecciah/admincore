@@ -19,10 +19,16 @@ public class Banner implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(sender instanceof ConsoleCommandSender) {
             plugin.getLogger().info("This command can only be executed by a player! (Use minecraft:ban or minecraft:ban-ip instead if needed.)");
+            return true;
         }
         Player p = (Player) sender;
-        if(args.length != 1 || plugin.getServer().getOfflinePlayer(args[0]) == null) {
-            return false;
+        if(args.length != 1) {
+            p.sendMessage(ChatColor.YELLOW + "You need to specify a player!");
+            return true;
+        }
+        if(!plugin.getServer().getOfflinePlayer(args[0]).hasPlayedBefore()) {
+            p.sendMessage(ChatColor.YELLOW + "This player has never joined the server before!");
+            return true;
         }
         if(!DataHandler.getMetaBoolean((Player) sender, "staffmode")) {
             p.sendMessage(ChatColor.YELLOW + "You must be in staffmode to ban a player!");

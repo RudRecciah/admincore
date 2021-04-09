@@ -21,7 +21,8 @@ public class StaffChat implements CommandExecutor {
             if (args.length > 0) {
                 staffmodeChat(p, args);
             } else {
-                return false;
+                p.sendMessage(ChatColor.YELLOW + "You need to specify a message!");
+                return true;
             }
         }else{
             plugin.getLogger().severe("This command can only be executed by a player!");

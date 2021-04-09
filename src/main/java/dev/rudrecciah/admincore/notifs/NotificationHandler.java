@@ -15,7 +15,7 @@ public class NotificationHandler implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(sender instanceof ConsoleCommandSender) {
             plugin.getLogger().info("This command can only be executed by a player!");
-            return false;
+            return true;
         }
         DataHandler.toggleNotifs((Player) sender);
         return true;

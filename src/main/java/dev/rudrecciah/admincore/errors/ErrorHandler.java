@@ -42,6 +42,22 @@ public class ErrorHandler {
                 plugin.getLogger().severe("A report file could not be saved! This is a potentially fatal bug. Restart the server and try again. If this behavior continues, report it at https://rudrecciah.dev/admincore/bugs immediately. ");
                 plugin.getLogger().severe("Error Code: RDS-" + errorcode);
                 ErrorLogger.logError("RDS-" + errorcode, "REPORT_DATA_SAVE");
+                break;
+            case 7:
+                plugin.getLogger().severe("An appeal file could not be created! This is a potentially fatal bug. Restart the server and try again. If this behavior continues, report it at https://rudrecciah.dev/admincore/bugs immediately. ");
+                plugin.getLogger().severe("Error Code: APDC-" + errorcode);
+                ErrorLogger.logError("APDC-" + errorcode, "APPEAL_DATA_CREATE");
+                break;
+            case 8:
+                plugin.getLogger().severe("An appeal file could not be saved! This is a potentially fatal bug. Restart the server and try again. If this behavior continues, report it at https://rudrecciah.dev/admincore/bugs immediately. ");
+                plugin.getLogger().severe("Error Code: APDS-" + errorcode);
+                ErrorLogger.logError("APDS-" + errorcode, "APPEAL_DATA_SAVE");
+                break;
+            case 9:
+                plugin.getLogger().severe("An appeal file could not be deleted! This is a potentially fatal bug. Restart the server and try again. If this behavior continues, report it at https://rudrecciah.dev/admincore/bugs immediately. ");
+                plugin.getLogger().severe("Error Code: APDD-" + errorcode);
+                ErrorLogger.logError("APDD-" + errorcode, "APPEAL_DATA_DELETE");
+                break;
         }
     }
 }

@@ -4,9 +4,7 @@ import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
 import dev.rudrecciah.admincore.report.data.ReportDataHandler;
 import dev.rudrecciah.admincore.staffmode.items.ItemCreator;
-import dev.rudrecciah.admincore.staffmode.menus.BanMenu;
-import dev.rudrecciah.admincore.staffmode.menus.MainMenu;
-import dev.rudrecciah.admincore.staffmode.menus.TempBanMenu;
+import dev.rudrecciah.admincore.staffmode.menus.*;
 import fr.minuskube.inv.ClickableItem;
 import fr.minuskube.inv.content.InventoryContents;
 import fr.minuskube.inv.content.InventoryProvider;
@@ -33,6 +31,7 @@ public class IpBanProvider implements InventoryProvider {
             if(DataHandler.getBoolean(player, "notifs")) {
                 player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
             }
+            IpBanMenu.closeMenu(player);
             return;
         }
         ItemStack reason1 = ItemCreator.createSimpleItemStack(Material.MAP, 1, plugin.getConfig().getString("staffmode.punishment.ban.reasons.1"), "");
@@ -74,6 +73,14 @@ public class IpBanProvider implements InventoryProvider {
 
     @Override
     public void update(Player player, InventoryContents contents) {
-
+        String uuid = DataHandler.getMetaString(player, "staffmodeChecking");
+        Player target = plugin.getServer().getPlayer(UUID.fromString(uuid));
+        if(target == null) {
+            player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "This player is offline, you cannot IP ban them!");
+            if(DataHandler.getBoolean(player, "notifs")) {
+                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+            }
+            IpBanMenu.closeMenu(player);
+        }
     }
 }

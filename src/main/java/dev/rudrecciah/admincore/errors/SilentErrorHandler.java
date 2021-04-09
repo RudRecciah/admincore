@@ -15,7 +15,7 @@ public class SilentErrorHandler {
         if(!dir.exists()) {
             dir.mkdirs();
         }
-        File file = new File(dir, "SILENT_ERRORS.acl");
+        File file = new File(dir, "SILENT_ERRORS.rtl");
         if(!file.exists()) {
             try {
                 file.createNewFile();
@@ -35,7 +35,7 @@ public class SilentErrorHandler {
         errBuilder.append("-EPOCCH ").append(System.currentTimeMillis()).append("-").append(System.lineSeparator()).append("*ERR*").append(System.lineSeparator()).append("CODE: SILENT-").append(System.currentTimeMillis()).append(System.lineSeparator()).append("MESSAGE: ").append(e.getMessage()).append(System.lineSeparator()).append(e.getStackTrace()).append(System.lineSeparator()).append(e.getCause());
         try {
             StringBuilder logs = new StringBuilder();
-            logs.append(new String(Files.readAllBytes(Paths.get(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "sd" + File.separator + "log" + File.separator + "SILENT_ERRORS.acl")), StandardCharsets.UTF_8)).append(System.lineSeparator()).append("------").append(System.lineSeparator()).append(errBuilder.toString());
+            logs.append(new String(Files.readAllBytes(Paths.get(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "sd" + File.separator + "log" + File.separator + "SILENT_ERRORS.rtl")), StandardCharsets.UTF_8)).append(System.lineSeparator()).append("------").append(System.lineSeparator()).append(errBuilder.toString());
             writer = new FileWriter(file);
             writer.write(logs.toString());
             writer.flush();

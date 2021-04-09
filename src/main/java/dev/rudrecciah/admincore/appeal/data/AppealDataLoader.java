@@ -1,4 +1,4 @@
-package dev.rudrecciah.admincore.data;
+package dev.rudrecciah.admincore.appeal.data;
 
 import dev.rudrecciah.admincore.errors.ErrorHandler;
 import org.bukkit.Bukkit;
@@ -7,40 +7,47 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 
-import static dev.rudrecciah.admincore.Main.plugin;
-
-public class DataLoader {
+public class AppealDataLoader {
     private static File file;
     private static File dir;
     private static FileConfiguration customFile;
 
-    public static void saveDefaultdata(){
-        dir = new File(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "sd");
+    public static boolean saveDefaultAppealData(String id) {
+        dir = new File(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "ad");
         if(!dir.exists()) {
             dir.mkdirs();
         }
-        file = new File(dir, "data.yml");
+        file = new File(dir, id + ".yml");
         if(!file.exists()) {
             try{
                 file.createNewFile();
             }catch (IOException e){
-                ErrorHandler.onError(0);
+                ErrorHandler.onError(7);
             }
+            customFile = YamlConfiguration.loadConfiguration(file);
+            return false;
         }
-        customFile = YamlConfiguration.loadConfiguration(file);
+        return true;
     }
 
     public static FileConfiguration get(){
         return customFile;
     }
 
-    public static void saveData(){
+    public static void saveAppealData() {
         try{
             customFile.save(file);
         }catch (IOException e){
-            ErrorHandler.onError(1);
+            ErrorHandler.onError(8);
+        }
+    }
+
+    public static void deleteAppealData() {
+        try {
+            file.delete();
+        }catch(Exception e) {
+            ErrorHandler.onError(9);
         }
     }
 }

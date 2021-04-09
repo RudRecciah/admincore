@@ -19,8 +19,21 @@ public class ReportCommandHandler implements CommandExecutor {
             plugin.getLogger().severe("This command can only be executed by a player!");
             return true;
         }
-        if(args.length != 1 || !plugin.getServer().getOfflinePlayer(args[0]).hasPlayedBefore()) {
-            return false;
+        if(args.length != 1) {
+            if(sender instanceof Player) {
+                sender.sendMessage(ChatColor.YELLOW + "You need to specify a player!");
+                return true;
+            }
+            plugin.getLogger().severe("You need to specify a player!");
+            return true;
+        }
+        if(!plugin.getServer().getOfflinePlayer(args[0]).hasPlayedBefore()) {
+            if(sender instanceof Player) {
+                sender.sendMessage(ChatColor.YELLOW + "This player has never played before!");
+                return true;
+            }
+            plugin.getLogger().severe("This player has never played before!");
+            return true;
         }
         if(sender.getName().equalsIgnoreCase(args[0])) {
             sender.sendMessage(ChatColor.YELLOW + "You can't report yourself!");

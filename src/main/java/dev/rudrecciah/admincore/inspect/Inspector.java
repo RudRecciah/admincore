@@ -20,8 +20,13 @@ public class Inspector implements CommandExecutor {
             plugin.getLogger().info("This command can only be executed by a player!");
         }
         Player p = (Player) sender;
-        if(args.length != 1 || plugin.getServer().getPlayer(args[0]) == null) {
-            return false;
+        if(args.length != 1) {
+            sender.sendMessage(ChatColor.YELLOW + "You need to specify a player!");
+            return true;
+        }
+        if(plugin.getServer().getPlayer(args[0]) == null) {
+            sender.sendMessage(ChatColor.YELLOW + "This player is offline!");
+            return true;
         }
         if(plugin.getServer().getPlayer(args[0]) == p) {
             p.sendMessage(ChatColor.YELLOW + "You can't inspect yourself!");

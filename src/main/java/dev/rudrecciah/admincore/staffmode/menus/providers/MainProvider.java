@@ -38,6 +38,7 @@ public class MainProvider implements InventoryProvider {
             if(DataHandler.getBoolean(player, "notifs")) {
                 player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
             }
+            MainMenu.closeMenu(player);
             return;
         }
         ItemStack report = ItemCreator.createSimpleItemStack(Material.WRITABLE_BOOK, 1, "REPORT " + target.getName().toUpperCase(Locale.ROOT), "Report " + target.getName() + " for an infraction!");
@@ -107,6 +108,14 @@ public class MainProvider implements InventoryProvider {
 
     @Override
     public void update(Player player, InventoryContents contents) {
-
+        String uuid = DataHandler.getMetaString(player, "staffmodeChecking");
+        Player target = plugin.getServer().getPlayer(UUID.fromString(uuid));
+        if(target == null) {
+            player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "This player is offline, you cannot inspect them!");
+            if(DataHandler.getBoolean(player, "notifs")) {
+                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+            }
+            MainMenu.closeMenu(player);
+        }
     }
 }

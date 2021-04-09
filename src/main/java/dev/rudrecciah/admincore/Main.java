@@ -2,6 +2,7 @@ package dev.rudrecciah.admincore;
 
 import dev.rudrecciah.admincore.alias.AliasChecker;
 import dev.rudrecciah.admincore.announcements.AnnouncementHandler;
+import dev.rudrecciah.admincore.appeal.http.AppealHttpHandler;
 import dev.rudrecciah.admincore.ban.Banner;
 import dev.rudrecciah.admincore.ban.Tempbanner;
 import dev.rudrecciah.admincore.bot.Bot;
@@ -25,6 +26,8 @@ import dev.rudrecciah.admincore.report.reviewer.Reviewer;
 import dev.rudrecciah.admincore.serverstatus.ServerStatus;
 import dev.rudrecciah.admincore.staffchat.StaffChat;
 import dev.rudrecciah.admincore.staffmode.StaffmodeHandler;
+import dev.rudrecciah.admincore.unban.Unbanner;
+import dev.rudrecciah.admincore.unban.Unipbanner;
 import dev.rudrecciah.admincore.update.ConfigUpdateChecker;
 import dev.rudrecciah.admincore.update.PluginUpdateChecker;
 import dev.rudrecciah.admincore.webhook.BanLogger;
@@ -54,6 +57,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
 
     public static Main plugin;
     private InventoryManager invManager;
+    private AppealHttpHandler handler;
 
     @Override
     public void onEnable() {
@@ -69,9 +73,14 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
             getLogger().severe("A server reload was detected! Never do this! Admincore, along with many other plugins, does not handle reloads gracefully and will generate errors. Stop your server and run your startup script manually to restart it. If you didn't reload, don't worry, this is just a false positive.");
             ErrorLogger.logWarn("A server reload was detected! Never do this! Admincore, along with many other plugins, does not handle reloads gracefully and will generate errors. Stop your server and run your startup script manually to restart it. If you didn't reload, don't worry, this is just a false positive.");
         }
+        if(!configExists) {
+            getLogger().info("It seems like you either didn't have a config file for Admincore before running or you've just installed Admincore. Either way, it cannot be used in this state and may generate errors. Your server has been shut down to prevent a potantially fatal error. You should set up your config file before starting your server again. Any errors that you've experienced right now shouldn't be worried about, and should only be investigated if the behavior continues. Thank you!");
+            getServer().shutdown();
+        }
         if(getConfig().getBoolean("bot.enable")) {
             try {
                 Bot.enableBot();
+                getLogger().info("Admincore Discord Bot Enabled");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -96,15 +105,19 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         getCommand("unmute").setExecutor(new Unmuter());
         getCommand("reviewreport").setExecutor(new Reviewer());
         getCommand("history").setExecutor(new HistoryLogger());
+        getCommand("unban").setExecutor(new Unbanner());
+        getCommand("unban-ip").setExecutor(new Unipbanner());
         invManager = new InventoryManager(this);
         invManager.init();
-        if(!configExists) {
-            getLogger().info("It seems like you either didn't have a config file for Admincore before running or you've just installed Admincore. Either way, it cannot be used in this state and may generate errors. Your server has been shut down to prevent a potantially fatal error. You should set up your config file before starting your server again. Any errors that you've experienced right now shouldn't be worried about, and should only be investigated if the behavior continues. Thank you!");
-            getServer().shutdown();
-        }
         PluginUpdateChecker.checkForUpdates();
         ConfigUpdateChecker.checkVersion();
-        getLogger().info("Admincore Enabled");
+        if(getConfig().getBoolean("staffmode.punishment.appeals.api.enable")) {
+            handler = new AppealHttpHandler();
+            Thread t = new Thread(handler);
+            t.setName("Admincore HTTP Server thread");
+            t.start();
+        }
+        getLogger().info("Admincore Plugin Enabled");
     }
 
     public InventoryManager getInvManager() {
@@ -122,16 +135,6 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         PlayerDataHandler.handlePlayerData(e.getPlayer());
         ReportMetaCleaner.cleanReportMeta(e.getPlayer());
         FreezeChecker.playerFrozen(e.getPlayer());
-    }
-
-    @EventHandler
-    public void onCommand(PlayerCommandPreprocessEvent e) {
-        if(e.getPlayer().hasPermission("bukkit.command.unban.player") && e.getMessage().split(" ")[0].equalsIgnoreCase("pardon") && e.getMessage().split(" ").length > 1 && getServer().getPlayer(e.getMessage().split(" ")[1]) != null) {
-            PunishmentLogger.logPardon(getServer().getPlayer(e.getMessage().split(" ")[1]), e.getPlayer().getName());
-        }
-        if(e.getPlayer().hasPermission("bukkit.command.unban.ip") && e.getMessage().split(" ")[0].equalsIgnoreCase("pardon") && e.getMessage().split(" ").length > 1) {
-            PunishmentLogger.logIpPardon(e.getMessage().split(" ")[1], e.getPlayer().getName());
-        }
     }
 
     @EventHandler
@@ -185,7 +188,11 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
     public void onDisable() {
         if(getConfig().getBoolean("bot.enable")) {
             Bot.disableBot();
+            getLogger().info("Admincore Discord Bot Disabled");
         }
-        getLogger().info("Admincore Disabled");
+        if(handler != null) {
+            handler.end();
+        }
+        getLogger().info("Admincore Plugin Disabled");
     }
 }

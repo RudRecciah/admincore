@@ -52,6 +52,18 @@ public class ErrorLogger {
                 notesBuilder.append("This is a report data saving error. This error occoured while trying to save a report data file for one of your players. Report data files store important information about reports of players. This error can be fatal, and should be checked immediately. Check your console logs using the error code below for more details. If you find this to be an error with Admincore rather than your usage or implementation of the plugin, report this bug to https://rudrecciah.dev/admincore/bugs.");
                 typeBuilder.append("Report-Based Playerdata Saving Error");
                 break;
+            case "APPEAL_DATA_CREATE":
+                notesBuilder.append("This is an appeal data creation error. This error occoured while trying to create an appeal data file for a new appeal. Appeal files store important information about punishment appeals. This error can be fatal, and should be checked immediately. Check your console logs using the error code below for more details. If you find this to be an error with Admincore rather than your usage or implementation of the plugin, report this bug to https://rudrecciah.dev/admincore/bugs.");
+                typeBuilder.append("Appeal-Based Playerdata Creation Error");
+                break;
+            case "APPEAL_DATA_SAVE":
+                notesBuilder.append("This is an appeal data saving error. This error occoured while trying to save an appeal data file for a new appeal. Appeal files store important information about punishment appeals. This error can be fatal, and should be checked immediately. Check your console logs using the error code below for more details. If you find this to be an error with Admincore rather than your usage or implementation of the plugin, report this bug to https://rudrecciah.dev/admincore/bugs.");
+                typeBuilder.append("Appeal-Based Playerdata Saving Error");
+                break;
+            case "APPEAL_DATA_DELETE":
+                notesBuilder.append("This is an appeal data deletion error. This error occoured while trying to delete an appeal data file for a closed appeal. Appeal files store important information about punishment appeals. This error can be fatal, and should be checked immediately. Check your console logs using the error code below for more details. If you find this to be an error with Admincore rather than your usage or implementation of the plugin, report this bug to https://rudrecciah.dev/admincore/bugs.");
+                typeBuilder.append("Appeal-Based Playerdata Deletion Error");
+                break;
             default:
                 typeBuilder.append("Unknown Error");
                 notesBuilder.append("This is an unknown error. All we know about this error is that it came from Admincore. Check your console logs using the error code below to determine the best actions to recover from this error. We recommend restarting your server, but that might not be the best option. If this behavoir continues, report this bug to https://rudrecciah.dev/admincore/bugs.");

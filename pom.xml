@@ -6,7 +6,7 @@
 
     <groupId>dev.rudrecciah</groupId>
     <artifactId>admincore</artifactId>
-    <version>0.3.0</version>
+    <version>0.3.1</version>
     <packaging>jar</packaging>
 
     <name>Admincore</name>
@@ -127,6 +127,26 @@
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
             <version>4.2.0_168</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.9</version>
+        </dependency>
+        <dependency>
+            <groupId>io.undertow</groupId>
+            <artifactId>undertow-core</artifactId>
+            <version>2.1.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>io.undertow</groupId>
+            <artifactId>undertow-servlet</artifactId>
+            <version>2.1.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>io.undertow</groupId>
+            <artifactId>undertow-websockets-jsr</artifactId>
+            <version>2.1.0.Final</version>
         </dependency>
     </dependencies>
 </project>
