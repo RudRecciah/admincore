@@ -14,7 +14,7 @@ import java.util.HashMap;
 import static dev.rudrecciah.admincore.Main.plugin;
 
 public class AppealHttpHandler implements Runnable {
-    private final Undertow server = Undertow.builder().addHttpListener(plugin.getConfig().getInt("staffmode.punishment.appeals.api.port"), "localhost").setHandler(new HttpHandler() {
+    private final Undertow server = Undertow.builder().addHttpListener(plugin.getConfig().getInt("staffmode.punishment.appeals.api.port"), plugin.getConfig().getString("staffmode.punishment.appeals.api.hostname")).setHandler(new HttpHandler() {
         @Override
         public void handleRequest(final HttpServerExchange exchange) throws Exception {
             int code = handle(exchange);

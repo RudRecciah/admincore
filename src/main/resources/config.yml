@@ -33,17 +33,20 @@ webhook:
   name: 'jams'
   icon: 'https://thumbnailer.mixcloud.com/unsafe/300x300/extaudio/9/0/d/1/3f46-6ee1-4ccd-b21c-14ed5bbc1703.jpg'
   errorLogger:
-    use: true
+    use: false
     reload: true
     token: ''
   reportLogger:
-    use: true
+    use: false
     token: ''
   banLogger:
-    use: true
+    use: false
     token: ''
   muteLogger:
-    use: true
+    use: false
+    token: ''
+  appealLogger:
+    use: false
     token: ''
 staffmode:
   resetgamemode: true
@@ -120,6 +123,7 @@ staffmode:
         message: 'To appeal your IP ban, go to https://example.com/appeals.'
       api:
         enable: false
+        hostname: localhost
         port: 9090
   stats:
     api-key: ''

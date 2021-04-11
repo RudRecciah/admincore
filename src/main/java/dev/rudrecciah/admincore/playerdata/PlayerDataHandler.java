@@ -92,4 +92,16 @@ public class PlayerDataHandler {
         loader.getPlayerData().options().copyDefaults(true);
         return (String) loader.getPlayerData().get("ip");
     }
+
+    public static boolean muteExpired(UUID uuid) {
+        PlayerDataLoader loader = new PlayerDataLoader();
+        loader.saveDefaultPlayerData(uuid);
+        loader.getPlayerData().options().copyDefaults(true);
+        long end = loader.getPlayerData().getLong("persistToggle.muteEnd");
+        if(end <= System.currentTimeMillis()) {
+            return false;
+        }else{
+            return true;
+        }
+    }
 }

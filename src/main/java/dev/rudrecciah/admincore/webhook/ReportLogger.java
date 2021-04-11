@@ -79,6 +79,7 @@ public class ReportLogger {
         }
     }
 
+    //not going to use for now, but might reimplement later idk we'll see
     public static void logReportClose(UUID uuid, int n) {
         if(plugin.getConfig().getBoolean("webhook.reportLogger.use")) {
             StringBuilder nameBuilder = new StringBuilder();

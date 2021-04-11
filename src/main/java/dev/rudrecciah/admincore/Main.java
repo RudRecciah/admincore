@@ -3,12 +3,13 @@ package dev.rudrecciah.admincore;
 import dev.rudrecciah.admincore.alias.AliasChecker;
 import dev.rudrecciah.admincore.announcements.AnnouncementHandler;
 import dev.rudrecciah.admincore.appeal.http.AppealHttpHandler;
+import dev.rudrecciah.admincore.appeal.verify.PunishmentVerifier;
 import dev.rudrecciah.admincore.ban.Banner;
 import dev.rudrecciah.admincore.ban.Tempbanner;
 import dev.rudrecciah.admincore.bot.Bot;
 import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.data.DataLoader;
-import dev.rudrecciah.admincore.errors.ExceptionHandler;
+import dev.rudrecciah.admincore.errors.SilentErrorHandler;
 import dev.rudrecciah.admincore.freeze.FreezeChecker;
 import dev.rudrecciah.admincore.freeze.PlayerFreezer;
 import dev.rudrecciah.admincore.freeze.PlayerUnfreezer;
@@ -19,7 +20,6 @@ import dev.rudrecciah.admincore.mute.Muter;
 import dev.rudrecciah.admincore.mute.Unmuter;
 import dev.rudrecciah.admincore.notifs.NotificationHandler;
 import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
-import dev.rudrecciah.admincore.punishlogs.PunishmentLogger;
 import dev.rudrecciah.admincore.report.ReportCommandHandler;
 import dev.rudrecciah.admincore.report.meta.ReportMetaCleaner;
 import dev.rudrecciah.admincore.report.reviewer.Reviewer;
@@ -33,7 +33,9 @@ import dev.rudrecciah.admincore.update.PluginUpdateChecker;
 import dev.rudrecciah.admincore.webhook.BanLogger;
 import dev.rudrecciah.admincore.webhook.ErrorLogger;
 import fr.minuskube.inv.InventoryManager;
+import jdk.incubator.jpackage.internal.IOUtils;
 import org.bukkit.BanList;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Player;
@@ -42,22 +44,22 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import javax.imageio.ImageIO;
-import javax.security.auth.login.LoginException;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.Console;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.FileChannel;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.charset.StandardCharsets;
 
 public final class Main extends JavaPlugin implements CommandExecutor, Listener {
 
     public static Main plugin;
     private InventoryManager invManager;
     private AppealHttpHandler handler;
+    private PunishmentVerifier verifier;
 
     @Override
     public void onEnable() {
@@ -113,9 +115,21 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         ConfigUpdateChecker.checkVersion();
         if(getConfig().getBoolean("staffmode.punishment.appeals.api.enable")) {
             handler = new AppealHttpHandler();
-            Thread t = new Thread(handler);
-            t.setName("Admincore HTTP Server thread");
-            t.start();
+            Thread h = new Thread(handler);
+            h.setName("Admincore HTTP Server thread");
+            h.start();
+        }
+        verifier = new PunishmentVerifier();
+        Thread v = new Thread(verifier);
+        v.setName("Admincore Punishment Verifier thread");
+        v.start();
+        try {
+            ReadableByteChannel readChannel = Channels.newChannel(new URL("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/other/README.md").openStream());
+            FileOutputStream fileOS = new FileOutputStream(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "README.md");
+            FileChannel writeChannel = fileOS.getChannel();
+            writeChannel.transferFrom(readChannel, 0, Long.MAX_VALUE);
+        } catch (IOException e) {
+            SilentErrorHandler.onSilentError(e);
         }
         getLogger().info("Admincore Plugin Enabled");
     }
@@ -193,6 +207,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         if(handler != null) {
             handler.end();
         }
+        verifier.end();
         getLogger().info("Admincore Plugin Disabled");
     }
 }
