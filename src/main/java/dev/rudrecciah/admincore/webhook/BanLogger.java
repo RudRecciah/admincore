@@ -6,11 +6,16 @@ import com.mrpowergamerbr.temmiewebhook.TemmieWebhook;
 import com.mrpowergamerbr.temmiewebhook.embed.FieldEmbed;
 import com.mrpowergamerbr.temmiewebhook.embed.FooterEmbed;
 import com.mrpowergamerbr.temmiewebhook.embed.ThumbnailEmbed;
+import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.punishlogs.PunishmentLogger;
 import org.bukkit.BanList;
+import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 
 import static dev.rudrecciah.admincore.Main.plugin;
 
@@ -64,6 +69,8 @@ public class BanLogger {
         String reason = reasonBuilder.toString();
         String length = lengthBuilder.toString();
         String source = sourceBuilder.toString();
+        String[] smallerReason = reason.split("\n");
+        reason = smallerReason[0];
         if(ip) {
             PunishmentLogger.logIpBan(p, reason, source);
         }else{
@@ -71,6 +78,26 @@ public class BanLogger {
                 PunishmentLogger.logTempban(p, reason, length, source);
             }else{
                 PunishmentLogger.logBan(p, reason, source);
+            }
+        }
+        List<Player> players = (List) plugin.getServer().getOnlinePlayers();
+        if(type.equalsIgnoreCase("player")) {
+            for (Player player : players) {
+                if (player.hasPermission("admincore.staff")) {
+                    player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Admincore " + ChatColor.YELLOW + "Ban Logger: " + p.getName() + " was just banned " + length.toLowerCase(Locale.ROOT) + "!");
+                    if(DataHandler.getBoolean(player, "notifs")) {
+                        player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                    }
+                }
+            }
+        }else{
+            for (Player player : players) {
+                if (player.hasPermission("admincore.staff")) {
+                    player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Admincore " + ChatColor.YELLOW + "Ban Logger: " + p.getName() + " was just IP banned " + length.toLowerCase(Locale.ROOT) + "!");
+                    if(DataHandler.getBoolean(player, "notifs")) {
+                        player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                    }
+                }
             }
         }
         if(plugin.getConfig().getBoolean("webhook.banLogger.use")) {
@@ -94,7 +121,7 @@ public class BanLogger {
             de.setThumbnail(te);
             de.setTitle("New Ban!");
             de.setDescription("A player has been banned.");
-            de.setFields(Arrays.asList(FieldEmbed.builder().name("Type:").value(type).build(), FieldEmbed.builder().name("IP:").value(p.getAddress().getHostString()).build(), FieldEmbed.builder().name("Reason:").value(reason).build(), FieldEmbed.builder().name("Length:").value(length).build(), FieldEmbed.builder().name("Banned By:").value(source).build()));
+            de.setFields(Arrays.asList(FieldEmbed.builder().name("Type:").value(type).build(), FieldEmbed.builder().name("Player:").value(p.getName()).build(), FieldEmbed.builder().name("IP:").value(p.getAddress().getHostString()).build(), FieldEmbed.builder().name("Reason:").value(reason).build(), FieldEmbed.builder().name("Length:").value(length).build(), FieldEmbed.builder().name("Banned By:").value(source).build()));
             de.setFooter(FooterEmbed.builder().text("Admincore Ban Logger").icon_url("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/icons/logo.png").build());
             DiscordMessage dm = new DiscordMessage(name, "", icon);
             dm.getEmbeds().add(de);

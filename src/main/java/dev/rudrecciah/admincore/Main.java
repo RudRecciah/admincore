@@ -2,9 +2,12 @@ package dev.rudrecciah.admincore;
 
 import dev.rudrecciah.admincore.alias.AliasChecker;
 import dev.rudrecciah.admincore.announcements.AnnouncementHandler;
+import dev.rudrecciah.admincore.appeal.cmd.AppealListHandler;
+import dev.rudrecciah.admincore.appeal.cmd.AppealReviewHandler;
 import dev.rudrecciah.admincore.appeal.http.AppealHttpHandler;
 import dev.rudrecciah.admincore.appeal.verify.PunishmentVerifier;
 import dev.rudrecciah.admincore.ban.Banner;
+import dev.rudrecciah.admincore.ban.Ipbanner;
 import dev.rudrecciah.admincore.ban.Tempbanner;
 import dev.rudrecciah.admincore.bot.Bot;
 import dev.rudrecciah.admincore.data.DataHandler;
@@ -107,8 +110,11 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         getCommand("unmute").setExecutor(new Unmuter());
         getCommand("reviewreport").setExecutor(new Reviewer());
         getCommand("history").setExecutor(new HistoryLogger());
-        getCommand("unban").setExecutor(new Unbanner());
-        getCommand("unban-ip").setExecutor(new Unipbanner());
+        getCommand("pardon").setExecutor(new Unbanner());
+        getCommand("pardon-ip").setExecutor(new Unipbanner());
+        getCommand("ban-ip").setExecutor(new Ipbanner());
+        getCommand("reviewappeals").setExecutor(new AppealListHandler());
+        getCommand("reviewappeal").setExecutor(new AppealReviewHandler());
         invManager = new InventoryManager(this);
         invManager.init();
         PluginUpdateChecker.checkForUpdates();
@@ -157,7 +163,6 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         if(e.getPlayer().isBanned() || getServer().getBanList(BanList.Type.IP).isBanned(e.getPlayer().getAddress().getHostString())) {
             if(getServer().getBanList(BanList.Type.IP).isBanned(e.getPlayer().getAddress().getHostString())) {
                 PlayerDataHandler.ban(e.getPlayer());
-                BanLogger.logBan(e.getPlayer());
                 for(Player p : getServer().getOnlinePlayers()) {
                     if(p.getAddress().getHostString().equalsIgnoreCase(e.getPlayer().getAddress().getHostString())) {
                         p.kickPlayer("Another account on your network was IP banned forever! You probably live together, so go smack them a bit to get them to stop cheating.");

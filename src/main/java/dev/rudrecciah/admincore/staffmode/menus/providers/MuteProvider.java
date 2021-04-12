@@ -57,10 +57,6 @@ public class MuteProvider implements InventoryProvider {
                         long muteEnd = System.currentTimeMillis() + (muteLength * 60000L);
                         PlayerDataHandler.mute(target, muteEnd);
                         MuteLogger.logMute(player, muteLength, target, finalI + 1);
-                        player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + target.getName() + " has been muted for " + muteLength + " minutes!");
-                        if(DataHandler.getBoolean(player, "notifs")) {
-                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
-                        }
                         if(plugin.getConfig().getBoolean("staffmode.punishment.report.autoclose.close-on-mute")) {
                             ReportDataHandler.closeAllReports(target.getUniqueId());
                         }

@@ -6,8 +6,10 @@ import dev.rudrecciah.admincore.webhook.AppealLogger;
 import org.bukkit.BanList;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -94,7 +96,6 @@ public class AppealDataHandler {
                         loader.get().addDefault("uuid", map.get("uuid").toString());
                         loader.get().addDefault("reason", map.get("reason").toString());
                         loader.get().addDefault("type", map.get("type").toString());
-                        loader.get().addDefault("reason", map.get("reason").toString());
                         loader.get().addDefault("evidence", map.get("evidence").toString());
                         loader.get().addDefault("punishedBefore", map.get("punishedBefore").toString());
                         loader.get().addDefault("email", map.get("email").toString());
@@ -115,11 +116,35 @@ public class AppealDataHandler {
                         AppealLogger.logAppeal(data);
                         return 201;
                     }
+                    return 302;
                 }
                 return 412;
             }
             return 404;
         }
         return 400;
+    }
+
+    public static Appeal getRandAppeal() {
+        File dir = new File(plugin.getDataFolder() + File.separator + "data" + File.separator + "ad");
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        String[] files = dir.list();
+        for(String fileName : files) {
+            File file = new File(plugin.getDataFolder() + File.separator + "data" + File.separator + "ad", fileName);
+            if(file.exists()) {
+                return new Appeal(YamlConfiguration.loadConfiguration(file), fileName.replaceAll(".yml", ""));
+            }
+        }
+        return null;
+    }
+
+    public static Appeal getAppeal(String id) {
+        File file = new File(plugin.getDataFolder() + File.separator + "data" + File.separator + "ad", id + ".yml");
+        if(file.exists()) {
+            return new Appeal(YamlConfiguration.loadConfiguration(file), id);
+        }
+        return null;
     }
 }

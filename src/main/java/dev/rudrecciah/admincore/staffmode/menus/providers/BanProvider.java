@@ -56,10 +56,6 @@ public class BanProvider implements InventoryProvider {
                         target.getPlayer().kickPlayer("You have been banned for " + plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + " forever!" + appeal.toString());
                     }
                     TempBanMenu.closeMenu(player);
-                    player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + target.getName() + " has been permanently banned!");
-                    if(DataHandler.getBoolean(player, "notifs")) {
-                        player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
-                    }
                 }));
             }
         }

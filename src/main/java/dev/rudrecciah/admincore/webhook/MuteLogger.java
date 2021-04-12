@@ -6,16 +6,29 @@ import com.mrpowergamerbr.temmiewebhook.TemmieWebhook;
 import com.mrpowergamerbr.temmiewebhook.embed.FieldEmbed;
 import com.mrpowergamerbr.temmiewebhook.embed.FooterEmbed;
 import com.mrpowergamerbr.temmiewebhook.embed.ThumbnailEmbed;
+import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.punishlogs.PunishmentLogger;
+import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static dev.rudrecciah.admincore.Main.plugin;
 
 public class MuteLogger {
     public static void logMute(Player p, int length, Player t, int reason) {
+        List<Player> players = (List) plugin.getServer().getOnlinePlayers();
         PunishmentLogger.logMute(t, plugin.getConfig().getString("staffmode.punishment.mute.reasons." + reason), length, p);
+        for (Player player : players) {
+            if (player.hasPermission("admincore.staff")) {
+                player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Admincore " + ChatColor.YELLOW + "Mute Logger: " + t.getName() + " was just muted for " + length + " minutes!");
+                if(DataHandler.getBoolean(player, "notifs")) {
+                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                }
+            }
+        }
         if(plugin.getConfig().getBoolean("webhook.muteLogger.use")) {
             StringBuilder nameBuilder = new StringBuilder();
             StringBuilder iconBuilder = new StringBuilder();

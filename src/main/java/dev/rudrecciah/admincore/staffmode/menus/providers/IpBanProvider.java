@@ -5,6 +5,7 @@ import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
 import dev.rudrecciah.admincore.report.data.ReportDataHandler;
 import dev.rudrecciah.admincore.staffmode.items.ItemCreator;
 import dev.rudrecciah.admincore.staffmode.menus.*;
+import dev.rudrecciah.admincore.webhook.BanLogger;
 import fr.minuskube.inv.ClickableItem;
 import fr.minuskube.inv.content.InventoryContents;
 import fr.minuskube.inv.content.InventoryProvider;
@@ -57,11 +58,8 @@ public class IpBanProvider implements InventoryProvider {
                         ReportDataHandler.closeAllReports(target.getUniqueId());
                     }
                     target.kickPlayer("You have been ip-banned for " + plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + " forever!" + appeal.toString());
+                    BanLogger.logBan(target);
                     TempBanMenu.closeMenu(player);
-                    player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + target.getName() + "'s IP Address (" + target.getAddress().getHostName() + ") has been permanently banned!");
-                    if(DataHandler.getBoolean(player, "notifs")) {
-                        player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
-                    }
                 }));
             }
         }

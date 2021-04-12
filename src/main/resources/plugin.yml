@@ -70,7 +70,7 @@ commands:
   reviewreport:
     description: Review player reports.
     permission: admincore.staff
-    usage: /reportreview|review [player]|last|close
+    usage: /reportreview [player]|last|close
     aliases: review
   history:
     description: Check the ban and mute history of a player.
@@ -86,6 +86,21 @@ commands:
     permission: admincore.staff
     usage: /pardon-ip {ip}
     aliases: unban-ip
+  ban-ip:
+    description: Ban a player's IP address.
+    permission: admincore.staff
+    usage: /ban-ip {player}
+    aliases: ipban
+  reviewappeals:
+    description: See a list of all open appeals.
+    permission: admincore.staff
+    usage: /reviewappeals
+    aliases: appeals
+  reviewappeal:
+    description: Review a specific appeal
+    permission: admincore.staff
+    usage: /reviewappeal [id]|last|accept|reject
+    aliases: appeal
 permissions:
   admincore.admin:
     description: Allows a player to use the full functionality of Admin Core

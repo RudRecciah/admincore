@@ -21,6 +21,15 @@ import static dev.rudrecciah.admincore.Main.plugin;
 
 public class ReportLogger {
     public static void logReport(OfflinePlayer t, int reason, Player p, int n) {
+        List<Player> players = (List) plugin.getServer().getOnlinePlayers();
+        for (Player player : players) {
+            if(player.hasPermission("admincore.staff")) {
+                player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Admincore " + ChatColor.YELLOW + "Report Logger: " + t.getName() + " was just reported!");
+                if(DataHandler.getBoolean(player, "notifs")) {
+                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                }
+            }
+        }
         if(plugin.getConfig().getBoolean("webhook.reportLogger.use")) {
             StringBuilder nameBuilder = new StringBuilder();
             StringBuilder iconBuilder = new StringBuilder();
@@ -67,15 +76,6 @@ public class ReportLogger {
             DiscordMessage dm = new DiscordMessage(name, "", icon);
             dm.getEmbeds().add(de);
             webhook.sendMessage(dm);
-            List<Player> players = (List) plugin.getServer().getOnlinePlayers();
-            for (Player player : players) {
-                if(player.hasPermission("admincore.staff")) {
-                    player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Admincore " + ChatColor.YELLOW + "Report Logger: " + t.getName() + " was just reported!");
-                    if(DataHandler.getBoolean(player, "notifs")) {
-                        player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
-                    }
-                }
-            }
         }
     }
 
