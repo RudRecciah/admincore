@@ -50,19 +50,20 @@ Roadmap (For a more accurate and complete roadmap, check out the github project 
     * Report & Punishment System API
     * Misc
   * 0.5.0
+    * QA Testing/Bug Fixing
+    * Misc
+  * 0.6.0
     * 1.16.x Support
     * 1.15.x Support
     * 1.14.x Support
     * 1.13.x Support
     * 1.12.x Support
     * Misc
-  * 0.6.0
-    * QA Testing/Bug Fixing
-    * Misc
   * 0.7.0
-    * Documentation
+    * Bungeecord Support
   * 0.8.0
     * Final Touches
+    * Documentation
   * 0.9.0
     * Public Beta
     * Bug Fixes
@@ -70,8 +71,5 @@ Roadmap (For a more accurate and complete roadmap, check out the github project 
   * 1.0.0
     * Release
   * 1.1.0
-    * Bungeecord Support
-    * Misc
-  * 1.2.0
     * 1.17.x Support
     * Misc
