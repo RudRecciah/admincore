@@ -42,7 +42,6 @@
     * Player freezing (bot)
     * Player punishment history checking (bot)
     * Player IPQS statistic checking (bot)
-    *  (bot)
 * And More!
 
 Roadmap (For a more accurate and complete roadmap, check out the github project for Admincore!):
