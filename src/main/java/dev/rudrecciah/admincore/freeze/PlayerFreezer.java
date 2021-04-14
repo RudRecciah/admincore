@@ -37,6 +37,10 @@ public class PlayerFreezer implements CommandExecutor {
             plugin.getLogger().severe("This player is offline!");
             return true;
         }
+        if(sender instanceof Player && !DataHandler.getMetaBoolean((Player) sender, "staffmode")) {
+            sender.sendMessage(ChatColor.YELLOW + "You must be in staffmode to freeze a player!");
+            return true;
+        }
         String tName = args[0];
         Player t = plugin.getServer().getPlayer(tName);
         t.setMetadata("frozen", new FixedMetadataValue(plugin, true));

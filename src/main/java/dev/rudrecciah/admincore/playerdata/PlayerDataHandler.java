@@ -42,9 +42,18 @@ public class PlayerDataHandler {
         loader.savePlayerData();
     }
 
-    public static void unmute(Player p) {
+    public static void mute(OfflinePlayer p, long l) {
         PlayerDataLoader loader = new PlayerDataLoader();
-        loader.saveDefaultPlayerData(p);
+        loader.saveDefaultPlayerData(p.getUniqueId());
+        loader.getPlayerData().options().copyDefaults(true);
+        loader.getPlayerData().set("persistToggle.muteEnd", l);
+        loader.getPlayerData().set("mutes", loader.getPlayerData().getInt("mutes")+ 1);
+        loader.savePlayerData();
+    }
+
+    public static void unmute(OfflinePlayer p) {
+        PlayerDataLoader loader = new PlayerDataLoader();
+        loader.saveDefaultPlayerData(p.getUniqueId());
         loader.getPlayerData().options().copyDefaults(true);
         loader.getPlayerData().set("persistToggle.muteEnd", 0);
         loader.savePlayerData();
@@ -53,6 +62,14 @@ public class PlayerDataHandler {
     public static void ban(Player p) {
         PlayerDataLoader loader = new PlayerDataLoader();
         loader.saveDefaultPlayerData(p);
+        loader.getPlayerData().options().copyDefaults(true);
+        loader.getPlayerData().set("bans", loader.getPlayerData().getInt("bans")+ 1);
+        loader.savePlayerData();
+    }
+
+    public static void ban(OfflinePlayer p) {
+        PlayerDataLoader loader = new PlayerDataLoader();
+        loader.saveDefaultPlayerData(p.getUniqueId());
         loader.getPlayerData().options().copyDefaults(true);
         loader.getPlayerData().set("bans", loader.getPlayerData().getInt("bans")+ 1);
         loader.savePlayerData();

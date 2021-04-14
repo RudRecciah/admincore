@@ -19,7 +19,6 @@ public class AppealListHandler implements CommandExecutor {
         if(sender instanceof ConsoleCommandSender) {
             console = true;
         }
-        Player p = (Player) sender;
         File dir = new File(plugin.getDataFolder() + File.separator + "data" + File.separator + "ad");
         if(!dir.exists()) {
             dir.mkdirs();
@@ -30,19 +29,19 @@ public class AppealListHandler implements CommandExecutor {
                 plugin.getLogger().info("There are no open appeals!");
                 return true;
             }
-            p.sendMessage(ChatColor.YELLOW + "There are no open appeals!");
+            sender.sendMessage(ChatColor.YELLOW + "There are no open appeals!");
             return true;
         }
         if(console) {
             plugin.getLogger().info("[OPEN APPEALS]");
         }else{
-            p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[OPEN APPEALS]");
+            sender.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[OPEN APPEALS]");
         }
         for(String name : files) {
             if(console) {
-                plugin.getLogger().info("ID: " + name);
+                plugin.getLogger().info("ID: " + name.replaceAll(".yml", ""));
             }else{
-                p.sendMessage(ChatColor.YELLOW + "ID: " + name);
+                sender.sendMessage(ChatColor.YELLOW + "ID: " + name.replaceAll(".yml", ""));
             }
         }
         return true;

@@ -7,9 +7,11 @@ import com.mrpowergamerbr.temmiewebhook.embed.FieldEmbed;
 import com.mrpowergamerbr.temmiewebhook.embed.FooterEmbed;
 import com.mrpowergamerbr.temmiewebhook.embed.ThumbnailEmbed;
 import dev.rudrecciah.admincore.data.DataHandler;
+import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
 import dev.rudrecciah.admincore.punishlogs.PunishmentLogger;
 import org.bukkit.BanList;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
@@ -20,7 +22,7 @@ import java.util.Locale;
 import static dev.rudrecciah.admincore.Main.plugin;
 
 public class BanLogger {
-    public static void logBan(Player p) {
+    public static void logBan(OfflinePlayer p) {
         StringBuilder reasonBuilder = new StringBuilder();
         StringBuilder typeBuilder = new StringBuilder();
         StringBuilder lengthBuilder = new StringBuilder();
@@ -46,18 +48,18 @@ public class BanLogger {
         }else{
             ip = true;
             typeBuilder.append("IP");
-            if(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(p.getAddress().getHostString()).getReason() != null) {
-                reasonBuilder.append(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(p.getAddress().getHostString()).getReason());
+            if(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(PlayerDataHandler.getIP(p.getUniqueId())).getReason() != null) {
+                reasonBuilder.append(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(PlayerDataHandler.getIP(p.getUniqueId())).getReason());
             }else{
                 reasonBuilder.append("None");
             }
-            if(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(p.getAddress().getHostString()).getExpiration() != null) {
-                lengthBuilder.append("Until ").append(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(p.getAddress().getHostString()).getExpiration());
+            if(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(PlayerDataHandler.getIP(p.getUniqueId())).getExpiration() != null) {
+                lengthBuilder.append("Until ").append(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(PlayerDataHandler.getIP(p.getUniqueId())).getExpiration());
             }else{
                 lengthBuilder.append("Forever");
             }
-            if(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(p.getAddress().getHostString()).getSource() != null) {
-                sourceBuilder.append(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(p.getAddress().getHostString()).getSource());
+            if(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(PlayerDataHandler.getIP(p.getUniqueId())).getSource() != null) {
+                sourceBuilder.append(plugin.getServer().getBanList(BanList.Type.IP).getBanEntry(PlayerDataHandler.getIP(p.getUniqueId())).getSource());
             }else{
                 sourceBuilder.append("Unknown");
             }
@@ -121,7 +123,7 @@ public class BanLogger {
             de.setThumbnail(te);
             de.setTitle("New Ban!");
             de.setDescription("A player has been banned.");
-            de.setFields(Arrays.asList(FieldEmbed.builder().name("Type:").value(type).build(), FieldEmbed.builder().name("Player:").value(p.getName()).build(), FieldEmbed.builder().name("IP:").value(p.getAddress().getHostString()).build(), FieldEmbed.builder().name("Reason:").value(reason).build(), FieldEmbed.builder().name("Length:").value(length).build(), FieldEmbed.builder().name("Banned By:").value(source).build()));
+            de.setFields(Arrays.asList(FieldEmbed.builder().name("Type:").value(type).build(), FieldEmbed.builder().name("Player:").value(p.getName()).build(), FieldEmbed.builder().name("IP:").value(PlayerDataHandler.getIP(p.getUniqueId())).build(), FieldEmbed.builder().name("Reason:").value(reason).build(), FieldEmbed.builder().name("Length:").value(length).build(), FieldEmbed.builder().name("Banned By:").value(source).build()));
             de.setFooter(FooterEmbed.builder().text("Admincore Ban Logger").icon_url("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/icons/logo.png").build());
             DiscordMessage dm = new DiscordMessage(name, "", icon);
             dm.getEmbeds().add(de);

@@ -18,6 +18,7 @@ import dev.rudrecciah.admincore.freeze.PlayerFreezer;
 import dev.rudrecciah.admincore.freeze.PlayerUnfreezer;
 import dev.rudrecciah.admincore.history.HistoryLogger;
 import dev.rudrecciah.admincore.inspect.Inspector;
+import dev.rudrecciah.admincore.kick.Kicker;
 import dev.rudrecciah.admincore.master.MasterCommand;
 import dev.rudrecciah.admincore.mute.Muter;
 import dev.rudrecciah.admincore.mute.Unmuter;
@@ -35,6 +36,7 @@ import dev.rudrecciah.admincore.update.ConfigUpdateChecker;
 import dev.rudrecciah.admincore.update.PluginUpdateChecker;
 import dev.rudrecciah.admincore.webhook.BanLogger;
 import dev.rudrecciah.admincore.webhook.ErrorLogger;
+import dev.rudrecciah.admincore.webhook.KickLogger;
 import fr.minuskube.inv.InventoryManager;
 import jdk.incubator.jpackage.internal.IOUtils;
 import org.bukkit.BanList;
@@ -56,6 +58,7 @@ import java.nio.channels.Channels;
 import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public final class Main extends JavaPlugin implements CommandExecutor, Listener {
 
@@ -115,6 +118,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         getCommand("ban-ip").setExecutor(new Ipbanner());
         getCommand("reviewappeals").setExecutor(new AppealListHandler());
         getCommand("reviewappeal").setExecutor(new AppealReviewHandler());
+        getCommand("kick").setExecutor(new Kicker());
         invManager = new InventoryManager(this);
         invManager.init();
         PluginUpdateChecker.checkForUpdates();
@@ -137,6 +141,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         } catch (IOException e) {
             SilentErrorHandler.onSilentError(e);
         }
+        getServer().getScheduler().runTaskTimer(this, this::kickIpBanned, 200, 200L);
         getLogger().info("Admincore Plugin Enabled");
     }
 
@@ -144,6 +149,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         return invManager;
     }
 
+    //yes this method needs to be here its the most Important™ method in the entire plugin 100% not redundant
     public static void rud() {
         return;
     }
@@ -160,18 +166,15 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e) {
         StaffmodeHandler.clear(e.getPlayer(), e);
-        if(e.getPlayer().isBanned() || getServer().getBanList(BanList.Type.IP).isBanned(e.getPlayer().getAddress().getHostString())) {
-            if(getServer().getBanList(BanList.Type.IP).isBanned(e.getPlayer().getAddress().getHostString())) {
-                PlayerDataHandler.ban(e.getPlayer());
-                for(Player p : getServer().getOnlinePlayers()) {
-                    if(p.getAddress().getHostString().equalsIgnoreCase(e.getPlayer().getAddress().getHostString())) {
-                        p.kickPlayer("Another account on your network was IP banned forever! You probably live together, so go smack them a bit to get them to stop cheating.");
-                    }
+    }
+
+    public void kickIpBanned() {
+        for(String ban : getServer().getIPBans()) {
+            for(Player p : getServer().getOnlinePlayers()) {
+                if(p.getAddress().getHostString().equalsIgnoreCase(ban)) {
+                    p.kickPlayer("Another account on your network was IP banned forever! You probably live together, so go smack them a bit to get them to stop cheating.");
                 }
-                return;
             }
-            PlayerDataHandler.ban(e.getPlayer());
-            BanLogger.logBan(e.getPlayer());
         }
     }
 

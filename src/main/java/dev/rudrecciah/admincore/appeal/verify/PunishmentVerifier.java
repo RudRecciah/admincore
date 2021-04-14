@@ -40,7 +40,7 @@ public class PunishmentVerifier implements Runnable {
                 FileConfiguration yaml = YamlConfiguration.loadConfiguration(file);
                 yaml.options().copyDefaults(true);
                 String type = yaml.getString("type");
-                if(type != null && yaml.getString("ip") != null && yaml.getString("uuid") != null) {
+                if(!type.equalsIgnoreCase("�") && !yaml.getString("ip").equalsIgnoreCase("�") && !yaml.getString("uuid").equalsIgnoreCase("�")) {
                     if(type.equalsIgnoreCase("IP_BAN")) {
                         if(plugin.getServer().getBanList(BanList.Type.IP).isBanned(yaml.getString("ip"))) {
                             return;

@@ -10,10 +10,7 @@ import dev.rudrecciah.admincore.webhook.MuteLogger;
 import fr.minuskube.inv.ClickableItem;
 import fr.minuskube.inv.content.InventoryContents;
 import fr.minuskube.inv.content.InventoryProvider;
-import org.bukkit.BanList;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -29,15 +26,7 @@ public class MuteProvider implements InventoryProvider {
             return;
         }
         String uuid = DataHandler.getMetaString(player, "staffmodeChecking");
-        Player target = plugin.getServer().getPlayer(UUID.fromString(uuid));
-        if(target == null) {
-            player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "This player is offline, you can't mute them!");
-            if(DataHandler.getBoolean(player, "notifs")) {
-                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
-            }
-            MuteMenu.closeMenu(player);
-            return;
-        }
+        OfflinePlayer target = plugin.getServer().getOfflinePlayer(UUID.fromString(uuid));
         ItemStack reason1 = ItemCreator.createSimpleItemStack(Material.MAP, 1, plugin.getConfig().getString("staffmode.punishment.mute.reasons.1"), "");
         ItemStack reason2 = ItemCreator.createSimpleItemStack(Material.MAP, 1, plugin.getConfig().getString("staffmode.punishment.mute.reasons.2"), "");
         ItemStack reason3 = ItemCreator.createSimpleItemStack(Material.MAP, 1, plugin.getConfig().getString("staffmode.punishment.mute.reasons.3"), "");
@@ -53,16 +42,18 @@ public class MuteProvider implements InventoryProvider {
                 int finalI = i;
                 contents.set(0, i, ClickableItem.of(reasons[i], e -> {
                     int muteLength = plugin.getConfig().getInt("staffmode.punishment.mute.mute-length");
-                    if(!PlayerDataHandler.muteExpired(target)) {
+                    if(!PlayerDataHandler.muteExpired(target.getUniqueId())) {
                         long muteEnd = System.currentTimeMillis() + (muteLength * 60000L);
                         PlayerDataHandler.mute(target, muteEnd);
                         MuteLogger.logMute(player, muteLength, target, finalI + 1);
                         if(plugin.getConfig().getBoolean("staffmode.punishment.report.autoclose.close-on-mute")) {
                             ReportDataHandler.closeAllReports(target.getUniqueId());
                         }
-                        target.sendMessage(ChatColor.YELLOW + "You have been muted for " + muteLength + " minutes! Reason: " + plugin.getConfig().getString("staffmode.punishment.mute.reasons." + (finalI + 1)));
-                        if(plugin.getConfig().getBoolean("staffmode.punishment.appeals.mute.allow-appeals")) {
-                            target.sendMessage(ChatColor.YELLOW + plugin.getConfig().getString("staffmode.punishment.appeals.mute.message"));
+                        if(target.getPlayer() != null) {
+                            target.getPlayer().sendMessage(ChatColor.YELLOW + "You have been muted for " + muteLength + " minutes! Reason: " + plugin.getConfig().getString("staffmode.punishment.mute.reasons." + (finalI + 1)));
+                            if(plugin.getConfig().getBoolean("staffmode.punishment.appeals.mute.allow-appeals")) {
+                                target.getPlayer().sendMessage(ChatColor.YELLOW + plugin.getConfig().getString("staffmode.punishment.appeals.mute.message"));
+                            }
                         }
                     }else{
                         player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + target.getName() + " is already muted!");
@@ -82,14 +73,6 @@ public class MuteProvider implements InventoryProvider {
 
     @Override
     public void update(Player player, InventoryContents contents) {
-        String uuid = DataHandler.getMetaString(player, "staffmodeChecking");
-        Player target = plugin.getServer().getPlayer(UUID.fromString(uuid));
-        if(target == null) {
-            player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "This player is offline, you cannot mute them!");
-            if(DataHandler.getBoolean(player, "notifs")) {
-                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
-            }
-            MuteMenu.closeMenu(player);
-        }
+
     }
 }

@@ -28,19 +28,19 @@ public class Muter implements CommandExecutor {
             sender.sendMessage(ChatColor.YELLOW + "You need to specify a player!");
             return true;
         }
-        if(plugin.getServer().getPlayer(args[0]) == null) {
-            sender.sendMessage(ChatColor.YELLOW + "This player is offline!");
+        if(!plugin.getServer().getOfflinePlayer(args[0]).hasPlayedBefore()) {
+            sender.sendMessage(ChatColor.YELLOW + "This player has never played before!");
             return true;
         }
-        if(!DataHandler.getMetaBoolean((Player) sender, "staffmode")) {
+        if(!DataHandler.getMetaBoolean(p, "staffmode")) {
             p.sendMessage(ChatColor.YELLOW + "You must be in staffmode to mute a player!");
             return true;
         }
-        if(plugin.getServer().getPlayer(args[0]).hasPermission("admincore.staff")) {
+        if(plugin.getServer().getOfflinePlayer(args[0]).getPlayer() != null && plugin.getServer().getPlayer(args[0]).hasPermission("admincore.staff")) {
             p.sendMessage(ChatColor.YELLOW + "You can't mute a staff member!");
             return true;
         }
-        p.setMetadata("staffmodeChecking", new FixedMetadataValue(plugin, plugin.getServer().getPlayer(args[0]).getUniqueId()));
+        p.setMetadata("staffmodeChecking", new FixedMetadataValue(plugin, plugin.getServer().getOfflinePlayer(args[0]).getUniqueId()));
         MuteMenu.openMenu(p);
         return true;
     }

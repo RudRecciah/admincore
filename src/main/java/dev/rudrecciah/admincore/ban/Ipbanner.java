@@ -32,7 +32,7 @@ public class Ipbanner implements CommandExecutor {
             p.sendMessage(ChatColor.YELLOW + "You need to specify a player!");
             return true;
         }
-        if(plugin.getServer().getPlayer(args[0]) == null) {
+        if(!plugin.getServer().getOfflinePlayer(args[0]).hasPlayedBefore()) {
             p.sendMessage(ChatColor.YELLOW + "This player isn't online!");
             return true;
         }

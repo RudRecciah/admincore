@@ -85,7 +85,7 @@ commands:
     description: Pardon an IP address.
     permission: admincore.staff
     usage: /pardon-ip {ip}
-    aliases: unban-ip
+    aliases: [unban-ip, unipban]
   ban-ip:
     description: Ban a player's IP address.
     permission: admincore.staff
@@ -101,6 +101,10 @@ commands:
     permission: admincore.staff
     usage: /reviewappeal [id]|last|accept|reject
     aliases: appeal
+  kick:
+    description: Kick a player.
+    permission: admincore.staff
+    usage: /kick {player} {reason}
 permissions:
   admincore.admin:
     description: Allows a player to use the full functionality of Admin Core

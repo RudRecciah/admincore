@@ -23,7 +23,7 @@
         * Report players (also via /report)
         * Mute Players (also via /mute)
         * Ban Players (also via /ban)
-        * IP Ban Players (also via /ban)
+        * IP Ban Players (also via /ban or /ipban)
         * Tempban Players (also via /tempban)
         * Check Player Aliases (also via /alias)
         * Check Player Inventory

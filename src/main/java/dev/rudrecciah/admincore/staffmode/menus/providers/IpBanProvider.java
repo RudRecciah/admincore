@@ -26,15 +26,7 @@ public class IpBanProvider implements InventoryProvider {
             return;
         }
         String uuid = DataHandler.getMetaString(player, "staffmodeChecking");
-        Player target = plugin.getServer().getPlayer(UUID.fromString(uuid));
-        if(target == null) {
-            player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "This player is offline, you cannot IP ban them!");
-            if(DataHandler.getBoolean(player, "notifs")) {
-                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
-            }
-            IpBanMenu.closeMenu(player);
-            return;
-        }
+        OfflinePlayer target = plugin.getServer().getOfflinePlayer(UUID.fromString(uuid));
         ItemStack reason1 = ItemCreator.createSimpleItemStack(Material.MAP, 1, plugin.getConfig().getString("staffmode.punishment.ban.reasons.1"), "");
         ItemStack reason2 = ItemCreator.createSimpleItemStack(Material.MAP, 1, plugin.getConfig().getString("staffmode.punishment.ban.reasons.2"), "");
         ItemStack reason3 = ItemCreator.createSimpleItemStack(Material.MAP, 1, plugin.getConfig().getString("staffmode.punishment.ban.reasons.3"), "");
@@ -53,11 +45,14 @@ public class IpBanProvider implements InventoryProvider {
                     appeal.append("\n").append(plugin.getConfig().getString("staffmode.punishment.appeals.ban.message"));
                 }
                 contents.set(0, i, ClickableItem.of(reasons[i], e -> {
-                    plugin.getServer().getBanList(BanList.Type.IP).addBan(target.getAddress().getHostString(), plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + "\n" + appeal, null, player.getName());
+                    plugin.getServer().getBanList(BanList.Type.IP).addBan(PlayerDataHandler.getIP(target.getUniqueId()), plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + "\n" + appeal, null, player.getName());
                     if(plugin.getConfig().getBoolean("staffmode.punishment.report.autoclose.close-on-ip-ban")) {
                         ReportDataHandler.closeAllReports(target.getUniqueId());
                     }
-                    target.kickPlayer("You have been ip-banned for " + plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + " forever!" + appeal.toString());
+                    if(target.getPlayer() != null) {
+                        target.getPlayer().kickPlayer("You have been ip-banned for " + plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + " forever!" + appeal.toString());
+                    }
+                    PlayerDataHandler.ban(target);
                     BanLogger.logBan(target);
                     TempBanMenu.closeMenu(player);
                 }));
@@ -71,14 +66,6 @@ public class IpBanProvider implements InventoryProvider {
 
     @Override
     public void update(Player player, InventoryContents contents) {
-        String uuid = DataHandler.getMetaString(player, "staffmodeChecking");
-        Player target = plugin.getServer().getPlayer(UUID.fromString(uuid));
-        if(target == null) {
-            player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "This player is offline, you cannot IP ban them!");
-            if(DataHandler.getBoolean(player, "notifs")) {
-                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
-            }
-            IpBanMenu.closeMenu(player);
-        }
+
     }
 }

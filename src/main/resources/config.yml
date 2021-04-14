@@ -48,6 +48,9 @@ webhook:
   appealLogger:
     use: false
     token: ''
+  kickLogger:
+    use: false
+    token: ''
 staffmode:
   resetgamemode: true
   tptospawn:

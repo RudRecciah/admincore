@@ -1,6 +1,7 @@
 package dev.rudrecciah.admincore.report.data;
 
 import dev.rudrecciah.admincore.report.reviewer.Report;
+import dev.rudrecciah.admincore.webhook.ReportLogger;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
@@ -62,6 +63,7 @@ public class ReportDataHandler {
         }
         loader.get().set("report" + (i) + ".closed", true);
         loader.saveReportData();
+        ReportLogger.logReportClose(uuid, i);
         return false;
     }
 
@@ -74,5 +76,6 @@ public class ReportDataHandler {
             loader.get().set("report" + i + ".closed", true);
         }
         loader.saveReportData();
+        ReportLogger.logAllReportClose(uuid);
     }
 }

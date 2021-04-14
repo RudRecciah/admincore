@@ -28,32 +28,6 @@ public class AppealHttpHandler implements Runnable {
         }
     }).build();
 
-    /*
-    * HEADERS:
-    *
-    * id:
-    * name - string
-    * uuid - string
-    *
-    * type of punishment:
-    * mute, ban (both temp and perm), ipban - string
-    *
-    * why to unpunish:
-    * appeal text - string
-    *
-    * evidence:
-    * appeal evidence - string
-    *
-    * questions:
-    * have you been punished before - string
-    *
-    * contact:
-    * email - string
-    * phone number - string
-    * discord name/tag - string
-    * discord id - string
-    * */
-
     @Override
     public void run() {
         server.start();
@@ -76,7 +50,43 @@ public class AppealHttpHandler implements Runnable {
             map.put("number", e.getRequestHeaders().get("number").toString().substring(2, e.getRequestHeaders().get("number").toString().length() - 2));
             map.put("discordName", e.getRequestHeaders().get("discordName").toString().substring(2, e.getRequestHeaders().get("discordName").toString().length() - 2));
             map.put("discordId", e.getRequestHeaders().get("discordId").toString().substring(2, e.getRequestHeaders().get("discordId").toString().length() - 2));
-        } catch(NullPointerException exception) {
+        } catch(Exception exception) {
+            return 400;
+        }
+        if(map.get("id").toString().isEmpty()) {
+            map.put("id", "�");
+        }
+        if(map.get("name").toString().isEmpty()) {
+            map.put("name", "�");
+        }
+        if(map.get("uuid").toString().isEmpty()) {
+            map.put("uuid", "�");
+        }
+        if(map.get("type").toString().isEmpty()) {
+            map.put("type", "�");
+        }
+        if(map.get("reason").toString().isEmpty()) {
+            map.put("reason", "�");
+        }
+        if(map.get("evidence").toString().isEmpty()) {
+            map.put("evidence", "�");
+        }
+        if(map.get("punishedBefore").toString().isEmpty()) {
+            map.put("punsihedBefore", "�");
+        }
+        if(map.get("email").toString().isEmpty()) {
+            map.put("email", "�");
+        }
+        if(map.get("number").toString().isEmpty()) {
+            map.put("number", "�");
+        }
+        if(map.get("discordName").toString().isEmpty()) {
+            map.put("discordName", "�");
+        }
+        if(map.get("discordId").toString().isEmpty()) {
+            map.put("discordId", "�");
+        }
+        if(map.get("id").toString().equalsIgnoreCase("�") || map.get("uuid").toString().equalsIgnoreCase("�") || map.get("type").toString().equalsIgnoreCase("�")) {
             return 400;
         }
         int code = AppealDataHandler.makeAppeal(map);

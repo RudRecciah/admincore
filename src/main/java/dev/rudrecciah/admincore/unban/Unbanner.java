@@ -23,8 +23,8 @@ public class Unbanner implements CommandExecutor {
             return true;
         }
         if(plugin.getServer().getBanList(BanList.Type.NAME).isBanned(args[0])) {
-            PunishmentLogger.logPardon(args[0], sender.getName());
             plugin.getServer().getBanList(BanList.Type.NAME).pardon(args[0]);
+            PunishmentLogger.logPardon(args[0], sender.getName());
             return true;
         }
         if(sender instanceof Player) {

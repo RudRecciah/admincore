@@ -25,21 +25,23 @@ public class Unmuter implements CommandExecutor {
             plugin.getLogger().severe("You need to specify a player!");
             return true;
         }
-        if(plugin.getServer().getPlayer(args[0]) == null) {
+        if(!plugin.getServer().getOfflinePlayer(args[0]).hasPlayedBefore()) {
             if(sender instanceof Player) {
-                sender.sendMessage(ChatColor.YELLOW + "This player is offline!");
+                sender.sendMessage(ChatColor.YELLOW + "This player has never joined the server!");
                 return true;
             }
-            plugin.getLogger().severe("This player is offline!");
+            plugin.getLogger().severe("This player has never joined the server!");
             return true;
         }
         if(sender instanceof Player && !DataHandler.getMetaBoolean((Player) sender, "staffmode")) {
             sender.sendMessage(ChatColor.YELLOW + "You must be in staffmode to unmute a player!");
             return true;
         }
-        PlayerDataHandler.unmute(plugin.getServer().getPlayer(args[0]));
-        PunishmentLogger.logUnmute(plugin.getServer().getPlayer(args[0]), sender.getName());
-        plugin.getServer().getPlayer(args[0]).sendMessage(ChatColor.YELLOW + "You have been unmuted!");
+        PlayerDataHandler.unmute(plugin.getServer().getOfflinePlayer(args[0]));
+        PunishmentLogger.logUnmute(plugin.getServer().getOfflinePlayer(args[0]), sender.getName());
+        if(plugin.getServer().getPlayer(args[0]) != null) {
+            plugin.getServer().getPlayer(args[0]).sendMessage(ChatColor.YELLOW + "You have been unmuted!");
+        }
         if(sender instanceof ConsoleCommandSender) {
             plugin.getLogger().info(args[0] + " has been unmuted!");
         }else{

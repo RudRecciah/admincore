@@ -7,6 +7,7 @@ import dev.rudrecciah.admincore.staffmode.items.ItemCreator;
 import dev.rudrecciah.admincore.staffmode.menus.MainMenu;
 import dev.rudrecciah.admincore.staffmode.menus.BanMenu;
 import dev.rudrecciah.admincore.staffmode.menus.TempBanMenu;
+import dev.rudrecciah.admincore.webhook.BanLogger;
 import fr.minuskube.inv.ClickableItem;
 import fr.minuskube.inv.content.InventoryContents;
 import fr.minuskube.inv.content.InventoryProvider;
@@ -55,6 +56,8 @@ public class BanProvider implements InventoryProvider {
                     if(target.getPlayer() != null) {
                         target.getPlayer().kickPlayer("You have been banned for " + plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + " forever!" + appeal.toString());
                     }
+                    PlayerDataHandler.ban(target);
+                    BanLogger.logBan(target);
                     TempBanMenu.closeMenu(player);
                 }));
             }

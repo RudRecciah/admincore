@@ -1,6 +1,7 @@
 package dev.rudrecciah.admincore.punishlogs;
 
 import dev.rudrecciah.admincore.errors.SilentErrorHandler;
+import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -28,13 +29,28 @@ public class PunishmentLogger {
         doFileWork(str.toString());
     }
 
+    public static void logIpBan(OfflinePlayer t, String r, String p) {
+        StringBuilder str = new StringBuilder().append("*IPBAN*").append(System.lineSeparator()).append("Player: ").append(PlayerDataHandler.getIP(t.getUniqueId())).append(System.lineSeparator()).append("Length: ").append("Forever").append(System.lineSeparator()).append("Reason: ").append(r).append(System.lineSeparator()).append("Banner: ").append(p);
+        doFileWork(str.toString());
+    }
+
     public static void logMute(Player t, String r, int i, Player p) {
         StringBuilder str = new StringBuilder().append("*MUTE*").append(System.lineSeparator()).append("Player: ").append(t.getDisplayName()).append(System.lineSeparator()).append("Reason: ").append(r).append(System.lineSeparator()).append("Length: ").append(i).append(System.lineSeparator()).append("Muter: ").append(p);
         doFileWork(str.toString());
     }
 
+    public static void logMute(OfflinePlayer t, String r, int i, Player p) {
+        StringBuilder str = new StringBuilder().append("*MUTE*").append(System.lineSeparator()).append("Player: ").append(t.getName()).append(System.lineSeparator()).append("Reason: ").append(r).append(System.lineSeparator()).append("Length: ").append(i).append(System.lineSeparator()).append("Muter: ").append(p);
+        doFileWork(str.toString());
+    }
+
     public static void logUnmute(Player t, String p) {
         StringBuilder str = new StringBuilder().append("*UNMUTE*").append(System.lineSeparator()).append("Player: ").append(t.getDisplayName()).append(System.lineSeparator()).append("Unmuter: ").append(p);
+        doFileWork(str.toString());
+    }
+
+    public static void logUnmute(OfflinePlayer t, String p) {
+        StringBuilder str = new StringBuilder().append("*UNMUTE*").append(System.lineSeparator()).append("Player: ").append(t.getName()).append(System.lineSeparator()).append("Unmuter: ").append(p);
         doFileWork(str.toString());
     }
 
@@ -45,6 +61,11 @@ public class PunishmentLogger {
 
     public static void logIpPardon(String t, String p) {
         StringBuilder str = new StringBuilder().append("*IPPARDON*").append(System.lineSeparator()).append("IP/Hostname: ").append(t).append(System.lineSeparator()).append("Pardoner: ").append(p);
+        doFileWork(str.toString());
+    }
+
+    public static void logKick(String p, String reason, String t) {
+        StringBuilder str = new StringBuilder().append("*KICK*").append(System.lineSeparator()).append("Kicked Player: ").append(t).append(System.lineSeparator()).append("Reason: ").append(reason).append(System.lineSeparator()).append("Kicker: ").append(p);
         doFileWork(str.toString());
     }
 

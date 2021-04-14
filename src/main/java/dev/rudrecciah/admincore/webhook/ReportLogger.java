@@ -79,7 +79,6 @@ public class ReportLogger {
         }
     }
 
-    //not going to use for now, but might reimplement later idk we'll see
     public static void logReportClose(UUID uuid, int n) {
         if(plugin.getConfig().getBoolean("webhook.reportLogger.use")) {
             StringBuilder nameBuilder = new StringBuilder();
@@ -124,6 +123,37 @@ public class ReportLogger {
             de.setTitle("Report Closed!");
             de.setDescription("A player's report has been closed.");
             de.setFields(Arrays.asList(FieldEmbed.builder().name("Player:").value((t.getName())).build(), FieldEmbed.builder().name("UUID:").value(t.getUniqueId().toString()).build(), FieldEmbed.builder().name("Report:").value(t.getName() + "'s " + e.toString() + " report.").build()));
+            de.setFooter(FooterEmbed.builder().text("Admincore Report Logger").icon_url("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/icons/logo.png").build());
+            DiscordMessage dm = new DiscordMessage(name, "", icon);
+            dm.getEmbeds().add(de);
+            webhook.sendMessage(dm);
+        }
+    }
+
+    public static void logAllReportClose(UUID uuid) {
+        if(plugin.getConfig().getBoolean("webhook.reportLogger.use")) {
+            StringBuilder nameBuilder = new StringBuilder();
+            StringBuilder iconBuilder = new StringBuilder();
+            if(plugin.getConfig().getBoolean("webhook.customName")) {
+                nameBuilder.append(plugin.getConfig().getString("webhook.name"));
+                iconBuilder.append(plugin.getConfig().getString("webhook.icon"));
+            }else{
+                nameBuilder.append("Admincore");
+                iconBuilder.append("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/icons/logo.png");
+            }
+            String name = nameBuilder.toString();
+            String icon = iconBuilder.toString();
+            OfflinePlayer t = plugin.getServer().getOfflinePlayer(uuid);
+            TemmieWebhook webhook = new TemmieWebhook(plugin.getConfig().getString("webhook.reportLogger.token"));
+            DiscordEmbed de = new DiscordEmbed();
+            ThumbnailEmbed te = new ThumbnailEmbed();
+            te.setUrl("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/icons/report.png");
+            te.setHeight(96);
+            te.setWidth(96);
+            de.setThumbnail(te);
+            de.setTitle("Reports Closed!");
+            de.setDescription("A player's reports have been closed.");
+            de.setFields(Arrays.asList(FieldEmbed.builder().name("Player:").value((t.getName())).build(), FieldEmbed.builder().name("UUID:").value(t.getUniqueId().toString()).build(), FieldEmbed.builder().name("Report:").value("All of" + t.getName() + "'s currently open reports.").build()));
             de.setFooter(FooterEmbed.builder().text("Admincore Report Logger").icon_url("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/icons/logo.png").build());
             DiscordMessage dm = new DiscordMessage(name, "", icon);
             dm.getEmbeds().add(de);

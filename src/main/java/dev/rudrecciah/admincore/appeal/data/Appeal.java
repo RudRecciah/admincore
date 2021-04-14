@@ -6,18 +6,18 @@ import java.io.File;
 
 public class Appeal {
 
-    public String id = null;
-    public String ip = null;
-    public String name = null;
-    public String uuid = null;
-    public String reason = null;
-    public String type = null;
-    public String evidence = null;
-    public String punishedBefore = null;
-    public String email = null;
-    public String number = null;
-    public String discordName = null;
-    public String discordId = null;
+    public String id;
+    public String ip = "unknown";
+    public String name = "unknown";
+    public String uuid = "unknown";
+    public String reason = "unknown";
+    public String type = "unknown";
+    public String evidence = "unknown";
+    public String punishedBefore = "has not";
+    public String email = "unknown";
+    public String number = "unknown";
+    public String discordName = "unknown";
+    public String discordId = "unknown";
 
     public Appeal(YamlConfiguration yaml, String appealId) {
         yaml.options().copyDefaults(true);
@@ -40,8 +40,10 @@ public class Appeal {
         if(!yaml.getString("evidence").equalsIgnoreCase("�")) {
             evidence = yaml.getString("evidence");
         }
-        if(!yaml.getString("punishedBefore").equalsIgnoreCase("�")) {
-            punishedBefore = yaml.getString("punishedBefore");
+        if(yaml.getString("punishedBefore").equalsIgnoreCase("�")) {
+            punishedBefore = "unknown";
+        }else if(!yaml.getString("punishedBefore").equalsIgnoreCase("no")){
+            punishedBefore = "has";
         }
         if(!yaml.getString("email").equalsIgnoreCase("�")) {
             email = yaml.getString("email");

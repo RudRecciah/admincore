@@ -1,5 +1,6 @@
 package dev.rudrecciah.admincore.freeze;
 
+import dev.rudrecciah.admincore.data.DataHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -28,6 +29,10 @@ public class PlayerUnfreezer implements CommandExecutor {
                 return true;
             }
             plugin.getLogger().severe("This player is offline!");
+            return true;
+        }
+        if(sender instanceof Player && !DataHandler.getMetaBoolean((Player) sender, "staffmode")) {
+            sender.sendMessage(ChatColor.YELLOW + "You must be in staffmode to unfreeze a player!");
             return true;
         }
         String tName = args[0];

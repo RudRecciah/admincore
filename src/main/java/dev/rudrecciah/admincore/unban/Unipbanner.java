@@ -23,8 +23,8 @@ public class Unipbanner implements CommandExecutor {
             return true;
         }
         if(plugin.getServer().getBanList(BanList.Type.IP).isBanned(args[0])) {
-            PunishmentLogger.logIpPardon(args[0], sender.getName());
             plugin.getServer().getBanList(BanList.Type.IP).pardon(args[0]);
+            PunishmentLogger.logIpPardon(args[0], sender.getName());
             return true;
         }
         if(sender instanceof Player) {
