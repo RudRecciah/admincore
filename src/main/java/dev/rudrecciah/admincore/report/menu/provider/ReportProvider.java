@@ -46,7 +46,9 @@ public class ReportProvider implements InventoryProvider {
                     int num = ReportDataHandler.handleReportData(target, finalI, player);
                     ReportLogger.logReport(target, finalI, player, num);
                     plugin.getLogger().info(target.getName() + "was just reported for " + plugin.getConfig().getString("staffmode.punishment.report.reasons." + (finalI + 1)) + "!");
-                    player.sendMessage(ChatColor.YELLOW + target.getName() + " has been reported!");
+                    if(!player.hasPermission("admincore.staff")) {
+                        player.sendMessage(ChatColor.YELLOW + target.getName() + " has been reported!");
+                    }
                     ReportMenu.closeMenu(player);
                 }));
             }

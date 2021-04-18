@@ -23,6 +23,20 @@ public class ReportDataHandler {
         return i;
     }
 
+    public static int handleAutoReportData(OfflinePlayer p, int reason, String r) {
+        ReportDataLoader loader = new ReportDataLoader();
+        loader.saveDefaultReportData(p.getUniqueId());
+        loader.get().options().copyDefaults(true);
+        loader.get().addDefault("amount", 0);
+        loader.get().set("amount", loader.get().getInt("amount") + 1);
+        int i = loader.get().getInt("amount");
+        loader.get().addDefault("report" + i + ".reason", reason);
+        loader.get().addDefault("report" + i + ".reporter", r);
+        loader.get().addDefault("report" + i + ".closed", false);
+        loader.saveReportData();
+        return i;
+    }
+
     public static Integer getAmount(UUID uuid) {
         ReportDataLoader loader = new ReportDataLoader();
         if(loader.checkForReportData(uuid)) {

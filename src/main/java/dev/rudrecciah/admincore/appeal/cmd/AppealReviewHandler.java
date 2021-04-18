@@ -59,6 +59,7 @@ public class AppealReviewHandler implements CommandExecutor {
                     return true;
                 }
                 AppealmodeHandler.handleAppeal(appeal, p);
+                return true;
             }
             p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE]" + ChatColor.YELLOW + "You have no open appeal to review!");
             if(DataHandler.getBoolean(p, "notifs")) {

@@ -40,6 +40,11 @@ public class PunishmentLogger {
     }
 
     public static void logMute(OfflinePlayer t, String r, int i, Player p) {
+        StringBuilder str = new StringBuilder().append("*MUTE*").append(System.lineSeparator()).append("Player: ").append(t.getName()).append(System.lineSeparator()).append("Reason: ").append(r).append(System.lineSeparator()).append("Length: ").append(i).append(System.lineSeparator()).append("Muter: ").append(p.getName());
+        doFileWork(str.toString());
+    }
+
+    public static void logMute(OfflinePlayer t, String r, int i, String p) {
         StringBuilder str = new StringBuilder().append("*MUTE*").append(System.lineSeparator()).append("Player: ").append(t.getName()).append(System.lineSeparator()).append("Reason: ").append(r).append(System.lineSeparator()).append("Length: ").append(i).append(System.lineSeparator()).append("Muter: ").append(p);
         doFileWork(str.toString());
     }

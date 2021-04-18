@@ -6,6 +6,7 @@ import dev.rudrecciah.admincore.report.data.ReportDataHandler;
 import dev.rudrecciah.admincore.staffmode.items.ItemCreator;
 import dev.rudrecciah.admincore.staffmode.menus.MainMenu;
 import dev.rudrecciah.admincore.staffmode.menus.TempBanMenu;
+import dev.rudrecciah.admincore.webhook.BanLogger;
 import fr.minuskube.inv.ClickableItem;
 import fr.minuskube.inv.content.InventoryContents;
 import fr.minuskube.inv.content.InventoryProvider;
@@ -57,11 +58,9 @@ public class TempBanProvider implements InventoryProvider {
                     if(target.getPlayer() != null) {
                         target.getPlayer().kickPlayer("You have been banned for " + plugin.getConfig().getString("staffmode.punishment.ban.reasons." + (finalI + 1)) + " for " + plugin.getConfig().getLong("staffmode.punishment.ban.tempban-length") + " days!" + appeal.toString());
                     }
+                    PlayerDataHandler.ban(target);
+                    BanLogger.logBan(target);
                     TempBanMenu.closeMenu(player);
-                    player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + target.getName() + " has been temporarily banned!");
-                    if(DataHandler.getBoolean(player, "notifs")) {
-                        player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
-                    }
                 }));
             }
         }
