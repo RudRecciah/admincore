@@ -1,6 +1,7 @@
 # +------------------+
 # | AdminCore Config |
 # +------------------+
+broadcasts: true
 announcementtitle: 'A Very Cool Announcement'
 bot:
   enable: false
@@ -49,6 +50,9 @@ webhook:
     use: false
     token: ''
   kickLogger:
+    use: false
+    token: ''
+  broadcastLogger:
     use: false
     token: ''
 staffmode:

@@ -1,5 +1,6 @@
 package dev.rudrecciah.admincore.appeal.cmd;
 
+import dev.rudrecciah.admincore.data.DataHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -18,6 +19,10 @@ public class AppealListHandler implements CommandExecutor {
         Boolean console = false;
         if(sender instanceof ConsoleCommandSender) {
             console = true;
+        }
+        if(!console && !DataHandler.getMetaBoolean((Player) sender, "staffmode")) {
+            sender.sendMessage(ChatColor.YELLOW + "You must be in staffmode to view appeals!");
+            return true;
         }
         File dir = new File(plugin.getDataFolder() + File.separator + "data" + File.separator + "ad");
         if(!dir.exists()) {

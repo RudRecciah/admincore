@@ -27,7 +27,7 @@ commands:
   admincore:
     description: Main command for admincore.
     permission: admincore.admin
-    usage: /admincore REPORT|MUTE|TEMPBAN|BAN|IPBAN {player name}|{player uuid}|{player ip} PLAYER|UUID|IP {reason}
+    usage: /admincore REPORT|MUTE|TEMPBAN|BAN|IPBAN {name}|{uuid}|{ip} PLAYER|UUID|IP {reason} [api]
   freeze:
     description: Freeze a suspicious player.
     permission: admincore.staff

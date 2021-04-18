@@ -1,11 +1,14 @@
 package dev.rudrecciah.admincore.report.reviewer;
 
+import dev.rudrecciah.admincore.data.DataHandler;
+import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -19,6 +22,10 @@ public class ReportListHandler implements CommandExecutor {
         Boolean console = false;
         if(sender instanceof ConsoleCommandSender) {
             console = true;
+        }
+        if(!console && !DataHandler.getMetaBoolean((Player) sender, "staffmode")) {
+            sender.sendMessage(ChatColor.YELLOW + "You must be in staffmode to view reports!");
+            return true;
         }
         File dir = new File(plugin.getDataFolder() + File.separator + "data" + File.separator + "rd");
         if(!dir.exists()) {

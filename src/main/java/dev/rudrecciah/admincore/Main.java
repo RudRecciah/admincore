@@ -10,6 +10,7 @@ import dev.rudrecciah.admincore.ban.Banner;
 import dev.rudrecciah.admincore.ban.Ipbanner;
 import dev.rudrecciah.admincore.ban.Tempbanner;
 import dev.rudrecciah.admincore.bot.Bot;
+import dev.rudrecciah.admincore.broadcasts.BroadcastHandler;
 import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.data.DataLoader;
 import dev.rudrecciah.admincore.errors.SilentErrorHandler;
@@ -37,6 +38,7 @@ import dev.rudrecciah.admincore.update.ConfigUpdateChecker;
 import dev.rudrecciah.admincore.update.PluginUpdateChecker;
 import dev.rudrecciah.admincore.webhook.ErrorLogger;
 import fr.minuskube.inv.InventoryManager;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
@@ -137,6 +139,16 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
             SilentErrorHandler.onSilentError(e);
         }
         getServer().getScheduler().runTaskTimer(this, this::kickIpBanned, 200, 200L);
+        int pluginId = 11086;
+        new Metrics(this, pluginId);
+        getServer().getScheduler().runTaskLater(this, new Runnable() {
+            @Override
+            public void run() {
+                if(getConfig().getBoolean("broadcasts")) {
+                    BroadcastHandler.handleBroadcast();
+                }
+            }
+        }, 400L);
         getLogger().info("Admincore Plugin Enabled");
     }
 
