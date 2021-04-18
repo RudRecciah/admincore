@@ -72,7 +72,6 @@ public class AppealReviewHandler implements CommandExecutor {
                 Appeal appeal = AppealDataHandler.getAppeal(DataHandler.getMetaString(p, "appealChecking"));
                 if(Acceptor.accept(appeal, p)) {
                     p.removeMetadata("appealChecking", plugin);
-                    //TODO: log acceptance: discord, staff channel
                     AppealLogger.logAppealAccept(new String[] {plugin.getServer().getOfflinePlayer(UUID.fromString(appeal.uuid)).getName(), appeal.uuid, appeal.type.toLowerCase(Locale.ROOT).replaceAll("_", " "), appeal.id});
                     List<Player> players = (List) plugin.getServer().getOnlinePlayers();
                     for (Player player : players) {

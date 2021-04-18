@@ -35,12 +35,8 @@ import dev.rudrecciah.admincore.unban.Unbanner;
 import dev.rudrecciah.admincore.unban.Unipbanner;
 import dev.rudrecciah.admincore.update.ConfigUpdateChecker;
 import dev.rudrecciah.admincore.update.PluginUpdateChecker;
-import dev.rudrecciah.admincore.webhook.BanLogger;
 import dev.rudrecciah.admincore.webhook.ErrorLogger;
-import dev.rudrecciah.admincore.webhook.KickLogger;
 import fr.minuskube.inv.InventoryManager;
-import jdk.incubator.jpackage.internal.IOUtils;
-import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
@@ -53,13 +49,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
 
 public final class Main extends JavaPlugin implements CommandExecutor, Listener {
 
