@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 public class SilentErrorHandler {
     public static void onSilentError(Exception e, int i) {
@@ -32,7 +33,7 @@ public class SilentErrorHandler {
     public static void writeError(Exception e, File file) {
         FileWriter writer;
         StringBuilder errBuilder = new StringBuilder();
-        errBuilder.append("-EPOCCH ").append(System.currentTimeMillis()).append("-").append(System.lineSeparator()).append("*ERR*").append(System.lineSeparator()).append("CODE: SILENT-").append(System.currentTimeMillis()).append(System.lineSeparator()).append("MESSAGE: ").append(e.getMessage()).append(System.lineSeparator()).append(e.getStackTrace()).append(System.lineSeparator()).append(e.getCause());
+        errBuilder.append("-EPOCCH ").append(System.currentTimeMillis()).append("-").append(System.lineSeparator()).append("*ERR*").append(System.lineSeparator()).append("CODE: SILENT-").append(System.currentTimeMillis()).append(System.lineSeparator()).append("MESSAGE: ").append(e.getMessage()).append(System.lineSeparator()).append(Arrays.toString(e.getStackTrace())).append(System.lineSeparator()).append(e.getCause());
         try {
             StringBuilder logs = new StringBuilder();
             logs.append(new String(Files.readAllBytes(Paths.get(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "sd" + File.separator + "log" + File.separator + "SILENT_ERRORS.rtl")), StandardCharsets.UTF_8)).append(System.lineSeparator()).append("------").append(System.lineSeparator()).append(errBuilder.toString());

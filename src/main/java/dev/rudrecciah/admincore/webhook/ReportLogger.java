@@ -212,7 +212,7 @@ public class ReportLogger {
             de.setThumbnail(te);
             de.setTitle("Reports Closed!");
             de.setDescription("A player's reports have been closed.");
-            de.setFields(Arrays.asList(FieldEmbed.builder().name("Player:").value((t.getName())).build(), FieldEmbed.builder().name("UUID:").value(t.getUniqueId().toString()).build(), FieldEmbed.builder().name("Report:").value("All of" + t.getName() + "'s currently open reports.").build()));
+            de.setFields(Arrays.asList(FieldEmbed.builder().name("Player:").value((t.getName())).build(), FieldEmbed.builder().name("UUID:").value(t.getUniqueId().toString()).build(), FieldEmbed.builder().name("Report:").value("All of " + t.getName() + "'s currently open reports.").build()));
             de.setFooter(FooterEmbed.builder().text("Admincore Report Logger").icon_url("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/icons/logo.png").build());
             DiscordMessage dm = new DiscordMessage(name, "", icon);
             dm.getEmbeds().add(de);

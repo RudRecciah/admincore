@@ -93,7 +93,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         DataLoader.saveDefaultdata();
         DataLoader.get().options().copyDefaults(true);
         getCommand("staffchat").setExecutor(new StaffChat());
-        getCommand("status").setExecutor(new ServerStatus());
+        getCommand("serverstatus").setExecutor(new ServerStatus());
         getCommand("announce").setExecutor(new AnnouncementHandler());
         getCommand("staffmode").setExecutor(new StaffmodeHandler());
         getCommand("admincore").setExecutor(new MasterCommand());
@@ -108,7 +108,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         getCommand("tempban").setExecutor(new Tempbanner());
         getCommand("unmute").setExecutor(new Unmuter());
         getCommand("reviewreport").setExecutor(new Reviewer());
-        getCommand("history").setExecutor(new HistoryLogger());
+        getCommand("punishmenthistory").setExecutor(new HistoryLogger());
         getCommand("pardon").setExecutor(new Unbanner());
         getCommand("pardon-ip").setExecutor(new Unipbanner());
         getCommand("ban-ip").setExecutor(new Ipbanner());

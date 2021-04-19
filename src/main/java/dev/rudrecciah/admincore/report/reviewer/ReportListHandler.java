@@ -44,7 +44,7 @@ public class ReportListHandler implements CommandExecutor {
         for(OfflinePlayer player : plugin.getServer().getOfflinePlayers()) {
             ArrayList<Report> reports = Getter.getReports(player.getUniqueId());
             if(reports != null) {
-                openReports.add(ChatColor.YELLOW + player.getName() + " has " + reports.size() + " open reports!");
+                openReports.add(player.getName() + " has " + reports.size() + " open reports!");
             }
         }
         if(openReports.size() != 0) {
@@ -56,7 +56,7 @@ public class ReportListHandler implements CommandExecutor {
             }else{
                 sender.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[OPEN REPORTS]");
                 for(String str : openReports) {
-                    plugin.getLogger().info(str);
+                    sender.sendMessage(ChatColor.YELLOW + str);
                 }
             }
         }else{

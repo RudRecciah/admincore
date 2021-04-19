@@ -22,7 +22,7 @@ import static dev.rudrecciah.admincore.Main.plugin;
 public class BroadcastHandler {
     public static void handleBroadcast() {
         try {
-            ReadableByteChannel readChannel = Channels.newChannel(new URL("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/other/broadcast.json").openStream());
+            ReadableByteChannel readChannel = Channels.newChannel(new URL("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/other/BROADCAST").openStream());
             File dir = new File(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "sd" + File.separator + "broadcasts");
             File file = new File(dir, "ORIGIN_BROADCAST");
             if(!dir.exists()) {
@@ -49,15 +49,6 @@ public class BroadcastHandler {
                 SilentErrorHandler.onSilentError(e);
             }
         }
-        FileWriter writer = null;
-        try {
-            writer = new FileWriter(file);
-            writer.write(plugin.getDescription().getVersion());
-            writer.flush();
-            writer.close();
-        } catch (IOException e) {
-            SilentErrorHandler.onSilentError(e);
-        }
         Path mainPth = Paths.get(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "sd" + File.separator + "broadcasts" + File.separator + "ORIGIN_BROADCAST");
         byte[] mBytes = null;
         try {
@@ -76,9 +67,18 @@ public class BroadcastHandler {
         String local = new String(lBytes, StandardCharsets.UTF_8);
         if(!main.equalsIgnoreCase(local)) {
             plugin.getLogger().info(main);
+            if(plugin.getConfig().getBoolean("webhook.broadcastLogger.use")) {
+                BroadcastLogger.logBroadcast(main);
+            }
         }
-        if(plugin.getConfig().getBoolean("webhook.broadcastLogger.use")) {
-            BroadcastLogger.logBroadcast(main);
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(file);
+            writer.write(main);
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            SilentErrorHandler.onSilentError(e);
         }
     }
 }

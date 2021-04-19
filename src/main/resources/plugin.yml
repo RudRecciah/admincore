@@ -79,7 +79,7 @@ commands:
   punishmenthistory:
     description: Check the ban and mute history of a player.
     permission: admincore.staff
-    usage: /history {player}
+    usage: /punishmenthistory {player}
   pardon:
     description: Pardon a player.
     permission: admincore.staff
