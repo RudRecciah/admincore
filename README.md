@@ -1,4 +1,4 @@
-# Admin-Core
+# Admincore
 ### An indev core for Spigot and Paper server administration.
 **Current Features (0.3.0)**:
 * Announcement System
