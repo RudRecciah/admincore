@@ -1,6 +1,5 @@
 package dev.rudrecciah.admincore.appeal.http;
 
-import com.sun.imageio.plugins.tiff.TIFFOldJPEGDecompressor;
 import dev.rudrecciah.admincore.appeal.data.AppealDataHandler;
 import io.undertow.Undertow;
 import io.undertow.server.HttpHandler;

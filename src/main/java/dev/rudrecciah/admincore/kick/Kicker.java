@@ -23,6 +23,7 @@ public class Kicker implements CommandExecutor {
                 return true;
             }
             plugin.getLogger().severe("You need to specify a player!");
+            return true;
         }
         if(plugin.getServer().getPlayer(args[0]) == null) {
             if(sender instanceof Player) {
@@ -42,6 +43,7 @@ public class Kicker implements CommandExecutor {
                 return true;
             }
             plugin.getLogger().severe("You need to specify a reason!");
+            return true;
         }
         ArrayList<String> message = new ArrayList<>();
         for(String str: args) {
@@ -55,6 +57,8 @@ public class Kicker implements CommandExecutor {
         plugin.getServer().getPlayer(args[0]).kickPlayer(messageBuilder.toString());
         if(sender instanceof Player) {
             KickLogger.logKick(sender.getName(), messageBuilder.toString(), args[0]);
+        }else{
+            KickLogger.logKick("Console", messageBuilder.toString(), args[0]);
         }
         return true;
     }

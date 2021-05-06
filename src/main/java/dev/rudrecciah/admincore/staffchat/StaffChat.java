@@ -16,16 +16,18 @@ import static dev.rudrecciah.admincore.Main.plugin;
 public class StaffChat implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(sender instanceof Player) {
-            Player p = (Player) sender;
-            if (args.length > 0) {
-                staffmodeChat(p, args);
-            } else {
-                p.sendMessage(ChatColor.YELLOW + "You need to specify a message!");
-                return true;
+        if(args.length > 0) {
+            if(sender instanceof Player) {
+                staffmodeChat((Player) sender, args);
+            }else{
+                staffmodeChat(args);
             }
         }else{
-            plugin.getLogger().severe("This command can only be executed by a player!");
+            if(sender instanceof Player) {
+                sender.sendMessage(ChatColor.YELLOW + "You need to specify a message!");
+            }else{
+                plugin.getLogger().severe("You need to specify a message!");
+            }
         }
         return true;
     }
@@ -42,6 +44,24 @@ public class StaffChat implements CommandExecutor {
             if (player.hasPermission("admincore.staff")) {
                 player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Minecraft " + ChatColor.YELLOW + p.getName() + ": " + message);
                 if(DataHandler.getBoolean(player, "notifs") && p != player) {
+                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                }
+            }
+        }
+    }
+
+    public static void staffmodeChat(String[] args) {
+        StringBuilder message = new StringBuilder();
+        for (String arg : args) {
+            message.append(arg).append(" ");
+        }
+        plugin.getLogger().info("[Staff Chat Channel] " + "Console: " + message);
+        ChatLogger.logChat(message.toString());
+        List<Player> players = (List) plugin.getServer().getOnlinePlayers();
+        for (Player player : players) {
+            if (player.hasPermission("admincore.staff")) {
+                player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Minecraft " + ChatColor.YELLOW + "Console: " + message);
+                if(DataHandler.getBoolean(player, "notifs")) {
                     player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
                 }
             }

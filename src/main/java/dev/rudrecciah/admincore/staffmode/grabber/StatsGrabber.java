@@ -37,13 +37,13 @@ public class StatsGrabber {
         return api(path.toString(), p);
     }
 
-    public static List<String> grabAliases(Player p) {
+    public static List<String> grabAliases(OfflinePlayer p) {
         ArrayList<String> aliases = new ArrayList<String>();
         aliases.add(ChatColor.YELLOW + "UUID: " + p.getUniqueId());
         aliases.add("");
         aliases.add(ChatColor.YELLOW + "Aliases:");
         for(OfflinePlayer player:plugin.getServer().getOfflinePlayers()) {
-            if(String.valueOf(p.getAddress().getHostString()).equalsIgnoreCase(PlayerDataHandler.getIP(player.getUniqueId())) && p.getUniqueId() != player.getUniqueId()) {
+            if(PlayerDataHandler.getIP(p.getUniqueId()).equalsIgnoreCase(PlayerDataHandler.getIP(player.getUniqueId())) && p.getUniqueId() != player.getUniqueId()) {
                 aliases.add(ChatColor.YELLOW + player.getName());
             }
         }

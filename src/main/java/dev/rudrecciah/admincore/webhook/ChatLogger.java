@@ -14,4 +14,12 @@ public class ChatLogger {
             webhook.sendMessage(dm);
         }
     }
+
+    public static void logChat(String message) {
+        if(plugin.getConfig().getBoolean("chatlink.get.enable")) {
+            TemmieWebhook webhook = new TemmieWebhook(plugin.getConfig().getString("chatlink.get.token"));
+            DiscordMessage dm = new DiscordMessage("Console", message, "https://raw.githubusercontent.com/RudRecciah/admincore/main/icons/console.png");
+            webhook.sendMessage(dm);
+        }
+    }
 }

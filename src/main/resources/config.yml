@@ -1,6 +1,6 @@
-# +------------------+
-# | AdminCore Config |
-# +------------------+
+# Admincore Config
+# First time here or just want a guide? Head over to https://rudrecciah.dev/admincore/wiki/setup. It'll take you on a simple, step by step guide on setting up Admincore.
+# Updating? Head over to https://rudrecciah.dev/admincore/wiki/updating. It'll take you on a simple, step by step guide on updating Admincore and its config.
 broadcasts: true
 announcementtitle: 'A Very Cool Announcement'
 bot:

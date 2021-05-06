@@ -72,11 +72,11 @@ public class ServerStatus implements CommandExecutor {
                 char[] tps1MinPlaceholderCharArray = tps1MinPlaceholder.toCharArray();
                 tps.append(tps1MinPlaceholderCharArray[0] + tps1MinPlaceholderCharArray[1] + tps1MinPlaceholderCharArray[2] + tps1MinPlaceholderCharArray[3]);
                 tps.append(" (1 minute) ");
-            }if(plugin.getConfig().getBoolean("serverstatus.tps.log.one-minute")) {
+            }if(plugin.getConfig().getBoolean("serverstatus.tps.log.five-minutes")) {
                 char[] tps5MinPlaceholderCharArray = tps5MinPlaceholder.toCharArray();
                 tps.append(tps5MinPlaceholderCharArray[0] + tps5MinPlaceholderCharArray[1] + tps5MinPlaceholderCharArray[2] + tps5MinPlaceholderCharArray[3]);
                 tps.append(" (5 minutes) ");
-            }if(plugin.getConfig().getBoolean("serverstatus.tps.log.one-minute")) {
+            }if(plugin.getConfig().getBoolean("serverstatus.tps.log.fifteen-minutes")) {
                 char[] tps15MinPlaceholderCharArray = tps15MinPlaceholder.toCharArray();
                 tps.append(tps15MinPlaceholderCharArray[0] + tps15MinPlaceholderCharArray[1] + tps15MinPlaceholderCharArray[2] + tps15MinPlaceholderCharArray[3]);
                 tps.append(" (15 minutes)");

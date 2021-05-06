@@ -23,6 +23,7 @@ public class AliasChecker implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(sender instanceof ConsoleCommandSender) {
             plugin.getLogger().info("This command can only be executed by a player!");
+            return true;
         }
         Player p = (Player) sender;
         if(args.length != 1) {
@@ -31,6 +32,10 @@ public class AliasChecker implements CommandExecutor {
         }
         if(!plugin.getServer().getOfflinePlayer(args[0]).hasPlayedBefore()) {
             p.sendMessage(ChatColor.YELLOW + "This player has never joined the server before!");
+            return true;
+        }
+        if(!DataHandler.getMetaBoolean(p, "staffmode")) {
+            sender.sendMessage(ChatColor.YELLOW + "You must be in staffmode to check a player's aliases!");
             return true;
         }
         p.setMetadata("staffmodeChecking", new FixedMetadataValue(plugin, plugin.getServer().getOfflinePlayer(args[0]).getUniqueId()));
