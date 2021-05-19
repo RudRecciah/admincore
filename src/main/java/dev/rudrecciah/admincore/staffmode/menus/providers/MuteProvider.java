@@ -67,7 +67,6 @@ public class MuteProvider implements InventoryProvider {
         }
         contents.set(0, 8, ClickableItem.of(back, e -> {
             MuteMenu.closeMenu(player);
-            MainMenu.openMenu(player);
         }));
     }
 

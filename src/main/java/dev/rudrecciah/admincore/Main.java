@@ -92,6 +92,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         getServer().getPluginManager().registerEvents(this, this);
         DataLoader.saveDefaultdata();
         DataLoader.get().options().copyDefaults(true);
+        PlayerDataHandler.createDefaults();
         getCommand("staffchat").setExecutor(new StaffChat());
         getCommand("serverstatus").setExecutor(new ServerStatus());
         getCommand("announce").setExecutor(new AnnouncementHandler());
@@ -131,7 +132,7 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         v.setName("Admincore Punishment Verifier thread");
         v.start();
         try {
-            ReadableByteChannel readChannel = Channels.newChannel(new URL("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/other/README.md").openStream());
+            ReadableByteChannel readChannel = Channels.newChannel(new URL("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/other/data.md").openStream());
             FileOutputStream fileOS = new FileOutputStream(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "README.md");
             FileChannel writeChannel = fileOS.getChannel();
             writeChannel.transferFrom(readChannel, 0, Long.MAX_VALUE);
@@ -179,7 +180,11 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
         for(String ban : getServer().getIPBans()) {
             for(Player p : getServer().getOnlinePlayers()) {
                 if(p.getAddress().getHostString().equalsIgnoreCase(ban)) {
-                    p.kickPlayer("Another account on your network was IP banned forever! You probably live together, so go smack them a bit to get them to stop cheating.");
+                    if(getConfig().getBoolean("violence")) {
+                        p.kickPlayer("*kmt* \n man I said make ready... \n man I said present... \n blud are you dumb?! are you getting rude to man?! \n bop! \n thats what you get fam, pussyhole! yeah blud \n who's endz you coming to now fam?! \n dickhead!");
+                    }else{
+                        p.kickPlayer("Another account on your network was IP banned forever!");
+                    }
                 }
             }
         }

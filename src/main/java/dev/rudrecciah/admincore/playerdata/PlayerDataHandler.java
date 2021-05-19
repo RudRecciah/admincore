@@ -21,6 +21,19 @@ public class PlayerDataHandler {
         loader.savePlayerData();
     }
 
+    public static void createDefaults() {
+        for(OfflinePlayer p : plugin.getServer().getOfflinePlayers()) {
+            PlayerDataLoader loader = new PlayerDataLoader();
+            loader.saveDefaultPlayerData(p.getUniqueId());
+            loader.getPlayerData().options().copyDefaults(true);
+            loader.getPlayerData().addDefault("ip", "240.0.0.0");
+            loader.getPlayerData().addDefault("persistToggle.muteEnd", 0L);
+            loader.getPlayerData().addDefault("mutes", 0);
+            loader.getPlayerData().addDefault("bans", 0);
+            loader.savePlayerData();
+        }
+    }
+
     public static boolean muteExpired(Player p) {
         PlayerDataLoader loader = new PlayerDataLoader();
         loader.saveDefaultPlayerData(p);

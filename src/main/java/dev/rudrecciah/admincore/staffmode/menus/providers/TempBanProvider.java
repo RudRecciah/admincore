@@ -66,7 +66,6 @@ public class TempBanProvider implements InventoryProvider {
         }
         contents.set(0, 8, ClickableItem.of(back, e -> {
             TempBanMenu.closeMenu(player);
-            MainMenu.openMenu(player);
         }));
     }
 

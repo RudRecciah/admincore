@@ -31,7 +31,7 @@ public class ReportDataHandler {
         loader.get().set("amount", loader.get().getInt("amount") + 1);
         int i = loader.get().getInt("amount");
         loader.get().addDefault("report" + i + ".reason", reason);
-        loader.get().addDefault("report" + i + ".reporter", r);
+        loader.get().addDefault("report" + i + ".reporter", "f78a4d8d-d51b-4b39-98a3-230f2de0c670");
         loader.get().addDefault("report" + i + ".closed", false);
         loader.saveReportData();
         return i;

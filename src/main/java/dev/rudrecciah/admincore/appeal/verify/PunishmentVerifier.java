@@ -29,7 +29,6 @@ public class PunishmentVerifier implements Runnable {
     }
 
     private void verify() {
-//        plugin.getLogger().info("oh dear god no");
         try {
             File dir = new File(plugin.getDataFolder() + File.separator + "data" + File.separator + "ad");
             if(!dir.exists()) {

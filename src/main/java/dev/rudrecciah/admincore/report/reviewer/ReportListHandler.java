@@ -1,5 +1,6 @@
 package dev.rudrecciah.admincore.report.reviewer;
 
+import dev.rudrecciah.admincore.bot.chat.Chat;
 import dev.rudrecciah.admincore.data.DataHandler;
 import dev.rudrecciah.admincore.playerdata.PlayerDataHandler;
 import org.bukkit.ChatColor;
@@ -37,7 +38,7 @@ public class ReportListHandler implements CommandExecutor {
                 plugin.getLogger().info("There are no open reports!");
                 return true;
             }
-            sender.sendMessage(ChatColor.YELLOW + "There are no open reports!");
+            sender.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE]" + ChatColor.YELLOW + "There are no open reports!");
             return true;
         }
         ArrayList<String> openReports = new ArrayList<>();

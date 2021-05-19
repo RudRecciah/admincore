@@ -50,7 +50,7 @@ public class AppealDataHandler {
                     AppealLogger.logAppeal(data);
                     return 201;
                 }
-                return 302;
+                return 409;
             }
             return 412;
         }
@@ -84,7 +84,7 @@ public class AppealDataHandler {
                     AppealLogger.logAppeal(data);
                     return 201;
                 }
-                return 302;
+                return 409;
             }
             return 412;
         }
@@ -117,11 +117,11 @@ public class AppealDataHandler {
                     AppealLogger.logAppeal(data);
                     return 201;
                 }
-                return 302;
+                return 409;
             }
             return 412;
         }
-        return 400;
+        return 501;
     }
 
     public static Appeal getRandAppeal() {

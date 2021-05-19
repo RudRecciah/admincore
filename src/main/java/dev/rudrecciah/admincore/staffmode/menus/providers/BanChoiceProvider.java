@@ -28,7 +28,6 @@ public class BanChoiceProvider implements InventoryProvider {
         }));
         contents.set(0, 8, ClickableItem.of(exit, e ->{
             BanChoiceMenu.closeMenu(player);
-            MainMenu.openMenu(player);
         }));
     }
 

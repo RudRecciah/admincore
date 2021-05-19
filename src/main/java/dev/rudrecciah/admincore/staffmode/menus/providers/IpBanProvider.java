@@ -60,7 +60,6 @@ public class IpBanProvider implements InventoryProvider {
         }
         contents.set(0, 8, ClickableItem.of(back, e -> {
             BanMenu.closeMenu(player);
-            MainMenu.openMenu(player);
         }));
     }
 

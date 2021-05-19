@@ -27,7 +27,7 @@ commands:
   admincore:
     description: Main command for admincore.
     permission: admincore.admin
-    usage: /admincore REPORT|MUTE|TEMPBAN|BAN|IPBAN {name}|{uuid}|{ip} PLAYER|UUID|IP {reason} [api]
+    usage: /admincore REPORT|MUTE|TEMPBAN|BAN|IPBAN {name}|{uuid}|{ip} PLAYER|UUID|IP {reason}
   freeze:
     description: Freeze a suspicious player.
     permission: admincore.staff
@@ -109,18 +109,20 @@ commands:
     usage: /kick {player} {reason}
 permissions:
   admincore.admin:
-    description: Allows a player to use the full functionality of Admin Core
+    description: Allows a staff member to use the full functionality of Admincore.
     default: op
     children:
-      admincore.staff: true
-      admincore.stats: true
       admincore.trusted: true
-  admincore.staff:
-    description: Allows a staff member to use Admin Core without giving the member administrator permissions
+  admincore.trusted:
+    description: Allows a staff member to view sensitive information of both the server's statistics and individual player statistics.
     default: op
+    children:
+      admincore.stats: true
   admincore.stats:
     description: Allows a staff member to check the detailed statistics of another player in staffmode without giving the staff member access to sensitive information.
     default: op
-  admincore.trusted:
-    description: Allows a staff member to check the detailed statistics of another player in staffmode including said player's sensitive information.
+    children:
+      admincore.staff: true
+  admincore.staff:
+    description: Allows a staff member to use core features and functionality of Admincore.
     default: op

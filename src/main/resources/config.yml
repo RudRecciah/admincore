@@ -1,13 +1,13 @@
 # Admincore Config
-# First time here or just want a guide? Head over to https://rudrecciah.dev/admincore/wiki/setup. It'll take you on a simple, step by step guide on setting up Admincore.
+# First time here or just want a guide? Head over to https://rudrecciah.dev/admincore/wiki/setup. It'll take you on a simple, step by step guide on setting up Admincore and its config.
 # Updating? Head over to https://rudrecciah.dev/admincore/wiki/updating. It'll take you on a simple, step by step guide on updating Admincore and its config.
 broadcasts: true
-announcementtitle: 'A Very Cool Announcement'
+announcementtitle: 'Hey!'
 bot:
   enable: false
   token: ''
   presence:
-    action: 0
+    action: 1
     url: 'https://rudrecciah.dev/admincore'
     status: 'staff members'
   prefix: '/'
@@ -27,12 +27,12 @@ chatlink:
     enable: false
     channel: ''
   get:
-    enable: true
+    enable: false
     token: ''
 webhook:
   customName: false
   name: 'jams'
-  icon: 'https://thumbnailer.mixcloud.com/unsafe/300x300/extaudio/9/0/d/1/3f46-6ee1-4ccd-b21c-14ed5bbc1703.jpg'
+  icon: 'https://raw.githubusercontent.com/RudRecciah/files/main/jams.PNG'
   errorLogger:
     use: false
     reload: true
@@ -64,10 +64,10 @@ staffmode:
     location:
       world: 'world'
       coordinates:
-        x: 12.0
-        y: 8.0
+        x: 0.0
+        y: 0.0
         z: 0.0
-        yaw: -90
+        yaw: 0
         pitch: 0
   pseudodisconnect:
     send-message: true
@@ -80,12 +80,12 @@ staffmode:
       reasons:
         1: 'Cheating'
         2: 'Chat Abuse'
-        3: 'idk fookin botum geah moates'
+        3: 'Harassment'
         4: 'Chargebacks'
         5: 'DDoS Threats'
         6: 'Name Abuse'
-        7: 'Player Threats'
-        8: ''
+        7: 'Threatening Players'
+        8: 'Conspiracy'
       autoclose:
         close-on-mute: true
         close-on-tempban: true
@@ -96,42 +96,42 @@ staffmode:
       reasons:
         1: 'Cheating'
         2: 'Chat Abuse'
-        3: 'idk fookin botum geah moates'
+        3: 'Harassment'
         4: 'Chargebacks'
         5: 'DDoS Threats'
         6: 'Name Abuse'
-        7: 'Player Threats'
-        8: ''
+        7: 'Threatening Players'
+        8: 'Conspiracy'
       tempban-length: 30
       ip-ban: true
     mute:
       reasons:
         1: 'Cheating'
         2: 'Chat Abuse'
-        3: 'idk fookin botum geah moates'
+        3: 'Harassment'
         4: 'Chargebacks'
         5: 'DDoS Threats'
         6: 'Name Abuse'
-        7: 'Player Threats'
-        8: ''
+        7: 'Threatening Players'
+        8: 'Conspiracy'
       mute-length: 30
     appeals:
       mute:
-        allow-appeals: true
+        allow-appeals: false
         message: 'To appeal your mute, go to https://example.com/appeals.'
       tempban:
-        allow-appeals: true
+        allow-appeals: false
         message: 'To appeal your ban, go to https://example.com/appeals.'
       ban:
-        allow-appeals: true
+        allow-appeals: false
         message: 'To appeal your ban, go to https://example.com/appeals.'
       ip-ban:
-        allow-appeals: true
+        allow-appeals: false
         message: 'To appeal your IP ban, go to https://example.com/appeals.'
       api:
         enable: false
         hostname: localhost
-        port: 9090
+        port: 5000
   stats:
     api-key: ''
     public-networks: false
@@ -159,4 +159,4 @@ serverstatus:
     log: true
   ping:
     log: true
-version: 3
+version: 4

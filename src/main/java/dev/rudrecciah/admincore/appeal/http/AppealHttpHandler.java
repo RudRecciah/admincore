@@ -9,6 +9,7 @@ import io.undertow.util.Headers;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 import static dev.rudrecciah.admincore.Main.plugin;
 
@@ -30,7 +31,7 @@ public class AppealHttpHandler implements Runnable {
     @Override
     public void run() {
         server.start();
-        plugin.getServer().getLogger().info("[Admincore] Admincore HTTP Server Enabled");
+        plugin.getServer().getLogger().info("[Admincore] Admincore HTTP Server enabled on port" + plugin.getConfig().getInt("staffmode.punishment.appeals.api.port"));
     }
 
     private int handle(HttpServerExchange e) {
@@ -52,6 +53,39 @@ public class AppealHttpHandler implements Runnable {
         } catch(Exception exception) {
             return 400;
         }
+        if(Pattern.compile("[^-0-9a-zA-Z_,.#@ ]").matcher(map.get("id").toString()).find()) {
+            return 400;
+        }
+        if(Pattern.compile("[^-0-9a-zA-Z_,.#@ ]").matcher(map.get("name").toString()).find()) {
+            return 400;
+        }
+        if(Pattern.compile("[^-0-9a-zA-Z_,.#@ ]").matcher(map.get("uuid").toString()).find()) {
+            return 400;
+        }
+        if(Pattern.compile("[^-0-9a-zA-Z_,.#@ ]").matcher(map.get("type").toString()).find()) {
+            return 400;
+        }
+        if(Pattern.compile("[^-0-9a-zA-Z_,.#@ ]").matcher(map.get("reason").toString()).find()) {
+            return 400;
+        }
+        if(Pattern.compile("[^-0-9a-zA-Z_,.#@ ]").matcher(map.get("evidence").toString()).find()) {
+            return 400;
+        }
+        if(Pattern.compile("[^-0-9a-zA-Z_,.#@ ]").matcher(map.get("punishedBefore").toString()).find()) {
+            return 400;
+        }
+        if(Pattern.compile("[^-0-9a-zA-Z_,.#@ ]").matcher(map.get("email").toString()).find()) {
+            return 400;
+        }
+        if(Pattern.compile("[^-0-9a-zA-Z_,.#@ ]").matcher(map.get("number").toString()).find()) {
+            return 400;
+        }
+        if(Pattern.compile("[^-0-9a-zA-Z_,.#@ ]").matcher(map.get("discordName").toString()).find()) {
+            return 400;
+        }
+        if(Pattern.compile("[^-0-9a-zA-Z_,.#@ ]").matcher(map.get("discordId").toString()).find()) {
+            return 400;
+        }
         if(map.get("id").toString().isEmpty()) {
             map.put("id", "�");
         }
@@ -71,7 +105,7 @@ public class AppealHttpHandler implements Runnable {
             map.put("evidence", "�");
         }
         if(map.get("punishedBefore").toString().isEmpty()) {
-            map.put("punsihedBefore", "�");
+            map.put("punishedBefore", "�");
         }
         if(map.get("email").toString().isEmpty()) {
             map.put("email", "�");
@@ -85,7 +119,7 @@ public class AppealHttpHandler implements Runnable {
         if(map.get("discordId").toString().isEmpty()) {
             map.put("discordId", "�");
         }
-        if(map.get("id").toString().equalsIgnoreCase("�") || map.get("uuid").toString().equalsIgnoreCase("�") || map.get("type").toString().equalsIgnoreCase("�")) {
+        if(map.get("id").toString().equalsIgnoreCase("�") || map.get("uuid").toString().equalsIgnoreCase("�") || map.get("type").toString().equalsIgnoreCase("�") || map.get("name").toString().equalsIgnoreCase("�")) {
             return 400;
         }
         int code = AppealDataHandler.makeAppeal(map);

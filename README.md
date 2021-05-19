@@ -1,6 +1,7 @@
 # Admincore
 ### An indev core for Spigot and Paper server administration.
-**Current Features (0.3.0)**:
+**Current Features (0.5.0):**
+* Support for 1.16.x
 * Announcement System
 * Error Logging System
     * Logging to console
@@ -23,7 +24,7 @@
         * Report players (also via /report)
         * Mute Players (also via /mute)
         * Ban Players (also via /ban)
-        * IP Ban Players (also via /ban or /ipban)
+        * IP Ban Players (also via /ban)
         * Tempban Players (also via /tempban)
         * Check Player Aliases (also via /alias)
         * Check Player Inventory
@@ -42,32 +43,31 @@
     * Player freezing (bot)
     * Player punishment history checking (bot)
     * Player IPQS statistic checking (bot)
+* Player Appeal System
+    * HTTP Server
+    * Appeals For All Punishments
+    * Appeal Acceptation/Rejection
+    * Punishment Management (Control Punishment Based On Appeal Acceptance)
+* Broadcast System (Updates And Messages From Admincore)
 * And More!
 
-Roadmap (For a more accurate and complete roadmap, check out the github project for Admincore!):
-  * 0.4.0
-    * Punishment Appeal System
-    * Report & Punishment System API
-    * Misc
-  * 0.5.0
-    * QA Testing/Bug Fixing
-    * Misc
+**Roadmap (For a more accurate and complete roadmap, check out the GitHub project for Admincore!):**
   * 0.6.0
-    * 1.16.x Support
+    * Permission overhaul
     * 1.15.x Support
     * 1.14.x Support
     * 1.13.x Support
     * 1.12.x Support
     * Misc
   * 0.7.0
-    * Bungeecord Support
-  * 0.8.0
-    * Final Touches
     * Documentation
+  * 0.8.0
+    * Bungeecord Support
+    * Bungeecord Documentation
   * 0.9.0
-    * Public Beta
+    * Beta
     * Bug Fixes
-    * Misc
+    * Final Touches
   * 1.0.0
     * Release
   * 1.1.0

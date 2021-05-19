@@ -36,10 +36,6 @@ public class Muter implements CommandExecutor {
             p.sendMessage(ChatColor.YELLOW + "You must be in staffmode to mute a player!");
             return true;
         }
-        if(plugin.getServer().getOfflinePlayer(args[0]).getPlayer() != null && plugin.getServer().getPlayer(args[0]).hasPermission("admincore.staff")) {
-            p.sendMessage(ChatColor.YELLOW + "You can't mute a staff member!");
-            return true;
-        }
         p.setMetadata("staffmodeChecking", new FixedMetadataValue(plugin, plugin.getServer().getOfflinePlayer(args[0]).getUniqueId()));
         MuteMenu.openMenu(p);
         return true;

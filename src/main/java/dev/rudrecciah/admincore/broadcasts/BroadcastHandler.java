@@ -57,6 +57,7 @@ public class BroadcastHandler {
             SilentErrorHandler.onSilentError(e);
         }
         String main = new String(mBytes, StandardCharsets.UTF_8);
+        main = main.split(System.lineSeparator())[0];
         Path localPth = Paths.get(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "sd" + File.separator + "broadcasts" + File.separator + "LOCAL_BROADCAST");
         byte[] lBytes = null;
         try {

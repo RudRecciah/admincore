@@ -22,7 +22,7 @@ public class PluginUpdateChecker {
     public static void checkForUpdates() {
         //gets and saves version from origin
         try {
-            ReadableByteChannel readChannel = Channels.newChannel(new URL("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/PLUGIN_VERSION").openStream());
+            ReadableByteChannel readChannel = Channels.newChannel(new URL("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/other/PLUGIN_VERSION").openStream());
             File dir = new File(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "sd" + File.separator + "ver");
             File file = new File(dir, "ORIGIN_PLUGIN_VERSION");
             if(!dir.exists()) {

@@ -20,19 +20,11 @@ public class ReportCommandHandler implements CommandExecutor {
             return true;
         }
         if(args.length != 1) {
-            if(sender instanceof Player) {
-                sender.sendMessage(ChatColor.YELLOW + "You need to specify a player!");
-                return true;
-            }
-            plugin.getLogger().severe("You need to specify a player!");
+            sender.sendMessage(ChatColor.YELLOW + "You need to specify a player!");
             return true;
         }
         if(!plugin.getServer().getOfflinePlayer(args[0]).hasPlayedBefore()) {
-            if(sender instanceof Player) {
-                sender.sendMessage(ChatColor.YELLOW + "This player has never played before!");
-                return true;
-            }
-            plugin.getLogger().severe("This player has never played before!");
+            sender.sendMessage(ChatColor.YELLOW + "This player has never played before!");
             return true;
         }
         if(sender.getName().equalsIgnoreCase(args[0])) {

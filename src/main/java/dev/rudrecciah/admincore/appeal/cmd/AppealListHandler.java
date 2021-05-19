@@ -34,7 +34,7 @@ public class AppealListHandler implements CommandExecutor {
                 plugin.getLogger().info("There are no open appeals!");
                 return true;
             }
-            sender.sendMessage(ChatColor.YELLOW + "There are no open appeals!");
+            sender.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE]" + ChatColor.YELLOW + "There are no open appeals!");
             return true;
         }
         if(console) {
