@@ -25,6 +25,10 @@ public class IpBanProvider implements InventoryProvider {
             player.sendMessage(ChatColor.YELLOW + "Something went wrong! I have no idea what, but something did. Relog and try again, and if that doesn't help report this bug.");
             return;
         }
+        if(!player.hasPermission("admincore.ipban")) {
+            IpBanMenu.closeMenu(player);
+            player.sendMessage(ChatColor.YELLOW + "You don't have permission to IP ban players!");
+        }
         String uuid = DataHandler.getMetaString(player, "staffmodeChecking");
         OfflinePlayer target = plugin.getServer().getOfflinePlayer(UUID.fromString(uuid));
         ItemStack reason1 = ItemCreator.createSimpleItemStack(Material.MAP, 1, plugin.getConfig().getString("staffmode.punishment.ban.reasons.1"), "");
@@ -59,7 +63,7 @@ public class IpBanProvider implements InventoryProvider {
             }
         }
         contents.set(0, 8, ClickableItem.of(back, e -> {
-            BanMenu.closeMenu(player);
+            IpBanMenu.closeMenu(player);
         }));
     }
 

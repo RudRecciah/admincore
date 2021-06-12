@@ -109,20 +109,120 @@ commands:
     usage: /kick {player} {reason}
 permissions:
   admincore.admin:
-    description: Allows a staff member to use the full functionality of Admincore.
+    description: Allows a staff member to use the full functionality of Admincore. This includes access to sensitive information.
     default: op
     children:
       admincore.trusted: true
+      admincore.commands: true
   admincore.trusted:
-    description: Allows a staff member to view sensitive information of both the server's statistics and individual player statistics.
+    description: Allows a staff member to check the statistics of a player including sensitive information. This also allows the staff member to see sensitive information of the server, if sensitive protection is enabled. This gives the staff member access to staffmode.
     default: op
     children:
       admincore.stats: true
   admincore.stats:
-    description: Allows a staff member to check the detailed statistics of another player in staffmode without giving the staff member access to sensitive information.
+    description: Allows a staff member to check the statistics of a player excluding sensitive information. This gives the staff member access to staffmode.
+    default: op
+    children:
+      admincore.staffmode: true
+  admincore.commands:
+    description: Allows a staff member to use all feautres of Admincore, excluding sending announcements and viewing sensitive player information and sensitive server information with sensitive protection enabled.
+    default: op
+    children:
+      admincore.appeal: true
+      admincore.report: true
+      admincore.freeze: true
+      admincore.status: true
+      admincore.staffmode: true
+  admincore.appeal:
+    description: Allows a staff member to view and manage punishment appeals.
+    default: op
+    children:
+      admincore.staff: true
+  admincore.report:
+    description: Allows a staff member to view and manage player reports.
+    default: op
+    children:
+      admincore.staff: true
+  admincore.freeze:
+    description: Allows a staff member to freeze and unfreeze a player.
+    default: op
+    children:
+      admincore.staff: true
+  admincore.status:
+    description: Allows a staff member to view the server's statistics. Requires admincore.trusted to show sensitive information if sensitive protection is enabled.
+    default: op
+    children:
+      admincore.staff: true
+  admincore.staffmode:
+    description: Allows a staff member to use all permissions staffmode requires.
+    default: op
+    children:
+      admincore.inspect: true
+      admincore.ban: true
+      admincore.tempban: true
+      admincore.mute: true
+      admincore.unmute: true
+      admincore.aliases: true
+      admincore.history: true
+      admincore.pardon: true
+      admincore.ippardon: true
+      admincore.ipban: true
+      admincore.kick: true
+  admincore.inspect:
+    description: Allows a staff member to inspect another player.
+    default: op
+    children:
+      admincore.staff: true
+  admincore.ban:
+    description: Allows a staff member to ban a player.
+    default: op
+    children:
+      admincore.staff: true
+  admincore.tempban:
+    description: Allows a staff member to ban a player temporarily.
+    default: op
+    children:
+      admincore.staff: true
+  admincore.mute:
+    description: Allows a staff member to mute a player.
+    default: op
+    children:
+      admincore.staff: true
+  admincore.unmute:
+    description: Allows a staff member to unmute a player.
+    default: op
+    children:
+      admincore.staff: true
+  admincore.aliases:
+    description: Allows a staff member to view a player's aliases.
+    default: op
+    children:
+      admincore.staff: true
+  admincore.history:
+    description: Allows a staff member to view the punishment history of a player.
+    default: op
+    children:
+      admincore.staff: true
+  admincore.pardon:
+    description: Allows a staff member to pardon banned players.
+    default: op
+    children:
+      admincore.staff: true
+  admincore.ippardon:
+    description: Allows a staff member to pardon banned IP addresses.
+    default: op
+    children:
+      admincore.staff: true
+  admincore.ipban:
+    description: Allows a staff member to IP ban players.
+    default: op
+    children:
+      admincore.staff: true
+  admincore.kick:
+    description: Allows a staff member to kick a player.
     default: op
     children:
       admincore.staff: true
   admincore.staff:
-    description: Allows a staff member to use core features and functionality of Admincore.
+    description: Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.
     default: op
