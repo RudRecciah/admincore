@@ -5,8 +5,8 @@ api-version: 1.16
 prefix: Admincore
 authors: [ RudRecciah ]
 description: A core plugin for Spigot and Paper server administration.
-website: https://rudrecciah.dev/core
-softdepend: [PlaceholderAPI]
+website: https://rudrecciah.dev/admincore
+softdepend: [ PlaceholderAPI ]
 commands:
   staffchat:
     description: Sends a message in a staff-only chat channel.
@@ -14,7 +14,7 @@ commands:
     usage: /staffchat {message}
   serverstatus:
     description: See the status of the server including the server's TPS, your ping, playercount, and more.
-    permission: admincore.staff
+    permission: admincore.status
     usage: /serverstatus
   announce:
     description: Send an announcment to all players.
@@ -22,7 +22,7 @@ commands:
     usage: /announce {message}
   staffmode:
     description: Hides staff from all players who are not staff themselves and allows staff to spectate players.
-    permission: admincore.staff
+    permission: admincore.staffmode
     usage: /staffmode
   admincore:
     description: Main command for admincore.
@@ -30,38 +30,38 @@ commands:
     usage: /admincore REPORT|MUTE|TEMPBAN|BAN|IPBAN {name}|{uuid}|{ip} PLAYER|UUID|IP {reason}
   freeze:
     description: Freeze a suspicious player.
-    permission: admincore.staff
+    permission: admincore.freeze
     usage: /freeze {player}
   unfreeze:
     description: Unfreeze a suspicious player.
-    permission: admincore.staff
+    permission: admincore.freeze
     usage: /unfreeze {player}
   report:
     description: Report a player for suspected infractions.
     usage: /report {player}
   inspect:
     description: Inspect a player.
-    permission: admincore.staff
+    permission: admincore.inspect
     usage: /inspect {player}
   ban:
     description: Ban a player.
-    permission: admincore.staff
+    permission: admincore.ban
     usage: /ban {player}
   tempban:
     description: Ban a player temporarily.
-    permission: admincore.staff
+    permission: admincore.tempban
     usage: /tempban {player}
   mute:
     description: Mute a player.
-    permission: admincore.staff
+    permission: admincore.mute
     usage: /mute {player}
   unmute:
     description: Unmute a player.
-    permission: admincore.staff
+    permission: admincore.mute
     usage: /unmute {player}
   aliases:
     description: Check a player's other accounts.
-    permission: admincore.staff
+    permission: admincore.aliases
     usage: /aliases {player}
     aliases: alias
   staffnotifications:
@@ -70,42 +70,42 @@ commands:
     usage: /staffnotifications
   reviewreport:
     description: Review player reports.
-    permission: admincore.staff
+    permission: admincore.report
     usage: /reportreview [player]|last|close
   listreports:
     description: See a list of all open reports.
-    permission: admincore.staff
+    permission: admincore.report
     usage: /reviewreports
   punishmenthistory:
     description: Check the ban and mute history of a player.
-    permission: admincore.staff
+    permission: admincore.history
     usage: /punishmenthistory {player}
   pardon:
     description: Pardon a player.
-    permission: admincore.staff
+    permission: admincore.pardon
     usage: /pardon {player}
     aliases: unban
   pardon-ip:
     description: Pardon an IP address.
-    permission: admincore.staff
+    permission: admincore.ippardon
     usage: /pardon-ip {ip}
     aliases: [unban-ip, unipban]
   ban-ip:
     description: Ban a player's IP address.
-    permission: admincore.staff
+    permission: admincore.ipban
     usage: /ban-ip {player}
     aliases: ipban
   listappeals:
     description: See a list of all open appeals.
-    permission: admincore.staff
+    permission: admincore.appeal
     usage: /reviewappeals
   reviewappeal:
     description: Review a specific appeal
-    permission: admincore.staff
+    permission: admincore.appeal
     usage: /reviewappeal [id]|last|accept|reject
   kick:
     description: Kick a player.
-    permission: admincore.staff
+    permission: admincore.kick
     usage: /kick {player} {reason}
 permissions:
   admincore.admin:
@@ -161,7 +161,6 @@ permissions:
       admincore.ban: true
       admincore.tempban: true
       admincore.mute: true
-      admincore.unmute: true
       admincore.aliases: true
       admincore.history: true
       admincore.pardon: true
@@ -185,11 +184,6 @@ permissions:
       admincore.staff: true
   admincore.mute:
     description: Allows a staff member to mute a player.
-    default: op
-    children:
-      admincore.staff: true
-  admincore.unmute:
-    description: Allows a staff member to unmute a player.
     default: op
     children:
       admincore.staff: true
