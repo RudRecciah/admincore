@@ -6,7 +6,7 @@
 
     <groupId>dev.rudrecciah</groupId>
     <artifactId>admincore</artifactId>
-    <version>0.5.1</version>
+    <version>0.5.2</version>
     <packaging>jar</packaging>
 
     <name>Admincore</name>
