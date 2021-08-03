@@ -39,7 +39,7 @@ public class AppealReviewHandler implements CommandExecutor {
             if(appeal == null || appeal.uuid.equalsIgnoreCase("unknown")) {
                 p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "There aren't any open appeals!");
                 if(DataHandler.getBoolean(p, "notifs")) {
-                    p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                    p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
                 }
                 return true;
             }
@@ -54,7 +54,7 @@ public class AppealReviewHandler implements CommandExecutor {
                 if(appeal == null || appeal.uuid.equalsIgnoreCase("unknown")) {
                     p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "That appeal was already closed!");
                     if(DataHandler.getBoolean(p, "notifs")) {
-                        p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                        p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
                     }
                     return true;
                 }
@@ -63,7 +63,7 @@ public class AppealReviewHandler implements CommandExecutor {
             }
             p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE]" + ChatColor.YELLOW + "You have no open appeal to review!");
             if(DataHandler.getBoolean(p, "notifs")) {
-                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
             }
             return true;
         }
@@ -78,7 +78,7 @@ public class AppealReviewHandler implements CommandExecutor {
                         if(player.hasPermission("admincore.staff")) {
                             player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Admincore " + ChatColor.YELLOW + "Appeal Logger: " + plugin.getServer().getOfflinePlayer(UUID.fromString(appeal.uuid)).getName() + "'s appeal was just accepted!");
                             if(DataHandler.getBoolean(player, "notifs")) {
-                                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
                             }
                         }
                     }
@@ -89,7 +89,7 @@ public class AppealReviewHandler implements CommandExecutor {
             }
             p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE]" + ChatColor.YELLOW + "You have no open appeal to accept!");
             if(DataHandler.getBoolean(p, "notifs")) {
-                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
             }
             return true;
         }
@@ -104,7 +104,7 @@ public class AppealReviewHandler implements CommandExecutor {
                     if(player.hasPermission("admincore.staff")) {
                         player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Admincore " + ChatColor.YELLOW + "Appeal Logger: " + plugin.getServer().getOfflinePlayer(UUID.fromString(appeal.uuid)).getName() + "'s appeal was just rejected!");
                         if(DataHandler.getBoolean(player, "notifs")) {
-                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
                         }
                     }
                 }
@@ -112,7 +112,7 @@ public class AppealReviewHandler implements CommandExecutor {
             }
             p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE]" + ChatColor.YELLOW + "You have no open appeal to reject!");
             if(DataHandler.getBoolean(p, "notifs")) {
-                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
             }
             return true;
         }
@@ -121,7 +121,7 @@ public class AppealReviewHandler implements CommandExecutor {
         if(appeal == null || appeal.uuid.equalsIgnoreCase("unknown")) {
             p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "That appeal either does not exist or was already closed!");
             if(DataHandler.getBoolean(p, "notifs")) {
-                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
             }
             return true;
         }

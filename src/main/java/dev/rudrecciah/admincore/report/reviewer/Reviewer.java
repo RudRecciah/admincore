@@ -34,7 +34,7 @@ public class Reviewer implements CommandExecutor {
             sender.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "This player either does not exist, or the server has no record of them stored!");
             Player p = (Player) sender;
             if(DataHandler.getBoolean(p, "notifs")) {
-                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
             }
             return true;
         }
@@ -46,7 +46,7 @@ public class Reviewer implements CommandExecutor {
             }else{
                 p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "You have no player to continue checking reports for!");
                 if(DataHandler.getBoolean(p, "notifs")) {
-                    p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                    p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
                 }
                 return true;
             }
@@ -56,18 +56,18 @@ public class Reviewer implements CommandExecutor {
                 if(ReportDataHandler.closeReport(UUID.fromString(DataHandler.getMetaString(p, "reportChecking")), DataHandler.getMetaInt(p, "reportNum"))) {
                     p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "Either this report was already closed by someone else, or you have no open report to close!");
                     if(DataHandler.getBoolean(p, "notifs")) {
-                        p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                        p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
                     }
                     return true;
                 }
                 p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "Report closed!");
                 if(DataHandler.getBoolean(p, "notifs")) {
-                    p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                    p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
                 }
             }else{
                 p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "You have no report to close!");
                 if(DataHandler.getBoolean(p, "notifs")) {
-                    p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                    p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
                 }
             }
             return true;
@@ -82,7 +82,7 @@ public class Reviewer implements CommandExecutor {
             if(reports == null) {
                 p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "There aren't any open reports for that player!");
                 if(DataHandler.getBoolean(p, "notifs")) {
-                    p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                    p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
                 }
                 return true;
             }
@@ -95,7 +95,7 @@ public class Reviewer implements CommandExecutor {
             if(reports == null) {
                 p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "There aren't any open reports!");
                 if(DataHandler.getBoolean(p, "notifs")) {
-                    p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                    p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
                 }
                 return true;
             }
@@ -104,7 +104,7 @@ public class Reviewer implements CommandExecutor {
         }
         p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "There aren't any open reports!");
         if(DataHandler.getBoolean(p, "notifs")) {
-            p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+            p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
         }
         return true;
     }

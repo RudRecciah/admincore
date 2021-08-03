@@ -58,7 +58,7 @@ public class MuteProvider implements InventoryProvider {
                     }else{
                         player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + target.getName() + " is already muted!");
                         if(DataHandler.getBoolean(player, "notifs")) {
-                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
                         }
                     }
                     MuteMenu.closeMenu(player);

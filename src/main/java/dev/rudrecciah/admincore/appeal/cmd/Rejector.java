@@ -21,7 +21,7 @@ public class Rejector {
         }
         p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "That appeal either does not exist or was already closed!");
         if(DataHandler.getBoolean(p, "notifs")) {
-            p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+            p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
         }
     }
 }

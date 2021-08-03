@@ -42,7 +42,7 @@ public class AppealDataHandler {
                         if (player.hasPermission("admincore.staff")) {
                             player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Admincore " + ChatColor.YELLOW + "Appeal Logger: " + map.get("name") + " just appealed!" + "\n" + "ID: " + map.get("id"));
                             if(DataHandler.getBoolean(player, "notifs")) {
-                                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
                             }
                         }
                     }
@@ -76,7 +76,7 @@ public class AppealDataHandler {
                         if (player.hasPermission("admincore.staff")) {
                             player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Admincore " + ChatColor.YELLOW + "Appeal Logger: " + map.get("name") + " just appealed!" + "\n" + "ID: " + map.get("id"));
                             if(DataHandler.getBoolean(player, "notifs")) {
-                                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
                             }
                         }
                     }
@@ -109,7 +109,7 @@ public class AppealDataHandler {
                         if (player.hasPermission("admincore.staff")) {
                             player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Admincore " + ChatColor.YELLOW + "Appeal Logger: " + map.get("name") + " just appealed!" + "\n" + "ID: " + map.get("id"));
                             if(DataHandler.getBoolean(player, "notifs")) {
-                                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
                             }
                         }
                     }

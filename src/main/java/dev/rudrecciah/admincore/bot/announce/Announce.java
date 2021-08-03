@@ -30,7 +30,7 @@ public class Announce {
             java.util.List<Player> players = (List) plugin.getServer().getOnlinePlayers();
             for(Player player : players) {
                 player.sendTitle(ChatColor.BLUE + "" + ChatColor.BOLD + plugin.getConfig().getString("announcementtitle"), ChatColor.YELLOW + String.valueOf(contentsList), 0, 80, 20);
-                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
             }
             embed.setTitle("Announcement Sent!");
             embed.setDescription("Your announcement was sent to all online players!");

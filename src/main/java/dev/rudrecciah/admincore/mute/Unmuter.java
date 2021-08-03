@@ -48,7 +48,7 @@ public class Unmuter implements CommandExecutor {
             Player p = (Player) sender;
             p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + args[0] + " has been unmuted!");
             if(DataHandler.getBoolean(p, "notifs")) {
-                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
             }
         }
         return true;
