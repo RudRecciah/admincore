@@ -36,15 +36,15 @@ public class MainProvider implements InventoryProvider {
         if(target == null) {
             player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "This player is offline, you cannot inspect them!");
             if(DataHandler.getBoolean(player, "notifs")) {
-                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
+                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
             }
             MainMenu.closeMenu(player);
             return;
         }
-        ItemStack report = ItemCreator.createSimpleItemStack(Material.BOOK_AND_QUILL, 1, "REPORT " + target.getName().toUpperCase(Locale.ROOT), "Report " + target.getName() + " for an infraction!");
+        ItemStack report = ItemCreator.createSimpleItemStack(Material.WRITABLE_BOOK, 1, "REPORT " + target.getName().toUpperCase(Locale.ROOT), "Report " + target.getName() + " for an infraction!");
         ItemStack mute = ItemCreator.createSimpleItemStack(Material.MAP, 1, "MUTE " + target.getName().toUpperCase(Locale.ROOT), "Mute " + target.getName() + " for a chat infraction!");
-        ItemStack ban = ItemCreator.createSimpleItemStack(Material.FIREWORK_CHARGE, 1, "BAN " + target.getName().toUpperCase(Locale.ROOT) + " PERMANENTLY", "Ban " + target.getName() + " permanently for an infraction!");
-        ItemStack tempban = ItemCreator.createSimpleItemStack(Material.FIRE, 1, "BAN " + target.getName().toUpperCase(Locale.ROOT) + " FOR 30 DAYS", "Ban " + target.getName() + " for 30 days for an infraction!");
+        ItemStack ban = ItemCreator.createSimpleItemStack(Material.FIREWORK_STAR, 1, "BAN " + target.getName().toUpperCase(Locale.ROOT) + " PERMANENTLY", "Ban " + target.getName() + " permanently for an infraction!");
+        ItemStack tempban = ItemCreator.createSimpleItemStack(Material.FIRE_CHARGE, 1, "BAN " + target.getName().toUpperCase(Locale.ROOT) + " FOR 30 DAYS", "Ban " + target.getName() + " for 30 days for an infraction!");
         ItemStack head = itemFromUuid(UUID.fromString(uuid));
         ItemMeta headMeta = head.getItemMeta();
         headMeta.setDisplayName(ChatColor.BLUE + "" + ChatColor.BOLD + "[" + target.getName().toUpperCase(Locale.ROOT) + "]");
@@ -87,7 +87,7 @@ public class MainProvider implements InventoryProvider {
                 ItemMeta sMeta = stats.getItemMeta();
                 player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "Loading statistics. . .");
                 if(DataHandler.getBoolean(player, "notifs")) {
-                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
+                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
                 }
                 sMeta.setLore(StatsGrabber.grabStats(player, target));
                 stats.setItemMeta(sMeta);
@@ -113,7 +113,7 @@ public class MainProvider implements InventoryProvider {
         if(target == null) {
             player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "This player is offline, you cannot inspect them!");
             if(DataHandler.getBoolean(player, "notifs")) {
-                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
+                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
             }
             MainMenu.closeMenu(player);
         }

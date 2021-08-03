@@ -26,7 +26,7 @@ public class MuteLogger {
             if (player.hasPermission("admincore.staff")) {
                 player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Admincore " + ChatColor.YELLOW + "Mute Logger: " + t.getName() + " was just muted for " + length + " minutes!");
                 if(DataHandler.getBoolean(player, "notifs")) {
-                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
+                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
                 }
             }
         }
@@ -66,7 +66,7 @@ public class MuteLogger {
             if (player.hasPermission("admincore.staff")) {
                 player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Admincore " + ChatColor.YELLOW + "Mute Logger: " + t.getName() + " was just muted for " + length + " minutes!");
                 if(DataHandler.getBoolean(player, "notifs")) {
-                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
+                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
                 }
             }
         }

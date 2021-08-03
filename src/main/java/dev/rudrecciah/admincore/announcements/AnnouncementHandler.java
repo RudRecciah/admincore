@@ -23,7 +23,7 @@ public class AnnouncementHandler implements CommandExecutor {
             List<Player> players = (List) plugin.getServer().getOnlinePlayers();
             for(Player player : players) {
                 player.sendTitle(ChatColor.BLUE + "" + ChatColor.BOLD + plugin.getConfig().getString("announcementtitle"), ChatColor.YELLOW + String.valueOf(message), 0, 80, 20);
-                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
+                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
             }
             return true;
         }

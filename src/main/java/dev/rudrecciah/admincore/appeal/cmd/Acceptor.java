@@ -19,7 +19,7 @@ public class Acceptor {
         if(appeal == null || appeal.uuid.equalsIgnoreCase("unknown")) {
             p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "That appeal either does not exist or was already closed!");
             if(DataHandler.getBoolean(p, "notifs")) {
-                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
             }
             if(appeal != null) {
                 File file = new File(plugin.getDataFolder() + File.separator + "data" + File.separator + "ad", appeal.id + ".yml");
@@ -59,7 +59,7 @@ public class Acceptor {
         }else{
             p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE] " + ChatColor.YELLOW + "That appeal is invalid and you cannot accept it! It will automatically be rejected.");
             if(DataHandler.getBoolean(p, "notifs")) {
-                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
             }
             File file = new File(plugin.getDataFolder() + File.separator + "data" + File.separator + "ad", appeal.id + ".yml");
             if(file.exists()) {

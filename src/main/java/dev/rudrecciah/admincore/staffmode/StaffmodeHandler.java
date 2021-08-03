@@ -66,7 +66,7 @@ public class StaffmodeHandler implements CommandExecutor {
                     if(p != player && player.hasPermission("admincore.staff")) {
                         player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL]" + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + " Admincore " + ChatColor.YELLOW + "" + p.getName() + " has entered staffmode!");
                         if(DataHandler.getBoolean(player, "notifs")) {
-                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
+                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
                         }
                     }
                 }
@@ -74,7 +74,7 @@ public class StaffmodeHandler implements CommandExecutor {
             enterStaffmode(p);
             p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE]" + ChatColor.YELLOW + " You have entered staffmode!");
             if(DataHandler.getBoolean(p, "notifs")) {
-                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
             }
         }else{
             spawn(p);
@@ -97,7 +97,7 @@ public class StaffmodeHandler implements CommandExecutor {
                     if(p != player && player.hasPermission("admincore.staff")) {
                         player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL]" + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + " Admincore " + ChatColor.YELLOW + "" + p.getName() + " has left staffmode!");
                         if(DataHandler.getBoolean(player, "notifs")) {
-                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
+                            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
                         }
                     }
                 }
@@ -105,7 +105,7 @@ public class StaffmodeHandler implements CommandExecutor {
             leaveStaffmode(p);
             p.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFFMODE]" + ChatColor.YELLOW + " You have left staffmode!");
             if(DataHandler.getBoolean(p, "notifs")) {
-                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
             }
         }
     }

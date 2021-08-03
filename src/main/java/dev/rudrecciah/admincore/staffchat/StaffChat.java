@@ -44,7 +44,7 @@ public class StaffChat implements CommandExecutor {
             if (player.hasPermission("admincore.staff")) {
                 player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Minecraft " + ChatColor.YELLOW + p.getName() + ": " + message);
                 if(DataHandler.getBoolean(player, "notifs") && p != player) {
-                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
+                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
                 }
             }
         }
@@ -62,7 +62,7 @@ public class StaffChat implements CommandExecutor {
             if (player.hasPermission("admincore.staff")) {
                 player.sendMessage(ChatColor.BLUE + "" + ChatColor.BOLD + "[STAFF CHANNEL] " + ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Minecraft " + ChatColor.YELLOW + "Console: " + message);
                 if(DataHandler.getBoolean(player, "notifs")) {
-                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 1f, 1f);
+                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1f, 1f);
                 }
             }
         }
