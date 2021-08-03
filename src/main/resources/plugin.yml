@@ -1,7 +1,7 @@
 name: Admincore
 version: ${project.version}
 main: dev.rudrecciah.admincore.Main
-api-version: 1.14
+api-version: 1.15
 prefix: Admincore
 authors: [ RudRecciah ]
 description: A core plugin for Spigot and Paper server administration.
