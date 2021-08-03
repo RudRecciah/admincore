@@ -77,80 +77,81 @@ public final class Main extends JavaPlugin implements CommandExecutor, Listener 
             getLogger().severe("A server reload was detected! Never do this! Admincore, along with many other plugins, does not handle reloads gracefully and will generate errors. Stop your server and run your startup script manually to restart it. If you didn't reload, don't worry, this is just a false positive.");
             ErrorLogger.logWarn("A server reload was detected! Never do this! Admincore, along with many other plugins, does not handle reloads gracefully and will generate errors. Stop your server and run your startup script manually to restart it. If you didn't reload, don't worry, this is just a false positive.");
         }
-        if(!configExists) {
+        if(configExists) {
+            if(getConfig().getBoolean("bot.enable")) {
+                try {
+                    Bot.enableBot();
+                    getLogger().info("Admincore Discord Bot Enabled");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            getServer().getPluginManager().registerEvents(this, this);
+            DataLoader.saveDefaultdata();
+            DataLoader.get().options().copyDefaults(true);
+            PlayerDataHandler.createDefaults();
+            getCommand("staffchat").setExecutor(new StaffChat());
+            getCommand("serverstatus").setExecutor(new ServerStatus());
+            getCommand("announce").setExecutor(new AnnouncementHandler());
+            getCommand("staffmode").setExecutor(new StaffmodeHandler());
+            getCommand("admincore").setExecutor(new MasterCommand());
+            getCommand("freeze").setExecutor(new PlayerFreezer());
+            getCommand("unfreeze").setExecutor(new PlayerUnfreezer());
+            getCommand("report").setExecutor(new ReportCommandHandler());
+            getCommand("inspect").setExecutor(new Inspector());
+            getCommand("ban").setExecutor(new Banner());
+            getCommand("mute").setExecutor(new Muter());
+            getCommand("aliases").setExecutor(new AliasChecker());
+            getCommand("staffnotifications").setExecutor(new NotificationHandler());
+            getCommand("tempban").setExecutor(new Tempbanner());
+            getCommand("unmute").setExecutor(new Unmuter());
+            getCommand("reviewreport").setExecutor(new Reviewer());
+            getCommand("punishmenthistory").setExecutor(new HistoryLogger());
+            getCommand("pardon").setExecutor(new Unbanner());
+            getCommand("pardon-ip").setExecutor(new Unipbanner());
+            getCommand("ban-ip").setExecutor(new Ipbanner());
+            getCommand("listappeals").setExecutor(new AppealListHandler());
+            getCommand("reviewappeal").setExecutor(new AppealReviewHandler());
+            getCommand("kick").setExecutor(new Kicker());
+            getCommand("listreports").setExecutor(new ReportListHandler());
+            invManager = new InventoryManager(this);
+            invManager.init();
+            PluginUpdateChecker.checkForUpdates();
+            ConfigUpdateChecker.checkVersion();
+            if(getConfig().getBoolean("staffmode.punishment.appeals.api.enable")) {
+                handler = new AppealHttpHandler();
+                Thread h = new Thread(handler);
+                h.setName("Admincore HTTP Server thread");
+                h.start();
+            }
+            verifier = new PunishmentVerifier();
+            Thread v = new Thread(verifier);
+            v.setName("Admincore Punishment Verifier thread");
+            v.start();
+            try {
+                ReadableByteChannel readChannel = Channels.newChannel(new URL("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/other/data.md").openStream());
+                FileOutputStream fileOS = new FileOutputStream(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "README.md");
+                FileChannel writeChannel = fileOS.getChannel();
+                writeChannel.transferFrom(readChannel, 0, Long.MAX_VALUE);
+            } catch (IOException e) {
+                SilentErrorHandler.onSilentError(e);
+            }
+            getServer().getScheduler().runTaskTimer(this, this::kickIpBanned, 200, 200L);
+            int pluginId = 11086;
+            new Metrics(this, pluginId);
+            getServer().getScheduler().runTaskLater(this, new Runnable() {
+                @Override
+                public void run() {
+                    if(getConfig().getBoolean("broadcasts")) {
+                        BroadcastHandler.handleBroadcast();
+                    }
+                }
+            }, 400L);
+            getLogger().info("Admincore Plugin Enabled");
+        }else{
             getLogger().info("It seems like you either didn't have a config file for Admincore before running or you've just installed Admincore. Either way, it cannot be used in this state and may generate errors. Your server has been shut down to prevent a potantially fatal error. You should set up your config file before starting your server again. Any errors that you've experienced right now shouldn't be worried about, and should only be investigated if the behavior continues. Thank you!");
             getServer().shutdown();
         }
-        if(getConfig().getBoolean("bot.enable")) {
-            try {
-                Bot.enableBot();
-                getLogger().info("Admincore Discord Bot Enabled");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        getServer().getPluginManager().registerEvents(this, this);
-        DataLoader.saveDefaultdata();
-        DataLoader.get().options().copyDefaults(true);
-        PlayerDataHandler.createDefaults();
-        getCommand("staffchat").setExecutor(new StaffChat());
-        getCommand("serverstatus").setExecutor(new ServerStatus());
-        getCommand("announce").setExecutor(new AnnouncementHandler());
-        getCommand("staffmode").setExecutor(new StaffmodeHandler());
-        getCommand("admincore").setExecutor(new MasterCommand());
-        getCommand("freeze").setExecutor(new PlayerFreezer());
-        getCommand("unfreeze").setExecutor(new PlayerUnfreezer());
-        getCommand("report").setExecutor(new ReportCommandHandler());
-        getCommand("inspect").setExecutor(new Inspector());
-        getCommand("ban").setExecutor(new Banner());
-        getCommand("mute").setExecutor(new Muter());
-        getCommand("aliases").setExecutor(new AliasChecker());
-        getCommand("staffnotifications").setExecutor(new NotificationHandler());
-        getCommand("tempban").setExecutor(new Tempbanner());
-        getCommand("unmute").setExecutor(new Unmuter());
-        getCommand("reviewreport").setExecutor(new Reviewer());
-        getCommand("punishmenthistory").setExecutor(new HistoryLogger());
-        getCommand("pardon").setExecutor(new Unbanner());
-        getCommand("pardon-ip").setExecutor(new Unipbanner());
-        getCommand("ban-ip").setExecutor(new Ipbanner());
-        getCommand("listappeals").setExecutor(new AppealListHandler());
-        getCommand("reviewappeal").setExecutor(new AppealReviewHandler());
-        getCommand("kick").setExecutor(new Kicker());
-        getCommand("listreports").setExecutor(new ReportListHandler());
-        invManager = new InventoryManager(this);
-        invManager.init();
-        PluginUpdateChecker.checkForUpdates();
-        ConfigUpdateChecker.checkVersion();
-        if(getConfig().getBoolean("staffmode.punishment.appeals.api.enable")) {
-            handler = new AppealHttpHandler();
-            Thread h = new Thread(handler);
-            h.setName("Admincore HTTP Server thread");
-            h.start();
-        }
-        verifier = new PunishmentVerifier();
-        Thread v = new Thread(verifier);
-        v.setName("Admincore Punishment Verifier thread");
-        v.start();
-        try {
-            ReadableByteChannel readChannel = Channels.newChannel(new URL("https://raw.githubusercontent.com/RudRecciah/Admin-Core/main/other/data.md").openStream());
-            FileOutputStream fileOS = new FileOutputStream(Bukkit.getServer().getPluginManager().getPlugin("Admincore").getDataFolder() + File.separator + "data" + File.separator + "README.md");
-            FileChannel writeChannel = fileOS.getChannel();
-            writeChannel.transferFrom(readChannel, 0, Long.MAX_VALUE);
-        } catch (IOException e) {
-            SilentErrorHandler.onSilentError(e);
-        }
-        getServer().getScheduler().runTaskTimer(this, this::kickIpBanned, 200, 200L);
-        int pluginId = 11086;
-        new Metrics(this, pluginId);
-        getServer().getScheduler().runTaskLater(this, new Runnable() {
-            @Override
-            public void run() {
-                if(getConfig().getBoolean("broadcasts")) {
-                    BroadcastHandler.handleBroadcast();
-                }
-            }
-        }, 400L);
-        getLogger().info("Admincore Plugin Enabled");
     }
 
     public InventoryManager getInvManager() {
