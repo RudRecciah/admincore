@@ -1,24 +1,16 @@
-import React, { Component } from "react";
+import React, { FC, ReactElement } from "react";
+import Icon from "../utils/Icon";
 
 interface Props {
 
 }
 
-interface State {
+const Home: FC<Props> = (): ReactElement => {
+  return (
+    <React.Fragment>
+      <h1>you're not that guy pal</h1> <Icon font={"Material"} icon={"done"} className={"text-primary"}/>
+    </React.Fragment>
+  );
+};
 
-}
-
-export default class Home extends Component<Props, State> {
-  constructor(props: Readonly<Props>) {
-    super(props);
-    this.state = {};
-  }
-
-  render(): JSX.Element {
-    return (
-      <React.Fragment>
-        <h1>HEY</h1>
-      </React.Fragment>
-    );
-  }
-}
+export default Home;

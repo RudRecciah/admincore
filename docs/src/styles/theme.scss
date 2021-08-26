@@ -19,6 +19,18 @@ h1, h2, h3, h4, h5, h6, th .text-header {
     font-family: var(--bs-font-sans-serif-header);
 }
 
+h1, h2, h3, h4, h5, h6, th {
+    color: $primary;
+}
+
+p, span, td {
+    color: $light;
+}
+
+a {
+    color: $primary;
+}
+
 th {
     font-weight: normal;
 }

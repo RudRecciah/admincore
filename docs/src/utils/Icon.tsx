@@ -1,25 +1,20 @@
-import React, { Component } from "react";
+import React, { FC, ReactElement } from "react";
 
 interface Props {
   font: "Material";
   icon: string;
+  className?: string;
 }
 
-interface State {
-
-}
-
-export default class Icon extends Component<Props, State> {
-  constructor(props: Readonly<Props>) {
-    super(props);
-    this.state = {};
-  }
-
-  render(): JSX.Element {
-    return (
+const Icon: FC<Props> = ({ font, icon, className }): ReactElement => {
+  const classes = className ?? "";
+  return (
+    <React.Fragment>
       <React.Fragment>
-        {this.props.font === "Material" && <span className={"material-icons"}>{this.props.icon}</span>}
+        {font === "Material" && <span className={`material-icons ${classes}`}>{icon}</span>}
       </React.Fragment>
-    );
-  }
-}
+    </React.Fragment>
+  );
+};
+
+export default Icon;
