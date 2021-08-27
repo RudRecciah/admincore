@@ -1,0 +1,64 @@
+.shadow {
+    box-shadow: 0 0 16px 1px #000000 !important;
+}
+
+.text-link {
+    color: #e9004c !important;
+    transition: color 0.15s ease-in-out !important;
+}
+
+.text-link:hover, .text-link:focus, .text-link:active {
+    color: #c60041 !important;
+}
+
+.nav-btn-height {
+    min-height: 48px !important;
+    min-width: 128px !important;
+}
+
+.sidebar {
+    width: 280px !important;
+    height: 100vh !important;
+    background-color: #060f19;
+    box-shadow: 0 0 16px 1px #000000 !important;
+}
+
+.btn-link {
+    box-shadow: none !important;
+}
+
+.sidebar-content:first-child {
+    padding-top: 2rem !important;
+}
+
+.sidebar-content {
+    font-size: 1.5rem !important;
+    line-height: 2rem !important;
+    text-decoration: none !important;
+    padding: 1rem 1rem 1rem 1rem !important;
+    transition: padding-right 0.15s ease-in-out, color 0.15s ease-in-out, background-color 0.15s ease-in-out !important;
+
+    color: #e9004c !important;
+}
+
+.sidebar-content:last-child {
+    color: #f2f3f6 !important;
+}
+
+.sidebar-content:hover, .sidebar-content:active, .sidebar-content:focus {
+    padding-right: 0.7rem !important;
+    color: #c60041 !important;
+}
+
+.sidebar-content:last-child:hover, .sidebar-content:last-child:active, .sidebar-content:last-child:focus {
+    color: #f2f3f6 !important;
+}
+
+.sidebar-icon {
+    position: relative !important;
+    top: -1px !important;
+}
+
+.overflow-x-hidden {
+    overflow-x: hidden;
+}

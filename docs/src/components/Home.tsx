@@ -1,5 +1,8 @@
 import React, { FC, ReactElement } from "react";
-import Icon from "../utils/Icon";
+import { Container } from "reactstrap";
+import logo from "../static/logo.png";
+import { motion } from "framer-motion";
+import { PageAnimationController } from "../utils/PageAnimationController";
 
 interface Props {
 
@@ -8,7 +11,13 @@ interface Props {
 const Home: FC<Props> = (): ReactElement => {
   return (
     <React.Fragment>
-      <h1>you're not that guy pal</h1> <Icon font={"Material"} icon={"done"} className={"text-primary"}/>
+      <motion.div initial={PageAnimationController.initial} animate={PageAnimationController.animate} exit={PageAnimationController.exit} transition={PageAnimationController.transition}>
+        <Container fluid={true}>
+          <Container className={"text-center"}>
+            <h1>bro</h1>
+          </Container>
+        </Container>
+      </motion.div>
     </React.Fragment>
   );
 };
