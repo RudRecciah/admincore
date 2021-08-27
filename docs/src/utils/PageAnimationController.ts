@@ -2,26 +2,26 @@ export class PageAnimationController {
 
   /** Default state of page animations. */
   public static initial = {
-    x: -500,
+    scale: 1.2,
     opacity: 0
   }
 
   /** Visible state of page animations. */
   public static animate = {
-    x: 0,
+    scale: 1,
     opacity: 1
   }
 
   /** Invisible state of page animations. */
   public static exit = {
-    x: 500,
+    scale: 0.8,
     opacity: 0
   }
 
   /** Transition of page animations. */
   public static transition = {
     type: "spring",
-    duration: 0.7,
+    duration: 0.5,
     bounce: 0
   }
 

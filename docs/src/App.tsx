@@ -9,7 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App min-vh-100 bg-dark d-flex flex-column overflow-x-hidden">
+    <div className="App min-vh-100 bg-dark d-flex flex-column overflow-hidden">
       <BrowserRouter>
         <Router/>
       </BrowserRouter>

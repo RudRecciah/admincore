@@ -1,3 +1,7 @@
+:root {
+    color-scheme: dark !important;
+}
+
 .shadow {
     box-shadow: 0 0 16px 1px #000000 !important;
 }
