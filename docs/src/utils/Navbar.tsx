@@ -67,12 +67,12 @@ const Navbar: FC<Props> = (): ReactElement => {
         </nav>
         {sidebar && (
           <nav className={"d-md-none"}>
-            <div className={"position-absolute top-0 left-0 min-vw-100 min-vh-100"} onClick={toggleSidebar}/>
+            <div className={"position-absolute top-0 left-0 w-100 min-vh-100"} onClick={toggleSidebar}/>
           </nav>
         )}
         <AnimatePresence>
           {sidebar && (
-            <motion.div className={"position-absolute top-0 left-0 sidebar z-1 d-md-none"} key={"sidebar"} initial={{ x: -320 }} animate={{ x: 0 }} transition={{ type: "spring", bounce: 0 }} exit={{ x: -320 }}>
+            <motion.div className={"position-fixed top-0 left-0 sidebar z-1 d-md-none overflow-auto"} key={"sidebar"} initial={{ x: -320 }} animate={{ x: 0 }} transition={{ type: "spring", bounce: 0 }} exit={{ x: -320 }}>
               <div className={"w-100 h-100 d-flex flex-column"}>
                 <Link to={PathController.getAbsolutePath("about")} className={"sidebar-content d-flex flex-row w-100"} onClick={toggleSidebar}>
                   <span className={"text-poppins d-flex flex-column justify-content-center align-items-center"}>About</span><span className={"flex-fill"}/><Icon font={"Material"} icon={"chevron_right"} className={"d-flex flex-column justify-content-center align-items-center sidebar-icon"}/>

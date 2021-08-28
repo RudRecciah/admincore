@@ -13,7 +13,7 @@ const Home: FC<Props> = (): ReactElement => {
     <React.Fragment>
       <motion.div initial={PageAnimationController.initial} animate={PageAnimationController.animate} exit={PageAnimationController.exit} transition={PageAnimationController.transition} className={"overflow-auto"}>
         <Container fluid={true}>
-          <Container className={"text-center"}>
+          <Container className={"text-center text-light"}>
             <h1>bro</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dapibus, mauris ut efficitur egestas, ante enim imperdiet nisi, et ultrices justo enim nec elit. Quisque tincidunt nibh eu malesuada egestas. Cras ultrices ante nec mi aliquet mattis ac quis ex. Vivamus scelerisque eleifend leo. Integer euismod ligula et enim sollicitudin, id ullamcorper elit semper. Sed laoreet nisl sem, ullamcorper elementum quam cursus eu. Ut dignissim commodo nisl auctor tempor. Etiam in ullamcorper nibh.
 

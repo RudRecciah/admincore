@@ -23,8 +23,61 @@
 .sidebar {
     width: 280px !important;
     height: 100vh !important;
-    background-color: #060f19;
+    background-color: #07121e;
     box-shadow: 0 0 16px 1px #000000 !important;
+}
+
+.bg-darker {
+    background-color: #060f19 !important;
+}
+
+.footer-spacer {
+    height: 4rem !important;
+}
+
+@media screen and (min-height: 768px) {
+    .footer-spacer {
+        height: 8rem !important;
+    }
+}
+
+.h-3rem {
+    height: 2rem !important;
+}
+
+.mb-3-5 {
+    margin-bottom: 1.25rem;
+}
+
+.footer-copyright {
+    position: relative !important;
+    top: 2.5px !important;
+}
+
+.footer-header {
+    font-size: 5rem !important;
+}
+
+.logo {
+    height: 250px;
+    width: 250px;
+}
+
+.footer-link {
+    color: #f2f3f6 !important;
+    transition: color 0.15s ease-in-out !important;
+}
+
+.footer-link:hover, .footer-link:active, .footer-link:focus {
+    color: #d0d0d0 !important;
+}
+
+.footer-width {
+    width: 82% !important;
+}
+
+.text-darker {
+    color: #060f19 !important;
 }
 
 .btn-link {

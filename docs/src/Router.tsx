@@ -16,13 +16,15 @@ const Router: FC<Props> = (): ReactElement => {
   const location = useLocation();
   return (
     <React.Fragment>
-      <Navbar/>
-      <AnimatePresence exitBeforeEnter>
-        <Switch location={location} key={location.pathname}>
-          <Route path={PathController.getAbsoluteRootPath()} exact component={Home}/>
-          <Route path={PathController.getAbsoluteNotFoundPath()} component={NotFound}/>
-        </Switch>
-      </AnimatePresence>
+      <div className={"min-vh-100 d-flex flex-column overflow-hidden"}>
+        <Navbar/>
+        <AnimatePresence exitBeforeEnter>
+          <Switch location={location} key={location.pathname}>
+            <Route path={PathController.getAbsoluteRootPath()} exact component={Home}/>
+            <Route path={PathController.getAbsoluteNotFoundPath()} component={NotFound}/>
+          </Switch>
+        </AnimatePresence>
+      </div>
       <Footer/>
     </React.Fragment>
   );
