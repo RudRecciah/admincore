@@ -3,6 +3,7 @@ import { Container } from "reactstrap";
 import logo from "../static/logo.png";
 import { motion } from "framer-motion";
 import { PageAnimationController } from "../utils/PageAnimationController";
+import { PageWrapper } from "../utils/PageWrapper";
 
 interface Props {
 
@@ -11,7 +12,7 @@ interface Props {
 const Home: FC<Props> = (): ReactElement => {
   return (
     <React.Fragment>
-      <motion.div initial={PageAnimationController.initial} animate={PageAnimationController.animate} exit={PageAnimationController.exit} transition={PageAnimationController.transition} className={"overflow-auto"}>
+      <PageWrapper>
         <Container fluid={true}>
           <Container className={"text-center text-light"}>
             <h1>bro</h1>
@@ -56,7 +57,7 @@ const Home: FC<Props> = (): ReactElement => {
               Integer pellentesque condimentum neque eu rutrum. Aliquam sed ante ut turpis egestas convallis id sit amet justo. In hac habitasse platea dictumst. Sed semper tincidunt est, a rhoncus nunc viverra eget. Vivamus accumsan lacinia sollicitudin. Curabitur a scelerisque libero. Curabitur pellentesque elit at nisl sagittis placerat. Curabitur sit amet pellentesque ante. Suspendisse suscipit imperdiet rhoncus. Duis rhoncus condimentum mi eu iaculis.</p>
           </Container>
         </Container>
-      </motion.div>
+      </PageWrapper>
     </React.Fragment>
   );
 };

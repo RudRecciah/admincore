@@ -38,7 +38,7 @@ const Footer: FC<Props> = (): ReactElement => {
               <h2 className={"text-center text-lg-start"}>Resources</h2>
               <a href={PathController.getAbsolutePath("download")} className={"ps-lg-2 text-center text-lg-start fs-4 text-decoration-none footer-link pb-2"}>Download</a>
               <a href={"https://rudrecciah.dev"} className={"ps-lg-2 text-center text-lg-start fs-4 text-decoration-none footer-link pb-2"}>RudRecciah</a>
-              <a href={"https://github.com/rudrecciah/admincore"} className={"ps-lg-2 text-center text-lg-start fs-4 text-decoration-none footer-link pb-2"}>Source Code</a>
+              <a href={"https://github.com/rudrecciah/admincore"} className={"ps-lg-2 text-center text-lg-start fs-4 text-decoration-none footer-link pb-2"}>View Source</a>
             </Col>
             <Col xs={4} className={"d-none d-lg-flex flex-row"}>
               <div className={"flex-fill"}/>
