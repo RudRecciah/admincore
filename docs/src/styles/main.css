@@ -117,5 +117,13 @@
 }
 
 .overflow-x-hidden {
-    overflow-x: hidden;
+    overflow-x: hidden !important;
+}
+
+.landing-header {
+    width: 90% !important;
+}
+
+.landing-bigtext {
+    font-size: 100px;
 }
