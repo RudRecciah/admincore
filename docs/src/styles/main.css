@@ -120,10 +120,13 @@
     overflow-x: hidden !important;
 }
 
-.landing-header {
-    width: 90% !important;
+.img, .img-fluid {
+    image-rendering: pixelated !important;
 }
 
-.landing-bigtext {
-    font-size: 100px;
+.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

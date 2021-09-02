@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from "react";
 import { BrowserRouter, Route, Switch, useLocation } from "react-router-dom";
 import PathController from "./utils/PathController";
-import Home from "./components/Home";
+import HomeComponent from "./components/home/Home";
 import NotFound from "./utils/NotFound";
 import Navbar from "./utils/Navbar";
 import Footer from "./utils/Footer";
@@ -20,7 +20,7 @@ const Router: FC<Props> = (): ReactElement => {
         <Navbar/>
         <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={location.pathname}>
-            <Route path={PathController.getAbsoluteRootPath()} exact component={Home}/>
+            <Route path={PathController.getAbsoluteRootPath()} exact component={HomeComponent}/>
             <Route path={PathController.getAbsoluteNotFoundPath()} component={NotFound}/>
           </Switch>
         </AnimatePresence>
