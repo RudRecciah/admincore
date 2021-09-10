@@ -41,6 +41,22 @@
     margin: 100px auto 50px;
 }
 
+.punishImageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.punishImage {
+    margin: 0 auto 50px;
+}
+
+.punishCopy {
+    margin: 100px auto 50px;
+}
+
 .spacer {
     height: 6rem;
 }
@@ -83,7 +99,11 @@
 
 @media screen and (min-width: 992px) {
     .inspectCopy {
-        margin: 200px auto 300px;
+        margin: 200px auto 150px;
+    }
+
+    .punishCopy {
+        margin: 150px auto 300px;
     }
 }
 
@@ -98,10 +118,6 @@
 
     .title {
         margin-top: 375px;
-    }
-
-    .inspectCopy {
-        margin: 200px auto 300px;
     }
 }
 
