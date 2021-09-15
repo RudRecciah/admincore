@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-16:
 
     runs-on: ubuntu-latest
 
@@ -28,9 +28,16 @@ jobs:
       run: |
         mkdir build
         mv src/test/spigot/plugins/Admincore.jar build/Admincore-16.jar
-    - uses: actions/checkout@v2
+    - name: Push build
+      id: push_directory
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        ref: "1.15"
-    - name: debug
-      run: |
-        ls .
+        source-directory: './build'
+        destination-github-username: 'RudRecciah'
+        destination-repository-name: 'admincore'
+        user-email: "41898282+github-actions[bot]@users.noreply.github.com"
+        user-name: "github-actions[bot]"
+        commit-message: "Built 1.16"
+        target-branch: "build/nightly"
