@@ -24,6 +24,13 @@ jobs:
     - name: Build with Maven
       run: |
         mvn -B clean package --file pom.xml
+    - name: Save build
+      run: |
+        mkdir build
+        mv src/test/java/plugins/Admincore.jar build/Admincore-16.jar
+    - uses: actions/checkout@v2
+      with:
+        ref: "1.15"
     - name: debug
       run: |
         ls .
