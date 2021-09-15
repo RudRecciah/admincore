@@ -2,7 +2,7 @@
     width: 90% !important;
 }
 
-.bigText {
+.bigText, .mainText, .callText {
     font-size: max(3.5em, 15vw);
 }
 
@@ -71,6 +71,20 @@
     width: min(70%, 300px);
 }
 
+.cardLink {
+    font-size: 1.5rem !important;
+    line-height: 2rem !important;
+    text-decoration: none !important;
+    padding: 1rem 1rem 1rem 0.5rem !important;
+    transition: padding-right 0.15s ease-in-out, color 0.15s ease-in-out, background-color 0.15s ease-in-out !important;
+    color: #e9004c !important;
+}
+
+.cardLink:hover, .cardLink:active, .cardLink:focus {
+    padding-right: 0.7rem !important;
+    color: #c60041 !important;
+}
+
 @media screen and (min-width: 576px) {
     .landingHeader {
         font-size: 2.5em;
@@ -88,6 +102,14 @@
 
     .bigText {
         font-size: 100px;
+    }
+
+    .callText {
+        font-size: 120px;
+    }
+
+    .mainText {
+        font-size: 75px;
     }
 
     .splash {
