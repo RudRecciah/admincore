@@ -3,9 +3,8 @@
 
 **Status:**
 
-[![Auto Port](https://github.com/RudRecciah/admincore/actions/workflows/port.yml/badge.svg)](https://github.com/RudRecciah/admincore/actions/workflows/port.yml)
-[![Build Nigtly](https://github.com/RudRecciah/admincore/actions/workflows/nightly.yml/badge.svg)](https://github.com/RudRecciah/admincore/actions/workflows/nightly.yml)
-[![Build Production](https://github.com/RudRecciah/admincore/actions/workflows/production.yml/badge.svg)](https://github.com/RudRecciah/admincore/actions/workflows/production.yml)
+![Nightly Builds](https://github.com/RudRecciah/admincore/actions/workflows/nightly.yml/badge.svg)
+![Production Builds](https://github.com/RudRecciah/admincore/actions/workflows/production.yml/badge.svg)
 
 **Current Features (0.6.0):**
 * Support for Minecraft Versions:
