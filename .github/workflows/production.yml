@@ -1,0 +1,254 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Build Production
+
+on:
+  workflow_dispatch:
+
+jobs:
+  
+  build-17:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: "1.17"
+    - name: Set up JDK 16
+      uses: actions/setup-java@v2
+      with:
+        java-version: '16'
+        distribution: 'adopt'
+        cache: maven
+    - name: Build with Maven
+      run: |
+        mvn -B clean package --file pom.xml
+    - name: Pull remote builds
+      uses: actions/checkout@v2
+      with:
+        ref: "build/production"
+        path: "build"
+    - name: Save build
+      run: |
+        mkdir -p build
+        mv src/test/spigot/plugins/Admincore.jar build/Admincore-17.jar
+    - name: Push build
+      id: push_directory
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: './build'
+        destination-github-username: 'RudRecciah'
+        destination-repository-name: 'admincore'
+        user-email: "41898282+github-actions[bot]@users.noreply.github.com"
+        user-name: "github-actions[bot]"
+        commit-message: "Built 1.17"
+        target-branch: "build/nightly"
+
+  build-16:
+    needs: build-17
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: "1.16"
+    - name: Set up JDK 14
+      uses: actions/setup-java@v2
+      with:
+        java-version: '14'
+        distribution: 'adopt'
+        cache: maven
+    - name: Build with Maven
+      run: |
+        mvn -B clean package --file pom.xml
+    - name: Pull remote builds
+      uses: actions/checkout@v2
+      with:
+        ref: "build/production"
+        path: "build"
+    - name: Save build
+      run: |
+        mkdir -p build
+        mv src/test/spigot/plugins/Admincore.jar build/Admincore-16.jar
+    - name: Push build
+      id: push_directory
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: './build'
+        destination-github-username: 'RudRecciah'
+        destination-repository-name: 'admincore'
+        user-email: "41898282+github-actions[bot]@users.noreply.github.com"
+        user-name: "github-actions[bot]"
+        commit-message: "Built 1.16"
+        target-branch: "build/nightly"
+
+  build-15:
+    needs: [build-17, build-16]
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: "1.15"
+    - name: Set up JDK 14
+      uses: actions/setup-java@v2
+      with:
+        java-version: '14'
+        distribution: 'adopt'
+        cache: maven
+    - name: Build with Maven
+      run: |
+        mvn -B clean package --file pom.xml
+    - name: Pull remote builds
+      uses: actions/checkout@v2
+      with:
+        ref: "build/production"
+        path: "build"
+    - name: Save build
+      run: |
+        mkdir -p build
+        mv src/test/spigot/plugins/Admincore.jar build/Admincore-15.jar
+    - name: Push build
+      id: push_directory
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: './build'
+        destination-github-username: 'RudRecciah'
+        destination-repository-name: 'admincore'
+        user-email: "41898282+github-actions[bot]@users.noreply.github.com"
+        user-name: "github-actions[bot]"
+        commit-message: "Built 1.15"
+        target-branch: "build/nightly"
+
+  build-14:
+    needs: [build-17, build-16, build-15]
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: "1.14"
+    - name: Set up JDK 14
+      uses: actions/setup-java@v2
+      with:
+        java-version: '14'
+        distribution: 'adopt'
+        cache: maven
+    - name: Build with Maven
+      run: |
+        mvn -B clean package --file pom.xml
+    - name: Pull remote builds
+      uses: actions/checkout@v2
+      with:
+        ref: "build/production"
+        path: "build"
+    - name: Save build
+      run: |
+        mkdir -p build
+        mv src/test/spigot/plugins/Admincore.jar build/Admincore-14.jar
+    - name: Push build
+      id: push_directory
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: './build'
+        destination-github-username: 'RudRecciah'
+        destination-repository-name: 'admincore'
+        user-email: "41898282+github-actions[bot]@users.noreply.github.com"
+        user-name: "github-actions[bot]"
+        commit-message: "Built 1.14"
+        target-branch: "build/nightly"
+
+  build-13:
+    needs: [build-17, build-16, build-15, build-14]
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: "1.13"
+    - name: Set up JDK 14
+      uses: actions/setup-java@v2
+      with:
+        java-version: '14'
+        distribution: 'adopt'
+        cache: maven
+    - name: Build with Maven
+      run: |
+        mvn -B clean package --file pom.xml
+    - name: Pull remote builds
+      uses: actions/checkout@v2
+      with:
+        ref: "build/production"
+        path: "build"
+    - name: Save build
+      run: |
+        mkdir -p build
+        mv src/test/spigot/plugins/Admincore.jar build/Admincore-13.jar
+    - name: Push build
+      id: push_directory
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: './build'
+        destination-github-username: 'RudRecciah'
+        destination-repository-name: 'admincore'
+        user-email: "41898282+github-actions[bot]@users.noreply.github.com"
+        user-name: "github-actions[bot]"
+        commit-message: "Built 1.13"
+        target-branch: "build/nightly"
+
+  build-12:
+    needs: [build-17, build-16, build-15, build-14, build-13]
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: "1.12"
+    - name: Set up JDK 14
+      uses: actions/setup-java@v2
+      with:
+        java-version: '14'
+        distribution: 'adopt'
+        cache: maven
+    - name: Build with Maven
+      run: |
+        mvn -B clean package --file pom.xml
+    - name: Pull remote builds
+      uses: actions/checkout@v2
+      with:
+        ref: "build/production"
+        path: "build"
+    - name: Save build
+      run: |
+        mkdir -p build
+        mv src/test/spigot/plugins/Admincore.jar build/Admincore-12.jar
+    - name: Push build
+      id: push_directory
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: './build'
+        destination-github-username: 'RudRecciah'
+        destination-repository-name: 'admincore'
+        user-email: "41898282+github-actions[bot]@users.noreply.github.com"
+        user-name: "github-actions[bot]"
+        commit-message: "Built 1.12"
+        target-branch: "build/nightly"
