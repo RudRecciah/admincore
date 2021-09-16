@@ -32,7 +32,7 @@ jobs:
         mkdir build
         mv src/test/spigot/plugins/Admincore.jar build/Admincore-17.jar
     - name: Pull remote builds
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
       with:
         ref: "build/nightly"
         path: "build"
@@ -72,7 +72,7 @@ jobs:
         mkdir build
         mv src/test/spigot/plugins/Admincore.jar build/Admincore-16.jar
     - name: Pull remote builds
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
       with:
         ref: "build/nightly"
         path: "build"
@@ -112,7 +112,7 @@ jobs:
         mkdir build
         mv src/test/spigot/plugins/Admincore.jar build/Admincore-15.jar
     - name: Pull remote builds
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
       with:
         ref: "build/nightly"
         path: "build"
@@ -152,7 +152,7 @@ jobs:
         mkdir build
         mv src/test/spigot/plugins/Admincore.jar build/Admincore-14.jar
     - name: Pull remote builds
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
       with:
         ref: "build/nightly"
         path: "build"
@@ -192,7 +192,7 @@ jobs:
         mkdir build
         mv src/test/spigot/plugins/Admincore.jar build/Admincore-13.jar
     - name: Pull remote builds
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
       with:
         ref: "build/nightly"
         path: "build"
@@ -232,7 +232,7 @@ jobs:
         mkdir build
         mv src/test/spigot/plugins/Admincore.jar build/Admincore-12.jar
     - name: Pull remote builds
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
       with:
         ref: "build/nightly"
         path: "build"
