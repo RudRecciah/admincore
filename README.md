@@ -1,6 +1,12 @@
 # Admincore
 ### An indev core for Spigot and Paper server administration.
+
+**Status:**
+
 [![Auto Port](https://github.com/RudRecciah/admincore/actions/workflows/port.yml/badge.svg)](https://github.com/RudRecciah/admincore/actions/workflows/port.yml)
+[![Build Nigtly](https://github.com/RudRecciah/admincore/actions/workflows/nightly.yml/badge.svg)](https://github.com/RudRecciah/admincore/actions/workflows/nightly.yml)
+[![Build Production](https://github.com/RudRecciah/admincore/actions/workflows/production.yml/badge.svg)](https://github.com/RudRecciah/admincore/actions/workflows/production.yml)
+
 **Current Features (0.6.0):**
 * Support for Minecraft Versions:
   * 1.17.x (Native 1.17.1)
