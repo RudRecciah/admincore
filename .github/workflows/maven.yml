@@ -31,6 +31,11 @@ jobs:
       run: |
         mkdir build
         mv src/test/spigot/plugins/Admincore.jar build/Admincore-17.jar
+    - name: Pull remote builds
+    - uses: actions/checkout@v2
+      with:
+        ref: "builds/nightly"
+        path: "build"
     - name: Push build
       id: push_directory
       uses: cpina/github-action-push-to-another-repository@main
