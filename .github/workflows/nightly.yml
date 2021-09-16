@@ -27,15 +27,15 @@ jobs:
     - name: Build with Maven
       run: |
         mvn -B clean package --file pom.xml
-    - name: Save build
-      run: |
-        mkdir build
-        mv src/test/spigot/plugins/Admincore.jar build/Admincore-17.jar
     - name: Pull remote builds
       uses: actions/checkout@v2
       with:
         ref: "build/nightly"
         path: "build"
+    - name: Save build
+      run: |
+        mkdir build
+        mv src/test/spigot/plugins/Admincore.jar build/Admincore-17.jar
     - name: Push build
       id: push_directory
       uses: cpina/github-action-push-to-another-repository@main
@@ -51,6 +51,7 @@ jobs:
         target-branch: "build/nightly"
 
   build-16:
+    needs: build-17
 
     runs-on: ubuntu-latest
 
@@ -67,15 +68,15 @@ jobs:
     - name: Build with Maven
       run: |
         mvn -B clean package --file pom.xml
-    - name: Save build
-      run: |
-        mkdir build
-        mv src/test/spigot/plugins/Admincore.jar build/Admincore-16.jar
     - name: Pull remote builds
       uses: actions/checkout@v2
       with:
         ref: "build/nightly"
         path: "build"
+    - name: Save build
+      run: |
+        mkdir build
+        mv src/test/spigot/plugins/Admincore.jar build/Admincore-16.jar
     - name: Push build
       id: push_directory
       uses: cpina/github-action-push-to-another-repository@main
@@ -91,6 +92,7 @@ jobs:
         target-branch: "build/nightly"
 
   build-15:
+    needs: [build-17, build-16]
 
     runs-on: ubuntu-latest
 
@@ -107,15 +109,15 @@ jobs:
     - name: Build with Maven
       run: |
         mvn -B clean package --file pom.xml
-    - name: Save build
-      run: |
-        mkdir build
-        mv src/test/spigot/plugins/Admincore.jar build/Admincore-15.jar
     - name: Pull remote builds
       uses: actions/checkout@v2
       with:
         ref: "build/nightly"
         path: "build"
+    - name: Save build
+      run: |
+        mkdir build
+        mv src/test/spigot/plugins/Admincore.jar build/Admincore-15.jar
     - name: Push build
       id: push_directory
       uses: cpina/github-action-push-to-another-repository@main
@@ -131,6 +133,7 @@ jobs:
         target-branch: "build/nightly"
 
   build-14:
+    needs: [build-17, build-16, build-15]
 
     runs-on: ubuntu-latest
 
@@ -147,15 +150,15 @@ jobs:
     - name: Build with Maven
       run: |
         mvn -B clean package --file pom.xml
-    - name: Save build
-      run: |
-        mkdir build
-        mv src/test/spigot/plugins/Admincore.jar build/Admincore-14.jar
     - name: Pull remote builds
       uses: actions/checkout@v2
       with:
         ref: "build/nightly"
         path: "build"
+    - name: Save build
+      run: |
+        mkdir build
+        mv src/test/spigot/plugins/Admincore.jar build/Admincore-14.jar
     - name: Push build
       id: push_directory
       uses: cpina/github-action-push-to-another-repository@main
@@ -171,6 +174,7 @@ jobs:
         target-branch: "build/nightly"
 
   build-13:
+    needs: [build-17, build-16, build-15, build-14]
 
     runs-on: ubuntu-latest
 
@@ -187,15 +191,15 @@ jobs:
     - name: Build with Maven
       run: |
         mvn -B clean package --file pom.xml
-    - name: Save build
-      run: |
-        mkdir build
-        mv src/test/spigot/plugins/Admincore.jar build/Admincore-13.jar
     - name: Pull remote builds
       uses: actions/checkout@v2
       with:
         ref: "build/nightly"
         path: "build"
+    - name: Save build
+      run: |
+        mkdir build
+        mv src/test/spigot/plugins/Admincore.jar build/Admincore-13.jar
     - name: Push build
       id: push_directory
       uses: cpina/github-action-push-to-another-repository@main
@@ -211,6 +215,7 @@ jobs:
         target-branch: "build/nightly"
 
   build-12:
+    needs: [build-17, build-16, build-15, build-14, build-13]
 
     runs-on: ubuntu-latest
 
@@ -227,15 +232,15 @@ jobs:
     - name: Build with Maven
       run: |
         mvn -B clean package --file pom.xml
-    - name: Save build
-      run: |
-        mkdir build
-        mv src/test/spigot/plugins/Admincore.jar build/Admincore-12.jar
     - name: Pull remote builds
       uses: actions/checkout@v2
       with:
         ref: "build/nightly"
         path: "build"
+    - name: Save build
+      run: |
+        mkdir build
+        mv src/test/spigot/plugins/Admincore.jar build/Admincore-12.jar
     - name: Push build
       id: push_directory
       uses: cpina/github-action-push-to-another-repository@main
