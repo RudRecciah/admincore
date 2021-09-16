@@ -3,8 +3,8 @@
 
 **Status:**
 
-![Nightly Builds](https://github.com/RudRecciah/admincore/actions/workflows/nightly.yml/badge.svg)
-![Production Builds](https://github.com/RudRecciah/admincore/actions/workflows/production.yml/badge.svg)
+[![Nightly Builds](https://github.com/RudRecciah/admincore/actions/workflows/nightly.yml/badge.svg)](https://github.com/RudRecciah/admincore/tree/build/nightly)
+[![Production Builds](https://github.com/RudRecciah/admincore/actions/workflows/production.yml/badge.svg)](https://github.com/RudRecciah/admincore/tree/build/production)
 
 **Current Features (0.6.0):**
 * Support for Minecraft Versions:
