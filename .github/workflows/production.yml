@@ -1,11 +1,9 @@
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Build Nigtly
+name: Build Production
 
 on:
-  schedule:
-    - cron: 0 0 * * *
   workflow_dispatch:
 
 jobs:
@@ -30,7 +28,7 @@ jobs:
     - name: Pull remote builds
       uses: actions/checkout@v2
       with:
-        ref: "build/nightly"
+        ref: "build/production"
         path: "build"
     - name: Save build
       run: |
@@ -48,7 +46,7 @@ jobs:
         user-email: "41898282+github-actions[bot]@users.noreply.github.com"
         user-name: "github-actions[bot]"
         commit-message: "Built 1.12"
-        target-branch: "build/nightly"
+        target-branch: "build/production"
 
   build-13:
     needs: [build-12]
@@ -71,7 +69,7 @@ jobs:
     - name: Pull remote builds
       uses: actions/checkout@v2
       with:
-        ref: "build/nightly"
+        ref: "build/production"
         path: "build"
     - name: Save build
       run: |
@@ -89,7 +87,7 @@ jobs:
         user-email: "41898282+github-actions[bot]@users.noreply.github.com"
         user-name: "github-actions[bot]"
         commit-message: "Built 1.13"
-        target-branch: "build/nightly"
+        target-branch: "build/production"
 
   build-14:
     needs: [build-12, build-13]
@@ -112,7 +110,7 @@ jobs:
     - name: Pull remote builds
       uses: actions/checkout@v2
       with:
-        ref: "build/nightly"
+        ref: "build/production"
         path: "build"
     - name: Save build
       run: |
@@ -130,7 +128,7 @@ jobs:
         user-email: "41898282+github-actions[bot]@users.noreply.github.com"
         user-name: "github-actions[bot]"
         commit-message: "Built 1.14"
-        target-branch: "build/nightly"
+        target-branch: "build/production"
 
   build-15:
     needs: [build-12, build-13, build-14]
@@ -153,7 +151,7 @@ jobs:
     - name: Pull remote builds
       uses: actions/checkout@v2
       with:
-        ref: "build/nightly"
+        ref: "build/production"
         path: "build"
     - name: Save build
       run: |
@@ -171,7 +169,7 @@ jobs:
         user-email: "41898282+github-actions[bot]@users.noreply.github.com"
         user-name: "github-actions[bot]"
         commit-message: "Built 1.15"
-        target-branch: "build/nightly"
+        target-branch: "build/production"
 
   build-16:
     needs: [build-12, build-13, build-14, build-15]
@@ -194,7 +192,7 @@ jobs:
     - name: Pull remote builds
       uses: actions/checkout@v2
       with:
-        ref: "build/nightly"
+        ref: "build/production"
         path: "build"
     - name: Save build
       run: |
@@ -212,7 +210,7 @@ jobs:
         user-email: "41898282+github-actions[bot]@users.noreply.github.com"
         user-name: "github-actions[bot]"
         commit-message: "Built 1.16"
-        target-branch: "build/nightly"
+        target-branch: "build/production"
 
   build-17:
 
@@ -236,7 +234,7 @@ jobs:
     - name: Pull remote builds
       uses: actions/checkout@v2
       with:
-        ref: "build/nightly"
+        ref: "build/production"
         path: "build"
     - name: Save build
       run: |
@@ -254,5 +252,4 @@ jobs:
         user-email: "41898282+github-actions[bot]@users.noreply.github.com"
         user-name: "github-actions[bot]"
         commit-message: "Built 1.17"
-        target-branch: "build/nightly"
-
+        target-branch: "build/production"
