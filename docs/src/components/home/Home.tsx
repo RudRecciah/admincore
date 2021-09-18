@@ -38,7 +38,7 @@ const Home: FC<Props> = (): ReactElement => {
           <div className={css.spacer}/>
           <div className={css.spacer}/>
           <div className={css.spacer}/>
-          <h1 className={css.mainText}>Keep your playerbase safe</h1>
+          <h1 className={`text-center text-sm-start text-lg-center ${css.mainText}`}>Keep your playerbase safe</h1>
           <div className={css.spacer}/>
           <Row>
             <Col xs={12} lg={4} className={"mb-4"}>
@@ -80,7 +80,7 @@ const Home: FC<Props> = (): ReactElement => {
           </Row>
           <div className={css.spacer}/>
           <div className={css.spacer}/>
-          <h1 className={css.mainText}>Stay in the know</h1>
+          <h1 className={`text-center text-sm-start text-lg-center ${css.mainText}`}>Stay in the know</h1>
           <div className={css.spacer}/>
           <Row>
             <Col xs={12} lg={4} className={"mb-4"}>
@@ -122,7 +122,7 @@ const Home: FC<Props> = (): ReactElement => {
           </Row>
           <div className={css.spacer}/>
           <div className={css.spacer}/>
-          <h1 className={css.mainText}>Minimize errors</h1>
+          <h1 className={`text-center text-sm-start text-lg-center ${css.mainText}`}>Minimize errors</h1>
           <div className={css.spacer}/>
           <Row>
             <Col xs={12} lg={4} className={"mb-4"}>
@@ -164,13 +164,19 @@ const Home: FC<Props> = (): ReactElement => {
           </Row>
           <div className={css.spacer}/>
           <div className={css.spacer}/>
-          <h1 className={css.mainText}>What are you waiting for?</h1>
-          {/*<div className={css.spacer}/>*/}
-          <a href={PathController.getAbsolutePath("download")} className={`btn btn-primary text-urbanist me-sm--3 shadow ${css.titleDownloadBtn}`}>Download Now</a>
-          <Link to={PathController.getAbsolutePath("docs")} className={`btn btn-link text-primary text-link text-urbanist ms-sm-3 ${css.titleDownloadBtn} ${css.titleGetStartedBtn}`} id={"homepage-btn-get-started"}>
-            Read The Docs
-          </Link>
           <div className={css.spacer}/>
+          <h1 className={`text-center text-sm-start text-lg-center ${css.mainText}`}>What are you waiting for?</h1>
+          {/*<div className={css.spacer}/>*/}
+          <div className={"text-center text-sm-start text-lg-center"}>
+            <a href={PathController.getAbsolutePath("download")} className={`btn btn-primary text-urbanist me-sm--3 shadow ${css.titleDownloadBtn}`}>Download Now</a>
+            <Link to={PathController.getAbsolutePath("docs")} className={`btn btn-link text-primary text-link text-urbanist ms-sm-3 ${css.titleDownloadBtn} ${css.titleGetStartedBtn}`} id={"homepage-btn-get-started"}>
+              Read The Docs
+            </Link>
+          </div>
+          <div className={css.spacer}/>
+          <div className={css.spacer}/>
+          <div className={css.spacer}/>
+
         </Container>
       </PageWrapper>
     </React.Fragment>

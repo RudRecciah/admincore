@@ -1,0 +1,25 @@
+.container {
+    width: 90% !important;
+}
+
+.mainText {
+    font-size: max(3.5em, 15vw);
+}
+
+.mainTextSmall {
+    font-size: max(3em, 15vw);
+}
+
+.smSpacer {
+    height: 3rem;
+}
+
+@media screen and (min-width: 768px) {
+    .mainText {
+        font-size: 75px;
+    }
+
+    .mainTextSmall {
+        font-size: 60px;
+    }
+}

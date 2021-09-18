@@ -5,15 +5,15 @@
     src: url("../static/font.woff2") format("woff2");
 }
 
-$primary: #e9004c;
+$primary: #cb0031;
 $secondary: #95989d;
 $success: #008F48;
 $danger: #BF002F;
 $warning: #FADA5E;
 $info: #0d6efd;
 $light: #f2f3f6;
-$dark: #07121e;
-$darker: #060f19;
+$dark: #101010FF;
+$darker: #0c0c0c;
 
 :root {
     --bs-font-sans-serif-header: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
