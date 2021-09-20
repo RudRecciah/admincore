@@ -2,8 +2,12 @@
     width: 90% !important;
 }
 
-.bigText, .mainText, .callText {
+.bigText, .callText {
     font-size: max(3.5em, 15vw);
+}
+
+.mainText{
+    font-size: max(3em, 15vw);
 }
 
 .titleGetStartedBtn {

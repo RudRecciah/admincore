@@ -7,6 +7,7 @@ import Navbar from "./utils/Navbar";
 import Footer from "./utils/Footer";
 import { AnimatePresence, motion } from "framer-motion";
 import { About } from "./components/about/About";
+import { Features } from "./components/features/Features";
 
 
 interface Props {
@@ -22,6 +23,7 @@ const Router: FC<Props> = (): ReactElement => {
         <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={location.pathname}>
             <Route path={PathController.getAbsolutePath("about")} exact component={About}/>
+            <Route path={PathController.getAbsolutePath("features")} exact component={Features}/>
             <Route path={PathController.getAbsoluteRootPath()} exact component={HomeComponent}/>
             <Route path={PathController.getAbsoluteNotFoundPath()} component={NotFound}/>
           </Switch>
