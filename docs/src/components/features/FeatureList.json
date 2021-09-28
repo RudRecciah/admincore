@@ -1,0 +1,30 @@
+{
+  "components": [
+    ["Multi-version", "Admincore supports Spigot 1.12.x-1.17.x"],
+    ["Announcements", "With Admincore, in-game announcements and broadcasts are a breeze to send."],
+    ["Player Freeze", "You can freeze players with bad intentions to keep them from damaging your server."],
+    ["Punishment Logging", "Admincore logs all punishments both in-game, in Discord, and plugin files."],
+    ["Player Reports", "Players and staff-members can easily report other players with just a few clicks."],
+    ["Report Management", "Staff have an intuitive and extensive report managment system, allowing your team to simplify your workflow."],
+    ["Server Status", "Keep up-to-date on statistics of your server like TPS, ping, resource usage, and more."],
+    ["Staffchat", "Staff members have access to a secret staff channel, allowing them to talk privately and receive staff notifications."],
+    ["Discord Passthrough", "Discord and Minecraft messages can be linked in staffchat, allowing offline staff to stay in the know too."],
+    ["Staffmode", "Staffmode is Admincore's staff hub. Your team can manage all aspects of moderation inside Staffmode, from just inspection and chatting to handing out punishments."],
+    ["Staffmode Security", "With security in mind, Staffmode makes players think staff are offline when staff enter, allowing them to catch players in the act."],
+    ["Staffmode UI", "The Staffmode UI allows staff members to inspect, report, and punish all from one simple interface."],
+    ["Inspection", "Staff can inspect suspicious players and keep tabs on everything from their known aliases to inventory and even their behavior throughought the internet."],
+    ["Update Checker", "Admincore checks for updates every time it runs, meaning you'll always know when its time to switch to a new version."],
+    ["Configuration Checker", "Admincore verifies your configuration's validity, making sure your config is compatible with the current Admincore version."],
+    ["Discord Integration", "Beyond simple logging and chatting, Admincore integrates itself into Discord in other ways, like player inspection and freezing."],
+    ["Appeal System", "Admincore manages appeals from punished players, allowing developers to hook into its API and bring appeal revewing to the game itself."],
+    ["Appeal Management", "Besides revewing appeals, Admincore also allows staff to manage appeals and accept or reject them."],
+    ["Plugin-wide Broadcasts", "Admincore can broadcast information plugin wide, allowing developers to send messages directly to server administrators."],
+    ["Error Logging", "Admincore takes error logging to the next level, giving tips on how to help solve errors and logging errors with verbosity to help diagnose problems."]
+  ],
+  "config": [
+
+  ],
+  "permissions": [
+
+  ]
+}

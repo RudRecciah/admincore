@@ -24,7 +24,7 @@ const About: FC<Props> = (): ReactElement => {
               <Col xs={12} lg={6}>
                 <h2 className={`text-center text-primary ${css.mainTextSmall}`}>Features</h2>
                 <p className={"text-center"}>
-                  Admincore is built to be your only solution for everything moderation. It includes 50 unique components, each with their own complexities. Offering 150+ configuration options, Admincore can be customized to fit your moderation needs while also being a nearly drag-and-drop setup with the default values. Have a complex staff hierarchy? Admincore's got you covered, coming with 20 unique permissions to control power between staff members.
+                  Admincore is built to be your only solution for everything moderation. It includes 20 unique components, each with their own complexities. Offering 150+ configuration options, Admincore can be customized to fit your moderation needs while also being a nearly drag-and-drop setup with the default values. Have a complex staff hierarchy? Admincore's got you covered, coming with 20 unique permissions to control power between staff members.
                 </p>
               </Col>
               <Col xs={12} lg={6}>
