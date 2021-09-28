@@ -3,7 +3,7 @@ import css from "./Features.module.css";
 import { PageWrapper } from "../../utils/PageWrapper";
 import { Col, Container, Row } from "reactstrap";
 import FeatureList from "./FeatureList.json";
-import { Feature } from "./Feature";
+import { Component } from "./Component";
 
 interface Props {
 
@@ -23,14 +23,13 @@ const Features: FC<Props> = (): ReactElement => {
           <Container className={"text-light fs-4 mt-5"}>
             <h2 className={`text-center text-primary ${css.mainTextSmall} mb-4`}>Components</h2>
             <Row>
-              {FeatureList.components.map(component => <Feature title={component[0]} body={component[1]}/>)}
-              {FeatureList.config.map(config => <Feature title={config[0]} body={config[1]}/>)}
+              {FeatureList.components.map(component => <Component title={component[0]} body={component[1]}/>)}
             </Row>
             <Row>
-              {FeatureList.config.map(config => <Feature title={config[0]} body={config[1]}/>)}
+              {/*{FeatureList.config.map(config => <Component title={config[0]} body={config[1]}/>)}*/}
             </Row>
             <Row>
-              {FeatureList.permissions.map(permission => <Feature title={permission[0]} body={permission[1]}/>)}
+              {/*{FeatureList.permissions.map(permission => <Component title={permission[0]} body={permission[1]}/>)}*/}
             </Row>
           </Container>
         </Container>

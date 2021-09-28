@@ -1,30 +1,640 @@
 {
   "components": [
-    ["Multi-version", "Admincore supports Spigot 1.12.x-1.17.x."],
-    ["Announcements", "With Admincore, in-game announcements and broadcasts are a breeze to send."],
-    ["Player Freeze", "You can freeze players with bad intentions to keep them from damaging your server."],
-    ["Punishment Logging", "Admincore logs all punishments both in-game, in Discord, and plugin files."],
-    ["Player Reports", "Players and staff-members can easily report other players with just a few clicks."],
-    ["Report Management", "Staff have an intuitive and extensive report managment system, allowing your team to simplify your workflow."],
-    ["Server Status", "Keep up-to-date on statistics of your server like TPS, ping, resource usage, and more."],
-    ["Staffchat", "Staff members have access to a secret staff channel, allowing them to talk privately and receive staff notifications."],
-    ["Discord Passthrough", "Discord and Minecraft messages can be linked in staffchat, allowing offline staff to stay in the know too."],
-    ["Staffmode", "Staffmode is Admincore's staff hub. Your team can manage all aspects of moderation inside Staffmode, from just inspection and chatting to handing out punishments."],
-    ["Staffmode Security", "With security in mind, Staffmode makes players think staff are offline when staff enter, allowing them to catch players in the act."],
-    ["Staffmode UI", "The Staffmode UI allows staff members to inspect, report, and punish all from one simple interface."],
-    ["Inspection", "Staff can inspect suspicious players and keep tabs on everything from their known aliases to inventory and even their behavior throughought the internet."],
-    ["Update Checker", "Admincore checks for updates every time it runs, meaning you'll always know when its time to switch to a new version."],
-    ["Configuration Checker", "Admincore verifies your configuration's validity, making sure your config is compatible with the current Admincore version."],
-    ["Discord Integration", "Beyond simple logging and chatting, Admincore integrates itself into Discord in other ways, like player inspection and freezing."],
-    ["Appeal System", "Admincore manages appeals from punished players, allowing developers to hook into its API and bring appeal revewing to the game itself."],
-    ["Appeal Management", "Besides revewing appeals, Admincore also allows staff to manage appeals and accept or reject them."],
-    ["Plugin-wide Broadcasts", "Admincore can broadcast information plugin wide, allowing developers to send messages directly to server administrators."],
-    ["Error Logging", "Admincore takes error logging to the next level, giving tips on how to help solve errors and logging errors with verbosity to help diagnose problems."]
+    [
+      "Multi-version",
+      "Admincore supports Spigot 1.12.x-1.17.x."
+    ],
+    [
+      "Announcements",
+      "With Admincore, in-game announcements and broadcasts are a breeze to send."
+    ],
+    [
+      "Player Freeze",
+      "You can freeze players with bad intentions to keep them from damaging your server."
+    ],
+    [
+      "Punishment Logging",
+      "Admincore logs all punishments both in-game, in Discord, and plugin files."
+    ],
+    [
+      "Player Reports",
+      "Players and staff-members can easily report other players with just a few clicks."
+    ],
+    [
+      "Report Management",
+      "Staff have an intuitive and extensive report managment system, allowing your team to simplify your workflow."
+    ],
+    [
+      "Server Status",
+      "Keep up-to-date on statistics of your server like TPS, ping, resource usage, and more."
+    ],
+    [
+      "Staffchat",
+      "Staff members have access to a secret staff channel, allowing them to talk privately and receive staff notifications."
+    ],
+    [
+      "Discord Passthrough",
+      "Discord and Minecraft messages can be linked in staffchat, allowing offline staff to stay in the know too."
+    ],
+    [
+      "Staffmode",
+      "Staffmode is Admincore's staff hub. Your team can manage all aspects of moderation inside Staffmode, from just inspection and chatting to handing out punishments."
+    ],
+    [
+      "Staffmode Security",
+      "With security in mind, Staffmode makes players think staff are offline when staff enter, allowing them to catch players in the act."
+    ],
+    [
+      "Staffmode UI",
+      "The Staffmode UI allows staff members to inspect, report, and punish all from one simple interface."
+    ],
+    [
+      "Inspection",
+      "Staff can inspect suspicious players and keep tabs on everything from their known aliases to inventory and even their behavior throughought the internet."
+    ],
+    [
+      "Update Checker",
+      "Admincore checks for updates every time it runs, meaning you'll always know when its time to switch to a new version."
+    ],
+    [
+      "Configuration Checker",
+      "Admincore verifies your configuration's validity, making sure your config is compatible with the current Admincore version."
+    ],
+    [
+      "Discord Integration",
+      "Beyond simple logging and chatting, Admincore integrates itself into Discord in other ways, like player inspection and freezing."
+    ],
+    [
+      "Appeal System",
+      "Admincore manages appeals from punished players, allowing developers to hook into its API and bring appeal revewing to the game itself."
+    ],
+    [
+      "Appeal Management",
+      "Besides revewing appeals, Admincore also allows staff to manage appeals and accept or reject them."
+    ],
+    [
+      "Plugin-wide Broadcasts",
+      "Admincore can broadcast information plugin wide, allowing developers to send messages directly to server administrators."
+    ],
+    [
+      "Error Logging",
+      "Admincore takes error logging to the next level, giving tips on how to help solve errors and logging errors with verbosity to help diagnose problems."
+    ]
   ],
   "config": [
-
+    "broadcasts",
+    "announcementtitle",
+    "bot",
+    [
+      "enable",
+      "token",
+      "presence",
+      [
+        "action",
+        "url",
+        "status"
+      ],
+      "prefix",
+      "channels",
+      [
+        "admin",
+        "trusted",
+        "staff"
+      ],
+      "commands",
+      [
+        "announce",
+        "freeze",
+        "unfreeze",
+        "stats",
+        "history",
+        "aliases"
+      ]
+    ],
+    "chatlink",
+    [
+      "send",
+      [
+        "enable",
+        "channel"
+      ],
+      "get",
+      [
+        "enable",
+        "token"
+      ]
+    ],
+    "webhook",
+    [
+      "customName",
+      "name",
+      "icon",
+      "errorLogger",
+      [
+        "use",
+        "reload",
+        "token"
+      ],
+      "reportLogger",
+      [
+        "use",
+        "token"
+      ],
+      "banLogger",
+      [
+        "use",
+        "token"
+      ],
+      "muteLogger",
+      [
+        "use",
+        "token"
+      ],
+      "appealLogger",
+      [
+        "use",
+        "token"
+      ],
+      "kickLogger",
+      [
+        "use",
+        "token"
+      ],
+      "broadcastLogger",
+      [
+        "use",
+        "token"
+      ]
+    ],
+    "staffmode",
+    [
+      "resetgamemode",
+      "tptospawn",
+      [
+        "teleport",
+        "use-spawn-cmd",
+        "location",
+        [
+          "world",
+          "coordinates",
+          [
+            "x",
+            "y",
+            "z",
+            "yaw",
+            "pitch"
+          ]
+        ]
+      ],
+      "psuedodisconnect",
+      [
+        "send-message",
+        "message"
+      ],
+      "pseudojoin",
+      [
+        "send-message",
+        "message"
+      ],
+      "punishment",
+      [
+        "report",
+        [
+          "reasons",
+          [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "autoclose",
+          [
+            "close-on-mute",
+            "close-on-tempban",
+            "close-on-ban",
+            "close-on-ip-ban"
+          ],
+          "teleport"
+        ],
+        "ban",
+        [
+          "reasons",
+          [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "tempban-length",
+          "ip-ban"
+        ],
+        "mute",
+        [
+          "reasons",
+          [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "mute-length"
+        ],
+        "appeals",
+        [
+          "mute",
+          [
+            "allow-appeals",
+            "message"
+          ],
+          "tempban",
+          [
+            "allow-appeals",
+            "message"
+          ],
+          "ban",
+          [
+            "allow-appeals",
+            "message"
+          ],
+          "ip-ban",
+          [
+            "allow-appeals",
+            "message"
+          ],
+          "api",
+          [
+            "enable",
+            "hostname",
+            "port"
+          ]
+        ]
+      ],
+      "stats",
+      [
+        "api-key",
+        "public-networks",
+        "strict"
+      ]
+    ],
+    "serverstatus",
+    [
+      "protect-sensitive",
+      "serverVersion",
+      [
+        "log"
+      ],
+      "buildInformation",
+      [
+        "log"
+      ],
+      "ip",
+      [
+        "log"
+      ],
+      "port",
+      [
+        "log"
+      ],
+      "playerCount",
+      [
+        "log"
+      ],
+      "tps",
+      [
+        "log",
+        [
+          "one-minute",
+          "five-minutes",
+          "fifteen-minutes"
+        ]
+      ],
+      "uptime",
+      [
+        "log"
+      ],
+      "ram",
+      [
+        "log"
+      ],
+      "ping",
+      [
+        "log"
+      ]
+    ],
+    "version"
   ],
   "permissions": [
-
+    {
+      "name": "admin",
+      "desc": "Allows a staff member to use the full functionality of Admincore. This includes access to sensitive information.",
+      "children": [
+        {
+          "name": "trusted",
+          "desc": "Allows a staff member to check the statistics of a player including sensitive information. This also allows the staff member to see sensitive information of the server, if sensitive protection is enabled. This gives the staff member access to staffmode.",
+          "children": [
+            {
+              "name": "stats",
+              "desc": "Allows a staff member to check the statistics of a player excluding sensitive information. This gives the staff member access to staffmode.",
+              "children": [
+                {
+                  "name": "staffmode",
+                  "desc": "Allows a staff member to use all permissions staffmode requires.",
+                  "children": [
+                    {
+                      "name": "inspect",
+                      "desc": "Allows a staff member to inspect another player.",
+                      "children": [
+                        {
+                          "name": "staff",
+                          "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "name": "ban",
+                      "desc": "Allows a staff member to ban a player.",
+                      "children": [
+                        {
+                          "name": "staff",
+                          "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "name": "tempban",
+                      "desc": "Allows a staff member to ban a player temporarily.",
+                      "children": [
+                        {
+                          "name": "staff",
+                          "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "name": "mute",
+                      "desc": "Allows a staff member to mute a player.",
+                      "children": [
+                        {
+                          "name": "staff",
+                          "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "name": "aliases",
+                      "desc": "Allows a staff member to view a player's aliases.",
+                      "children": [
+                        {
+                          "name": "staff",
+                          "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "name": "history",
+                      "desc": "Allows a staff member to view the punishment history of a player.",
+                      "children": [
+                        {
+                          "name": "staff",
+                          "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "name": "pardon",
+                      "desc": "Allows a staff member to pardon banned players.",
+                      "children": [
+                        {
+                          "name": "staff",
+                          "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "name": "ippardon",
+                      "desc": "Allows a staff member to pardon banned IP addresses.",
+                      "children": [
+                        {
+                          "name": "staff",
+                          "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "name": "ipban",
+                      "desc": "Allows a staff member to IP ban players.",
+                      "children": [
+                        {
+                          "name": "staff",
+                          "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "name": "kick",
+                      "desc": "Allows a staff member to kick a player.",
+                      "children": [
+                        {
+                          "name": "staff",
+                          "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "commands",
+          "desc": "Allows a staff member to use all features of Admincore, excluding sending announcements and viewing sensitive player information and sensitive server information with sensitive protection enabled.",
+          "children": [
+            {
+              "name": "appeal",
+              "desc": "Allows a staff member to view and manage punishment appeals.",
+              "children": [
+                {
+                  "name": "staff",
+                  "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "report",
+              "desc": "Allows a staff member to view and manage player reports.",
+              "children": [
+                {
+                  "name": "staff",
+                  "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "freeze",
+              "desc": "Allows a staff member to freeze and unfreeze a player.",
+              "children": [
+                {
+                  "name": "staff",
+                  "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "status",
+              "desc": "Allows a staff member to view the server's statistics. Requires admincore.trusted to show sensitive information if sensitive protection is enabled.",
+              "children": [
+                {
+                  "name": "staff",
+                  "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "staffmode",
+              "desc": "Allows a staff member to use all permissions staffmode requires.",
+              "children": [
+                {
+                  "name": "inspect",
+                  "desc": "Allows a staff member to inspect another player.",
+                  "children": [
+                    {
+                      "name": "staff",
+                      "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "ban",
+                  "desc": "Allows a staff member to ban a player.",
+                  "children": [
+                    {
+                      "name": "staff",
+                      "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "tempban",
+                  "desc": "Allows a staff member to ban a player temporarily.",
+                  "children": [
+                    {
+                      "name": "staff",
+                      "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "mute",
+                  "desc": "Allows a staff member to mute a player.",
+                  "children": [
+                    {
+                      "name": "staff",
+                      "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "aliases",
+                  "desc": "Allows a staff member to view a player's aliases.",
+                  "children": [
+                    {
+                      "name": "staff",
+                      "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "history",
+                  "desc": "Allows a staff member to view the punishment history of a player.",
+                  "children": [
+                    {
+                      "name": "staff",
+                      "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "pardon",
+                  "desc": "Allows a staff member to pardon banned players.",
+                  "children": [
+                    {
+                      "name": "staff",
+                      "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "ippardon",
+                  "desc": "Allows a staff member to pardon banned IP addresses.",
+                  "children": [
+                    {
+                      "name": "staff",
+                      "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "ipban",
+                  "desc": "Allows a staff member to IP ban players.",
+                  "children": [
+                    {
+                      "name": "staff",
+                      "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "kick",
+                  "desc": "Allows a staff member to kick a player.",
+                  "children": [
+                    {
+                      "name": "staff",
+                      "desc": "Base permission for Admincore. This permission is the child of all of Admincore's other permissions as all staff need this permission.",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   ]
 }
