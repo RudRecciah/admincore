@@ -21,7 +21,7 @@ const Features: FC<Props> = (): ReactElement => {
             Admincore is a plugin crafted to serve all your moderation needs. Offering 20 unique components, 150+ configuration options, and 20 permissions, Admincore is expansive, customizable, and trustworthy. Being able to handle anything from small hobby servers to massive thousand-player servers, Admincore has it all.
           </p>
           <Container className={"text-light fs-4 mt-5"}>
-            <h2 className={`text-center text-primary ${css.mainTextSmall}`}>Components</h2>
+            <h2 className={`text-center text-primary ${css.mainTextSmall} mb-4`}>Components</h2>
             <Row>
               {FeatureList.components.map(component => <Feature title={component[0]} body={component[1]}/>)}
               {FeatureList.config.map(config => <Feature title={config[0]} body={config[1]}/>)}

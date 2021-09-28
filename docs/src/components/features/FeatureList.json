@@ -1,6 +1,6 @@
 {
   "components": [
-    ["Multi-version", "Admincore supports Spigot 1.12.x-1.17.x"],
+    ["Multi-version", "Admincore supports Spigot 1.12.x-1.17.x."],
     ["Announcements", "With Admincore, in-game announcements and broadcasts are a breeze to send."],
     ["Player Freeze", "You can freeze players with bad intentions to keep them from damaging your server."],
     ["Punishment Logging", "Admincore logs all punishments both in-game, in Discord, and plugin files."],

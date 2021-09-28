@@ -6,11 +6,11 @@ interface Props {
   body: string;
 }
 
-const Feature: FC<Props> = (title, body): ReactElement => {
+const Feature: FC<Props> = ({ title, body }): ReactElement => {
   return (
     <React.Fragment>
-      <Col xs={12} sm={6} lg={4} xl={3}>
-        <Card className={"shadow bg-dark h-100"}>
+      <Col xs={12} sm={6} xl={4} className={"mb-4"}>
+        <Card className={"shadow bg-dark h-100 p-3"}>
           <CardTitle className={"text-poppins fs-2 text-primary"}>
             {title}
           </CardTitle>
