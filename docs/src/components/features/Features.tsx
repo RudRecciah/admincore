@@ -1,9 +1,10 @@
 import React, { FC, ReactElement, useState } from "react";
 import css from "./Features.module.css";
 import { PageWrapper } from "../../utils/PageWrapper";
-import { Col, Container, Row } from "reactstrap";
+import { Card, CardBody, CardTitle, Col, Container, Row } from "reactstrap";
 import FeatureList from "./FeatureList.json";
 import { Component } from "./Component";
+import { Config } from "./Config";
 
 interface Props {
 
@@ -25,12 +26,13 @@ const Features: FC<Props> = (): ReactElement => {
             <Row>
               {FeatureList.components.map(component => <Component title={component[0]} body={component[1]}/>)}
             </Row>
+            <h2 className={`text-center text-primary ${css.mainTextSmall} mt-5 mb-4`}>Configuration</h2>
             <Row>
-              {/*{FeatureList.config.map(config => <Component title={config[0]} body={config[1]}/>)}*/}
+              <Config/>
             </Row>
-            <Row>
-              {/*{FeatureList.permissions.map(permission => <Component title={permission[0]} body={permission[1]}/>)}*/}
-            </Row>
+            {/*<Row>*/}
+            {/*  /!*{FeatureList.permissions.map(permission => <Component title={permission[0]} body={permission[1]}/>)}*!/*/}
+            {/*</Row>*/}
           </Container>
         </Container>
       </PageWrapper>

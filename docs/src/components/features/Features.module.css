@@ -7,7 +7,7 @@
 }
 
 .mainTextSmall {
-    font-size: max(2em, 10vw);
+    font-size: min(2em, 10vw);
 }
 
 .smSpacer {

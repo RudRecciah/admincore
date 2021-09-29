@@ -1,0 +1,162 @@
+# Admincore Config
+# First time here or just want a guide? Head over to https://rudrecciah.dev/admincore/wiki/setup. It'll take you on a simple, step by step guide on setting up Admincore and its config.
+# Updating? Head over to https://rudrecciah.dev/admincore/wiki/updating. It'll take you on a simple, step by step guide on updating Admincore and its config.
+broadcasts: true
+announcementtitle: 'Hey!'
+bot:
+&nbsp;&nbsp;enable: false
+&nbsp;&nbsp;token: ''
+&nbsp;&nbsp;presence:
+&nbsp;&nbsp;&nbsp;&nbsp;action: 1
+&nbsp;&nbsp;&nbsp;&nbsp;url: 'https://rudrecciah.dev/admincore'
+&nbsp;&nbsp;&nbsp;&nbsp;status: 'staff members'
+&nbsp;&nbsp;prefix: '/'
+&nbsp;&nbsp;channels:
+&nbsp;&nbsp;&nbsp;&nbsp;admin: ''
+&nbsp;&nbsp;&nbsp;&nbsp;trusted: ''
+&nbsp;&nbsp;&nbsp;&nbsp;staff: ''
+&nbsp;&nbsp;commands:
+&nbsp;&nbsp;&nbsp;&nbsp;announce: true
+&nbsp;&nbsp;&nbsp;&nbsp;freeze: true
+&nbsp;&nbsp;&nbsp;&nbsp;unfreeze: true
+&nbsp;&nbsp;&nbsp;&nbsp;stats: true
+&nbsp;&nbsp;&nbsp;&nbsp;history: true
+&nbsp;&nbsp;&nbsp;&nbsp;aliases: true
+chatlink:
+&nbsp;&nbsp;send:
+&nbsp;&nbsp;&nbsp;&nbsp;enable: false
+&nbsp;&nbsp;&nbsp;&nbsp;channel: ''
+&nbsp;&nbsp;get:
+&nbsp;&nbsp;&nbsp;&nbsp;enable: false
+&nbsp;&nbsp;&nbsp;&nbsp;token: ''
+webhook:
+&nbsp;&nbsp;customName: false
+&nbsp;&nbsp;name: 'jams'
+&nbsp;&nbsp;icon: 'https://raw.githubusercontent.com/RudRecciah/files/main/jams.PNG'
+&nbsp;&nbsp;errorLogger:
+&nbsp;&nbsp;&nbsp;&nbsp;use: false
+&nbsp;&nbsp;&nbsp;&nbsp;reload: true
+&nbsp;&nbsp;&nbsp;&nbsp;token: ''
+&nbsp;&nbsp;reportLogger:
+&nbsp;&nbsp;&nbsp;&nbsp;use: false
+&nbsp;&nbsp;&nbsp;&nbsp;token: ''
+&nbsp;&nbsp;banLogger:
+&nbsp;&nbsp;&nbsp;&nbsp;use: false
+&nbsp;&nbsp;&nbsp;&nbsp;token: ''
+&nbsp;&nbsp;muteLogger:
+&nbsp;&nbsp;&nbsp;&nbsp;use: false
+&nbsp;&nbsp;&nbsp;&nbsp;token: ''
+&nbsp;&nbsp;appealLogger:
+&nbsp;&nbsp;&nbsp;&nbsp;use: false
+&nbsp;&nbsp;&nbsp;&nbsp;token: ''
+&nbsp;&nbsp;kickLogger:
+&nbsp;&nbsp;&nbsp;&nbsp;use: false
+&nbsp;&nbsp;&nbsp;&nbsp;token: ''
+&nbsp;&nbsp;broadcastLogger:
+&nbsp;&nbsp;&nbsp;&nbsp;use: false
+&nbsp;&nbsp;&nbsp;&nbsp;token: ''
+staffmode:
+&nbsp;&nbsp;resetgamemode: true
+&nbsp;&nbsp;tptospawn:
+&nbsp;&nbsp;&nbsp;&nbsp;teleport: true
+&nbsp;&nbsp;&nbsp;&nbsp;use-spawn-cmd: false
+&nbsp;&nbsp;&nbsp;&nbsp;spawn-cmd: 'spawn'
+&nbsp;&nbsp;&nbsp;&nbsp;location:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world: 'world'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;coordinates:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x: 0.0
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y: 0.0
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z: 0.0
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yaw: 0
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pitch: 0
+&nbsp;&nbsp;pseudodisconnect:
+&nbsp;&nbsp;&nbsp;&nbsp;send-message: true
+&nbsp;&nbsp;&nbsp;&nbsp;message: '&e%p% left the game'
+&nbsp;&nbsp;pseudojoin:
+&nbsp;&nbsp;&nbsp;&nbsp;send-message: true
+&nbsp;&nbsp;&nbsp;&nbsp;message: '&e%p% joined the game'
+&nbsp;&nbsp;punishment:
+&nbsp;&nbsp;&nbsp;&nbsp;report:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reasons:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1: 'Cheating'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2: 'Chat Abuse'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3: 'Harassment'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4: 'Chargebacks'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5: 'DDoS Threats'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6: 'Name Abuse'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7: 'Threatening Players'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8: 'Conspiracy'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;autoclose:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;close-on-mute: true
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;close-on-tempban: true
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;close-on-ban: true
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;close-on-ip-ban: true
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;teleport: true
+&nbsp;&nbsp;&nbsp;&nbsp;ban:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reasons:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1: 'Cheating'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2: 'Chat Abuse'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3: 'Harassment'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4: 'Chargebacks'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5: 'DDoS Threats'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6: 'Name Abuse'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7: 'Threatening Players'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8: 'Conspiracy'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tempban-length: 30
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ip-ban: true
+&nbsp;&nbsp;&nbsp;&nbsp;mute:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reasons:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1: 'Cheating'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2: 'Chat Abuse'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3: 'Harassment'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4: 'Chargebacks'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5: 'DDoS Threats'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6: 'Name Abuse'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7: 'Threatening Players'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8: 'Conspiracy'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mute-length: 30
+&nbsp;&nbsp;&nbsp;&nbsp;appeals:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mute:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;allow-appeals: false
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message: 'To appeal your mute, go to https://example.com/appeals.'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tempban:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;allow-appeals: false
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message: 'To appeal your ban, go to https://example.com/appeals.'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ban:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;allow-appeals: false
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message: 'To appeal your ban, go to https://example.com/appeals.'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ip-ban:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;allow-appeals: false
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message: 'To appeal your IP ban, go to https://example.com/appeals.'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;api:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enable: false
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hostname: localhost
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;port: 5000
+&nbsp;&nbsp;stats:
+&nbsp;&nbsp;&nbsp;&nbsp;api-key: ''
+&nbsp;&nbsp;&nbsp;&nbsp;public-networks: false
+&nbsp;&nbsp;&nbsp;&nbsp;strict: true
+serverstatus:
+&nbsp;&nbsp;protect-sensitive: true
+&nbsp;&nbsp;serverVersion:
+&nbsp;&nbsp;&nbsp;&nbsp;log: true
+&nbsp;&nbsp;buildInformation:
+&nbsp;&nbsp;&nbsp;&nbsp;log: true
+&nbsp;&nbsp;ip:
+&nbsp;&nbsp;&nbsp;&nbsp;log: true
+&nbsp;&nbsp;port:
+&nbsp;&nbsp;&nbsp;&nbsp;log: true
+&nbsp;&nbsp;playerCount:
+&nbsp;&nbsp;&nbsp;&nbsp;log: true
+&nbsp;&nbsp;tps:
+&nbsp;&nbsp;&nbsp;&nbsp;log:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;one-minute: true
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;five-minutes: true
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fifteen-minutes: true
+&nbsp;&nbsp;uptime:
+&nbsp;&nbsp;&nbsp;&nbsp;log: true
+&nbsp;&nbsp;ram:
+&nbsp;&nbsp;&nbsp;&nbsp;log: true
+&nbsp;&nbsp;ping:
+&nbsp;&nbsp;&nbsp;&nbsp;log: true
+version: 4
