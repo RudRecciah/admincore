@@ -18,6 +18,38 @@
     height: 1rem;
 }
 
+.permissionChildren {
+    width: 100%;
+}
+
+@media screen and (min-width: 540px) {
+    .permissionChildren {
+        width: 50%;
+    }
+
+    .permissionChildren:not(:only-child):not(:last-child):nth-child(odd) {
+        border-top-right-radius: unset;
+        border-bottom-right-radius: unset;
+    }
+
+    .permissionChildren:nth-child(even) {
+        border-top-left-radius: unset;
+        border-bottom-left-radius: unset;
+    }
+
+    .permissionChildren:last-child {
+        margin-right: unset;
+    }
+
+    .permissionChildren:last-child:nth-child(odd) {
+        width: 100%;
+    }
+
+    .permissionChildren:only-child {
+        width: 100%;
+    }
+}
+
 @media screen and (min-width: 768px) {
     .mainText {
         font-size: 90px;

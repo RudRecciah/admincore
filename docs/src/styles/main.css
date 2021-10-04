@@ -7,7 +7,7 @@
 }
 
 .text-link {
-    color: #cb0031 !important;
+    color: #ea0038 !important;
     transition: color 0.15s ease-in-out !important;
 }
 
@@ -95,7 +95,7 @@
     padding: 1rem 1rem 1rem 1rem !important;
     transition: padding-right 0.15s ease-in-out, color 0.15s ease-in-out, background-color 0.15s ease-in-out !important;
 
-    color: #cb0031 !important;
+    color: #ea0038 !important;
 }
 
 .sidebar-content:last-child {

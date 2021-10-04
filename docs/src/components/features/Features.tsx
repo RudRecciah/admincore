@@ -5,6 +5,7 @@ import { Card, CardBody, CardTitle, Col, Container, Row } from "reactstrap";
 import FeatureList from "./FeatureList.json";
 import { Component } from "./Component";
 import { Config } from "./Config";
+import { Permission } from "./Permission";
 
 interface Props {
 
@@ -24,16 +25,19 @@ const Features: FC<Props> = (): ReactElement => {
           <Container className={"text-light fs-4 mt-5"}>
             <h2 className={`text-center text-primary ${css.mainTextSmall} mb-4`}>Components</h2>
             <Row>
-              {FeatureList.components.map(component => <Component title={component[0]} body={component[1]}/>)}
+              {FeatureList.components.map((component, index, array) => <Component title={component[0]} body={component[1]} last={index === array.length - 1}/>)}
             </Row>
             <h2 className={`text-center text-primary ${css.mainTextSmall} mt-5 mb-4`}>Configuration</h2>
             <Row>
               <Config/>
             </Row>
-            {/*<Row>*/}
-            {/*  /!*{FeatureList.permissions.map(permission => <Component title={permission[0]} body={permission[1]}/>)}*!/*/}
-            {/*</Row>*/}
+            <h2 className={`text-center text-primary ${css.mainTextSmall} mt-5 mb-4`}>Permissions</h2>
+            <Row>
+              {FeatureList.permissions.map((permission, index, array) => <Permission title={permission[0]} body={permission[1]} permissionChildren={permission[2]} last={index === array.length - 1}/>)}
+            </Row>
           </Container>
+          <div className={"spacer"}/>
+          <div className={"spacer"}/>
         </Container>
       </PageWrapper>
     </React.Fragment>
