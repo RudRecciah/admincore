@@ -6,6 +6,7 @@ import { Route, Switch, Switch as BrowserSwitch, useLocation, useRouteMatch } fr
 import { Card, CardBody, CardTitle, Col, Container, Row } from "reactstrap";
 import css from "./Docs.module.css";
 import { DocsRoutes } from "./DocsRoutes";
+import { DocsSidebar } from "./DocsSidebar";
 
 interface Props {
 
@@ -26,11 +27,11 @@ const DocsContainer: FC<Props> = (): ReactElement => {
           <Row className={"text-light fs-4 mt-5"}>
             <Col xs={3} className={"mb-4"}>
               <Card className={"shadow bg-dark h-100 p-3"}>
-                <CardTitle className={"text-poppins text-primary"}>
+                <CardTitle className={"text-poppins text-primary fs-3"}>
                   Sections
                 </CardTitle>
-                <CardBody className={"text-urbanist"}>
-
+                <CardBody className={"text-urbanist fs-4 py-0 d-flex flex-column"}>
+                  <DocsSidebar/>
                 </CardBody>
               </Card>
             </Col>

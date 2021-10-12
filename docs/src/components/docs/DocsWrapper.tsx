@@ -25,11 +25,17 @@ interface Author {
 }
 
 /**
- * @param url The path to this element's location on GitHub relative to RudRecciah/admincore/docs/src/components/docs/. For example, RudRecciah/admincore/docs/src/components/docs/DocsWrapper.tsx is DocsWrapper.tsx.
+ * @param url The path to this element's location on GitHub relative to RudRecciah/admincore/docs/src/components/docs/. For example, RudRecciah/admincore/docs/src/components/docs/DocsWrapper.tsx is either ./DocsWrapper.tsx, /DocsWrapper.tsx, or DocsWrapper.tsx.
  * @constructor
  */
 const DocsWrapper: FC<Props> = ({ url, children }): ReactElement => {
 
+  if(url.substring(0, 2) === "./") {
+    url = url.substring(2);
+  }
+  if(url.substring(0, 1) === "/") {
+    url = url.substring(1);
+  }
   url = url.replaceAll("/", "%2F");
 
   const defaultCommitText = (
