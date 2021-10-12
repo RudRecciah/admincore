@@ -8,6 +8,8 @@ import Footer from "./utils/Footer";
 import { AnimatePresence, motion } from "framer-motion";
 import { About } from "./components/about/About";
 import { Features } from "./components/features/Features";
+import { DocsContainer } from "./components/docs/DocsContainer";
+import { DocsRoutes } from "./components/docs/DocsRoutes";
 
 
 interface Props {
@@ -24,6 +26,7 @@ const Router: FC<Props> = (): ReactElement => {
           <Switch location={location} key={location.pathname}>
             <Route path={PathController.getAbsolutePath("about")} exact component={About}/>
             <Route path={PathController.getAbsolutePath("features")} exact component={Features}/>
+            <Route path={PathController.getAbsolutePath("docs")} component={DocsContainer}/>
             <Route path={PathController.getAbsoluteRootPath()} exact component={HomeComponent}/>
             <Route path={PathController.getAbsoluteNotFoundPath()} component={NotFound}/>
           </Switch>

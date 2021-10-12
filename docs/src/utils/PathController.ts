@@ -1,5 +1,16 @@
 export default class PathController {
 
+  /**Returns the path relative to ./docs/*/
+  public static getDocsPath(path: string): string {
+    if(path.startsWith("./")) {
+      path = path.replace("./", "");
+    }
+    if(path.startsWith("/")) {
+      path = path.replace("/", "");
+    }
+    return this.getAbsolutePath(`/docs/${path}`);
+  }
+
   /**Returns the absolute path from a non-root path relative to the public path*/
   public static getAbsolutePath(path: string): string {
 
@@ -24,6 +35,15 @@ export default class PathController {
       return "/admincore/";
     }else{
       return `${process.env.PUBLIC_URL}/`;
+    }
+  }
+
+  /**Returns the absolute path of the 404 path relative to the public path*/
+  public static getDocsNotFoundPath(): string {
+    if(typeof process.env.PUBLIC_URL !== "string") {
+      return "/admincore/docs/*";
+    }else{
+      return `${process.env.PUBLIC_URL}/*`;
     }
   }
 
