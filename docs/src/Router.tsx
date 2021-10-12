@@ -10,6 +10,7 @@ import { About } from "./components/about/About";
 import { Features } from "./components/features/Features";
 import { DocsContainer } from "./components/docs/DocsContainer";
 import { DocsRoutes } from "./components/docs/DocsRoutes";
+import { Bugs } from "./components/bugs/Bugs";
 
 
 interface Props {
@@ -27,6 +28,7 @@ const Router: FC<Props> = (): ReactElement => {
             <Route path={PathController.getAbsolutePath("about")} exact component={About}/>
             <Route path={PathController.getAbsolutePath("features")} exact component={Features}/>
             <Route path={PathController.getAbsolutePath("docs")} component={DocsContainer}/>
+            <Route path={PathController.getAbsolutePath("bugs")} component={Bugs}/>
             <Route path={PathController.getAbsoluteRootPath()} exact component={HomeComponent}/>
             <Route path={PathController.getAbsoluteNotFoundPath()} component={NotFound}/>
           </Switch>
