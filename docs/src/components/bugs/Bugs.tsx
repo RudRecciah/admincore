@@ -26,12 +26,12 @@ const Bugs: FC<Props> = (): ReactElement => {
                 <p className={"text-center"}>
                   Admincore's primary way of reporting bugs is through GitHub's issue system. If you have a GitHub account, you can create an issue in Admincore's repository.
                 </p>
-                <div className={"text-center"}>
+                <div className={"text-center mb-5"}>
                   <a href={"https://github.com/rudrecciah/admincore/issues"} className={"btn btn-primary text-center"}>Create an Issue</a>
                 </div>
               </Col>
               <Col xs={12} lg={6}>
-                <h2 className={`text-center text-primary ${css.mainTextSmall}`}>Bug Reporting Page</h2>
+                <h2 className={`text-center text-primary ${css.mainTextSmall}`}>Bug Page</h2>
                 <p className={"text-center"}>
                   If you can't create an issue on GitHub, using this page is the next best way to report a bug. You can simply and anonomously write about any errors you find.
                 </p>
@@ -40,6 +40,8 @@ const Bugs: FC<Props> = (): ReactElement => {
                 </div>
               </Col>
             </Row>
+            <div className={"spacer"}/>
+            <div className={"spacer"}/>
           </Container>
         </Container>
       </PageWrapper>
