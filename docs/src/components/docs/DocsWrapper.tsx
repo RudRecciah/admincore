@@ -60,7 +60,6 @@ const DocsWrapper: FC<Props> = ({ url, children }): ReactElement => {
               <span className={"text-light text-urbanist fs-6"}>Last updated on {date.toDateString().split(" ")[1]} {date.toDateString().split(" ")[2]}, {date.toDateString().split(" ")[3]} by {name}.</span>
             </div>
           );
-          console.log(newCommitText);
           updateCommitText(newCommitText);
         }
       }catch(e) {
