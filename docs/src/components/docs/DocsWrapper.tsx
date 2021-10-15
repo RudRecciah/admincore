@@ -1,5 +1,6 @@
 import React, { FC, ReactElement, ReactNode, useEffect, useState } from "react";
 import { request } from "@octokit/request";
+import Icon from "../../utils/Icon";
 
 interface Props {
   url: string;
@@ -56,7 +57,7 @@ const DocsWrapper: FC<Props> = ({ url, children }): ReactElement => {
           const date = new Date(Date.parse(commitWrapper.commit.author.date));
           const newCommitText = (
             <div className={"d-flex flex-row justify-content-start align-items-center"}>
-              <span className="material-icons text-primary mx-2 fs-1">info</span>
+              <Icon font={"Material"} icon={"info"} className={"text-primary mx-2 fs-1"}/>
               <span className={"text-light text-urbanist fs-6"}>Last updated on {date.toDateString().split(" ")[1]} {date.toDateString().split(" ")[2]}, {date.toDateString().split(" ")[3]} by {name}.</span>
             </div>
           );
