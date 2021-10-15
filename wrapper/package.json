@@ -1,0 +1,22 @@
+{
+  "name": "@admincore/appeal-client",
+  "version": "0.0.0",
+  "description": "A TypeScript wrapper for Admincore's Appeal API",
+  "main": "main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RudRecciah/admincore.git"
+  },
+  "keywords": [
+    "admincore"
+  ],
+  "author": "RudRecciah",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RudRecciah/admincore/issues"
+  },
+  "homepage": "https://github.com/RudRecciah/admincore#readme"
+}
