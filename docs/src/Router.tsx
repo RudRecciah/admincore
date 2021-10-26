@@ -12,7 +12,6 @@ import { DocsContainer } from "./components/docs/DocsContainer";
 import { DocsRoutes } from "./components/docs/DocsRoutes";
 import { Bugs } from "./components/bugs/Bugs";
 
-
 interface Props {
 
 }

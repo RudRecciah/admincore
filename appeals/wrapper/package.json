@@ -1,0 +1,39 @@
+{
+  "name": "@admincore/appeal-client",
+  "version": "0.0.0",
+  "description": "A TypeScript wrapper for Admincore's Appeal API",
+  "main": "src/Appeal.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RudRecciah/admincore.git"
+  },
+  "keywords": [
+    "admincore"
+  ],
+  "author": "RudRecciah",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RudRecciah/admincore/issues"
+  },
+  "homepage": "https://github.com/RudRecciah/admincore#readme",
+  "dependencies": {
+    "namemc": "^1.8.16",
+    "node-fetch": "^3.0.0",
+    "typescript": "^4.4.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@types/es6-promise": "^3.3.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "core-js": "^3.18.3",
+    "eslint": "^8.0.1",
+    "regenerator-runtime": "^0.13.9",
+    "tsc": "^2.0.3"
+  }
+}
